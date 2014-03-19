@@ -26,5 +26,55 @@ namespace KingPokerWindowsPhone8
         {
 
         }
+
+        private void ResetBox_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Help_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void MoreGames_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void BetOne_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void BetMax_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Deal_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Login_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Stats_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void About_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Review_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
