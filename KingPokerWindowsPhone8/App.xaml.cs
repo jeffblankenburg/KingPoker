@@ -7,6 +7,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using KingPokerWindowsPhone8.Resources;
+using System.IO.IsolatedStorage;
 
 namespace KingPokerWindowsPhone8
 {
@@ -17,6 +18,7 @@ namespace KingPokerWindowsPhone8
         /// </summary>
         /// <returns>The root frame of the Phone Application.</returns>
         public static PhoneApplicationFrame RootFrame { get; private set; }
+        public static IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
 
         /// <summary>
         /// Constructor for the Application object.

@@ -8,34 +8,119 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using KingPokerWindowsPhone8.Resources;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 
 namespace KingPokerWindowsPhone8
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        // Constructor
         public MainPage()
         {
             InitializeComponent();
-
-            // Sample code to localize the ApplicationBar
-            //BuildLocalizedApplicationBar();
         }
 
-        // Sample code for building a localized ApplicationBar
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    // Set the page's ApplicationBar to a new instance of ApplicationBar.
-        //    ApplicationBar = new ApplicationBar();
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            
+        }
 
-        //    // Create a new button and set the text value to the localized string from AppResources.
-        //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-        //    appBarButton.Text = AppResources.AppBarButtonText;
-        //    ApplicationBar.Buttons.Add(appBarButton);
+        private void DeucesWild_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            PlayClick();
+            NavigationService.Navigate(new Uri("/Game.xaml?game=DEUCESWILD", UriKind.Relative));
+        }
 
-        //    // Create a new menu item with the localized string from AppResources.
-        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
-        //}
+        private void JacksOrBetter_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //PlayClick();
+            //NavigationService.Navigate(new Uri("/Game.xaml?game=JACKSORBETTER", UriKind.Relative));
+        }
+
+        private void BonusPokerDeluxe_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //PlayClick();
+            //NavigationService.Navigate(new Uri("/Game.xaml?game=BONUSPOKERDELUXE", UriKind.Relative));
+        }
+
+        private void DoubleBonusPoker_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //PlayClick();
+            //NavigationService.Navigate(new Uri("/Game.xaml?game=DOUBLEBONUSPOKER", UriKind.Relative));
+        }
+
+        private void TripleBonusPokerPlus_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //PlayClick();
+            //NavigationService.Navigate(new Uri("/Game.xaml?game=TRIPLEBONUSPOKERPLUS", UriKind.Relative));
+        }
+
+        private void RoyalAcesBonusPoker_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //PlayClick();
+            //NavigationService.Navigate(new Uri("/Game.xaml?game=ROYALACESBONUSPOKER", UriKind.Relative));
+        }
+
+        private void BonusPoker_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //PlayClick();
+            //NavigationService.Navigate(new Uri("/Game.xaml?game=BONUSPOKER", UriKind.Relative));
+        }
+
+        private void SuperAcesBonusPoker_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //PlayClick();
+            //NavigationService.Navigate(new Uri("/Game.xaml?game=SUPERACESBONUSPOKER", UriKind.Relative));
+        }
+
+        private void WhiteHotAces_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //PlayClick();
+            //NavigationService.Navigate(new Uri("/Game.xaml?game=WHITEHOTACES", UriKind.Relative));
+        }
+
+        private void AcesAndFacesPoker_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //PlayClick();
+            //NavigationService.Navigate(new Uri("/Game.xaml?game=ACESANDFACESPOKER", UriKind.Relative));
+        }
+
+        private void DoubleBonusDeucesWild_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //PlayClick();
+            //NavigationService.Navigate(new Uri("/Game.xaml?game=DOUBLEBONUSDEUCESWILD", UriKind.Relative));
+        }
+
+        private void DeucesWildBonusPoker_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //PlayClick();
+            //NavigationService.Navigate(new Uri("/Game.xaml?game=DEUCESWILDBONUSPOKER", UriKind.Relative));
+        }
+
+        private void JokerPoker_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //PlayClick();
+            //NavigationService.Navigate(new Uri("/Game.xaml?game=JOKERPOKER", UriKind.Relative));
+        }
+
+        private void DoubleDoubleBonusPoker_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //PlayClick();
+            //NavigationService.Navigate(new Uri("/Game.xaml?game=DOUBLEDOUBLEBONUSPOKER", UriKind.Relative));
+        }
+
+        private void BlackJackBonusPoker_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //PlayClick();
+            //NavigationService.Navigate(new Uri("/Game.xaml?game=BLACKJACKBONUSPOKER", UriKind.Relative));
+        }
+
+        private void PlayClick()
+        {
+            var stream = TitleContainer.OpenStream("Assets/audio/click.wav");
+            SoundEffect effect = SoundEffect.FromStream(stream);
+            FrameworkDispatcher.Update();
+            effect.Play();
+        }
     }
 }
