@@ -39,11 +39,11 @@ namespace KingPokerTests
             PokerGame pg = new PokerGame(GameType.DoubleBonusDeucesWild);
             pg.Deal();
             pg.SetCardSuitAndValue(0, new Suit { ID = 1, Name = "Hearts" }, new CardValue { Number = 14, Name = "Ace" });
-            pg.SetCardSuitAndValue(1, new Suit { ID = 2, Name = "Hearts" }, new CardValue { Number = 3, Name = "Three" });
+            pg.SetCardSuitAndValue(1, new Suit { ID = 1, Name = "Hearts" }, new CardValue { Number = 3, Name = "Three" });
             pg.SetCardSuitAndValue(2, new Suit { ID = 3, Name = "Clubs" }, new CardValue { Number = 2, Name = "Two" });
             pg.SetCardSuitAndValue(3, new Suit { ID = 1, Name = "Hearts" }, new CardValue { Number = 4, Name = "Four" });
             pg.SetCardSuitAndValue(4, new Suit { ID = 1, Name = "Hearts" }, new CardValue { Number = 2, Name = "Two" });
-            Assert.AreEqual(HandOutcome.Flush, pg.CheckHandForOutcome(GameType.DoubleBonusDeucesWild));
+            Assert.AreEqual(HandOutcome.StraightFlush, pg.CheckHandForOutcome(GameType.DoubleBonusDeucesWild));
         }
     }
 }

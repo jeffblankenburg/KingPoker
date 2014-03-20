@@ -34,6 +34,7 @@ namespace KingPoker
         RoyalFlushWithWild,
         KingsOrBetter,
         RoyalFlush,
-        Pair
+        Pair,
+        Five3sThru5s
     }
 }

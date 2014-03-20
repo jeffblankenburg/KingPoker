@@ -28,7 +28,7 @@ namespace KingPokerTests
         }
 
         [TestMethod]
-        public void DeucesWild_RoyalFlush_0Deuces()
+        public void DeucesWild_RoyalFlush()
         {
             GameSetup();
             pg.SetCardSuitAndValue(0, new Suit { ID = 1, Name = "Hearts" }, new CardValue { Number = 14, Name = "Ace" });
