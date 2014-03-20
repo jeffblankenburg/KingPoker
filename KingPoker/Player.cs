@@ -14,18 +14,23 @@ namespace KingPoker
 
         public bool IncreaseUnitsWagered(int Units = 1)
         {
+            int PreviousUnitsWagered = WageredUnits;
+
             if (Units == 1)
             {
                 WageredUnits += 1;
-                if (WageredUnits == 5) return true;
-                else if (WageredUnits > 5) WageredUnits = 1;
+                if (WageredUnits > 5) WageredUnits = 1;
+            }
+            else WageredUnits = 5;
+
+            if ((WageredUnits * BetUnit) > Credits)
+            {
+                WageredUnits = PreviousUnitsWagered;
                 return false;
             }
-            else
-            {
-                WageredUnits = 5;
-                return true;
-            }
+            return true;
+
+            
         }
 
         public void ChangeBetUnit(int betunit)
@@ -33,19 +38,24 @@ namespace KingPoker
             BetUnit = betunit;
         }
 
-        public void AddCredits(int credits)
+        public void AwardCredits(int award)
         {
-            Credits += credits;
+            Credits += award;
         }
 
-        public void RemoveCredits(int credits)
+        public void RemoveWageredCredits()
         {
-            Credits -= credits;
+            Credits -= GetCreditsWagered();
         }
 
         public int GetCredits()
         {
             return Credits;
+        }
+
+        public int GetBetUnit()
+        {
+            return BetUnit;
         }
 
         public void SetCredits(int credits)
@@ -60,8 +70,8 @@ namespace KingPoker
 
         public int GetCreditsWagered()
         {
-            if ((WageredUnits * BetUnit) < Credits) return WageredUnits * BetUnit;
-            return Credits;
+            if ((WageredUnits * BetUnit) <= Credits) return (WageredUnits * BetUnit);
+            return 0;
         }
     }
 }

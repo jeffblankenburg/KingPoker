@@ -15,19 +15,32 @@ namespace KingPokerTests
         }
 
         [TestMethod]
-        public void Player_Remove2735CreditsShouldMakeCreditsEqualTo7265()
+        public void Player_MakingBetWith5BetUnitsOf1ShouldReducePlayerCreditTotalBy5()
         {
             Player p = new Player();
-            p.RemoveCredits(2735);
-            Assert.AreEqual(7265, p.GetCredits());
+            p.IncreaseUnitsWagered(5);
+            p.RemoveWageredCredits();
+            Assert.AreEqual(9995, p.GetCredits());
         }
 
         [TestMethod]
-        public void Player_Add4298CreditsShouldMakeCreditsEqualTo14298()
+        public void Player_MakingBetWith5BetUnitsOf100ShouldReducePlayerCreditTotalBy500()
         {
             Player p = new Player();
-            p.AddCredits(4298);
-            Assert.AreEqual(14298, p.GetCredits());
+            p.IncreaseUnitsWagered(5);
+            p.ChangeBetUnit(100);
+            p.RemoveWageredCredits();
+            Assert.AreEqual(9500, p.GetCredits());
+        }
+
+        [TestMethod]
+        public void Player_MakingBetWith5BetUnitsOf100WithoutEnoughCreditsShouldPreventABet()
+        {
+            Player p = new Player();
+            p.SetCredits(432);
+            p.IncreaseUnitsWagered(5);
+            p.ChangeBetUnit(100);
+            Assert.AreEqual(0, p.GetCreditsWagered());
         }
 
         [TestMethod]
@@ -39,27 +52,6 @@ namespace KingPokerTests
             Assert.AreEqual(3, p.GetUnitsWagered());
         }
 
-        [TestMethod]
-        public void Player_IncreaseUnitsWageredThreeTimesShouldBeFourUnitsWageredAndRollTriggerShouldBeFalse()
-        {
-            Player p = new Player();
-            bool RollTrigger = p.IncreaseUnitsWagered();
-            RollTrigger = p.IncreaseUnitsWagered();
-            RollTrigger = p.IncreaseUnitsWagered();
-            Assert.AreEqual(false, RollTrigger);
-            Assert.AreEqual(4, p.GetUnitsWagered());
-        }
-
-        [TestMethod]
-        public void Player_IncreaseUnitsWageredFourTimesShouldBeFiveUnitsWageredAndRollTriggerShouldBeTrue()
-        {
-            Player p = new Player();
-            bool RollTrigger = p.IncreaseUnitsWagered();
-            RollTrigger = p.IncreaseUnitsWagered();
-            RollTrigger = p.IncreaseUnitsWagered();
-            RollTrigger = p.IncreaseUnitsWagered();
-            Assert.AreEqual(true, RollTrigger);
-            Assert.AreEqual(5, p.GetUnitsWagered());
-        }
+        
     }
 }

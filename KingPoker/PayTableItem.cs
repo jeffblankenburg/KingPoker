@@ -8,6 +8,7 @@ namespace KingPoker
     public class PayTableItem
     {
         public string Title { get; set; }
+        public HandOutcome Outcome { get; set; }
         public int Coin1 { get; set; }
         public int Coin2 { get; set; }
         public int Coin3 { get; set; }

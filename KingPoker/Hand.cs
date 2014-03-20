@@ -12,9 +12,9 @@ namespace KingPoker
         public List<bool> Held = new List<bool>{false, false, false, false, false};
         public GameType GameType;
 
-        internal Hand()
+        internal Hand(GameType gametype)
         {
-
+            GameType = gametype;
         }
         
         internal void Sort()
@@ -52,13 +52,11 @@ namespace KingPoker
             return Held[card];
         }
 
-        public HandOutcome CheckForOutcome(GameType gametype)
+        public HandOutcome CheckForOutcome()
         {
             Sort();
 
-            GameType = gametype;
-
-            switch (gametype)
+            switch (GameType)
             {
                 case GameType.DeucesWild:
                     if (IsRoyalFlush()) return HandOutcome.RoyalFlushNoDeuces;

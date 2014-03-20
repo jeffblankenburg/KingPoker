@@ -17,7 +17,7 @@ namespace KingPokerTests
             pg.SetCardSuitAndValue(2, new Suit { ID = 2, Name = "Diamonds" }, new CardValue { Number = 14, Name = "Ace" });
             pg.SetCardSuitAndValue(3, new Suit { ID = 4, Name = "Spades" }, new CardValue { Number = 2, Name = "Two" });
             pg.SetCardSuitAndValue(4, new Suit { ID = 2, Name = "Diamonds" }, new CardValue { Number = 3, Name = "Three" });
-            Assert.AreEqual(HandOutcome.StraightFlush, pg.CheckHandForOutcome(GameType.DeucesWild));
+            Assert.AreEqual(HandOutcome.StraightFlush, pg.CheckHandForOutcome());
         }
 
         [TestMethod]
@@ -30,7 +30,7 @@ namespace KingPokerTests
             pg.SetCardSuitAndValue(2, new Suit { ID = 5, Name = "Joker" }, new CardValue { Number = 1, Name = "Joker" });
             pg.SetCardSuitAndValue(3, new Suit { ID = 1, Name = "Hearts" }, new CardValue { Number = 3, Name = "Three" });
             pg.SetCardSuitAndValue(4, new Suit { ID = 1, Name = "Hearts" }, new CardValue { Number = 2, Name = "Two" });
-            Assert.AreEqual(HandOutcome.StraightFlush, pg.CheckHandForOutcome(GameType.JokerPoker));
+            Assert.AreEqual(HandOutcome.StraightFlush, pg.CheckHandForOutcome());
         }
 
         [TestMethod]
@@ -43,7 +43,7 @@ namespace KingPokerTests
             pg.SetCardSuitAndValue(2, new Suit { ID = 3, Name = "Clubs" }, new CardValue { Number = 2, Name = "Two" });
             pg.SetCardSuitAndValue(3, new Suit { ID = 1, Name = "Hearts" }, new CardValue { Number = 4, Name = "Four" });
             pg.SetCardSuitAndValue(4, new Suit { ID = 1, Name = "Hearts" }, new CardValue { Number = 2, Name = "Two" });
-            Assert.AreEqual(HandOutcome.StraightFlush, pg.CheckHandForOutcome(GameType.DoubleBonusDeucesWild));
+            Assert.AreEqual(HandOutcome.StraightFlush, pg.CheckHandForOutcome());
         }
     }
 }

@@ -9,14 +9,17 @@ namespace KingPoker
     public class PokerGame
     {
         Deck Deck;
-        Hand Hand = new Hand();
+        GameType GameType;
+        Hand Hand;
         PayTableFactory paytablefactory = new PayTableFactory();
         List<PayTableItem> PayTables;
 
         public PokerGame(GameType gametype)
         {
-            Deck = new Deck(gametype);
-            PayTables = paytablefactory.GetPayTable(gametype);
+            GameType = gametype;
+            Deck = new Deck(GameType);
+            Hand = new Hand(GameType);
+            PayTables = paytablefactory.GetPayTable(GameType);
         }
 
         public void Deal()
@@ -26,6 +29,7 @@ namespace KingPoker
                 Hand.AddCard(Deck.Draw());
                 Hand.Held.Add(false);
             }
+
         }
 
         public int CountCardsInDeck()
@@ -54,9 +58,24 @@ namespace KingPoker
             return Hand.CountCardsInHand();
         }
 
+        public bool IsCardHeld(int card)
+        {
+            return Hand.IsCardHeld(card);
+        }
+
         public void SetCardHoldState(int card, bool state)
         {
             Hand.SetCardHoldState(card, state);
+        }
+
+        public int GetCardValue(int card)
+        {
+            return Hand.Cards[card].CardValue.Number;
+        }
+
+        public int GetCardSuit(int card)
+        {
+            return Hand.Cards[card].Suit.ID;
         }
 
         public void SetCardSuitAndValue(int card, Suit s, CardValue cv)
@@ -65,14 +84,26 @@ namespace KingPoker
             Hand.Cards[card].CardValue = cv;
         }
 
-        public HandOutcome CheckHandForOutcome(GameType gametype)
+        public HandOutcome CheckHandForOutcome()
         {
-            return Hand.CheckForOutcome(gametype);
+            return Hand.CheckForOutcome();
         }
 
         public List<PayTableItem> GetPayTable()
         {
             return PayTables;
+        }
+
+        public bool AreDeucesWild()
+        {
+            switch(GameType)
+            {
+                case GameType.DeucesWild:
+                case GameType.DeucesWildBonusPoker:
+                case GameType.DoubleBonusDeucesWild:
+                    return true;
+            }
+            return false;
         }
     }
 }
