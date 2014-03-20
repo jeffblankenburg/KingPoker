@@ -6,6 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -13,6 +14,27 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True" shell:SystemTray.Opacity="0">
 
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+    
     <Grid Background="#00019f">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -79,6 +101,30 @@
 
             <Button Content="Close" Click="AlertBoxClose_Click" Grid.Row="1" FontSize="14" Width="150" Height="75" VerticalAlignment="Bottom" HorizontalAlignment="Right" />
         </Grid>-->
+        <Grid x:Name="RatingsBox" Grid.ColumnSpan="7" Grid.RowSpan="15" Visibility="Collapsed" >
+            <Grid.Background>
+                <SolidColorBrush Opacity=".7" Color="Black" />
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150" />
+                <RowDefinition Height="75" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Rectangle Fill="Black" Grid.RowSpan="3" />
+            <Image Source="Assets/Small.png" HorizontalAlignment="Left" Margin="20" />
+            <TextBlock Text="Enjoying King Poker?" Foreground="White" FontSize="35" Margin="146,10,-146,90" Grid.RowSpan="2" />
+            <TextBlock Text="Tell us what you think with a rating!" Foreground="White" Margin="146,69,-21,20" />
+            <TextBlock Text="★★★★★" FontFamily="Segoe UI Symbol" FontSize="40" Margin="208,92,-208,55" Grid.RowSpan="3" />
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Button Content="Rate It" Width="150" Click="Rating_Click" />
+                <Button Content="Not Now" Width="150" Click="NotNow_Click" />
+                <Button Content="Report Bug" Click="ReportBug_Click" />
+            </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                <CheckBox x:Name="NeverAgainBox" IsChecked="false" />
+                <TextBlock Text="Never ask me again." VerticalAlignment="Center" />
+            </StackPanel>
+        </Grid>
     </Grid>
 
 </phone:PhoneApplicationPage>

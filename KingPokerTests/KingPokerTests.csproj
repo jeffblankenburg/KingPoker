@@ -58,6 +58,12 @@
     <Compile Include="Complaint_Tests.cs" />
     <Compile Include="JacksOrBetter_Tests.cs" />
     <Compile Include="DoubleBonusDeucesWild_Tests.cs" />
+    <Compile Include="DoubleBonusPoker_Tests.cs" />
+    <Compile Include="RoyalAcesBonusPoker_Tests.cs" />
+    <Compile Include="TripleBonusPokerPlus_Tests.cs" />
+    <Compile Include="BonusPoker.cs" />
+    <Compile Include="SuperAcesBonusPoker.cs" />
+    <Compile Include="WhiteHotAces_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KingPoker\KingPoker.csproj">

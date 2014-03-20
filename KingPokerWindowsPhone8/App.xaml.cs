@@ -42,7 +42,7 @@ namespace KingPokerWindowsPhone8
             if (Debugger.IsAttached)
             {
                 // Display the current frame rate counters.
-                Application.Current.Host.Settings.EnableFrameRateCounter = true;
+                //Application.Current.Host.Settings.EnableFrameRateCounter = true;
 
                 // Show the areas of the app that are being redrawn in each frame.
                 //Application.Current.Host.Settings.EnableRedrawRegions = true;
@@ -64,6 +64,16 @@ namespace KingPokerWindowsPhone8
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            UpdateLaunchCounter();
+        }
+
+        private void UpdateLaunchCounter()
+        {
+            int launchcount = 0;
+            if (settings.Contains("launchcount")) launchcount = (int)settings["launchcount"];
+            else settings["stopaskingaboutreviews"] = false;
+            launchcount++;
+            settings["launchcount"] = launchcount;
         }
 
         // Code to execute when the application is activated (brought to foreground)
@@ -117,7 +127,7 @@ namespace KingPokerWindowsPhone8
 
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
-            RootFrame = new PhoneApplicationFrame();
+            RootFrame = new TransitionFrame();
             RootFrame.Navigated += CompleteInitializePhoneApplication;
 
             // Handle navigation failures

@@ -110,8 +110,62 @@ namespace KingPoker
                     if (IsTwoPair()) return HandOutcome.TwoPair;
                     if (IsKingsOrBetter()) return HandOutcome.KingsOrBetter;
                     break;
+                case GameType.DoubleBonusPoker:
+                case GameType.TripleBonusPokerPlus:
+                case GameType.WhiteHotAces:
+                case GameType.BonusPoker:
+                case GameType.SuperAcesBonusPoker:
+                    if (IsRoyalFlush()) return HandOutcome.RoyalFlush;
+                    if (IsStraightFlush()) return HandOutcome.StraightFlush;
+                    if (IsFourAces()) return HandOutcome.FourAces;
+                    if (IsFour2sThru4s()) return HandOutcome.Four2sThru4s;
+                    if (IsFour5sThruKs()) return HandOutcome.Four5sThruKings;
+                    if (IsFullHouse()) return HandOutcome.FullHouse;
+                    if (IsFlush()) return HandOutcome.Flush;
+                    if (IsStraight()) return HandOutcome.Straight;
+                    if (IsThreeOfAKind()) return HandOutcome.ThreeOfAKind;
+                    if (IsTwoPair()) return HandOutcome.TwoPair;
+                    if (IsJacksOrBetter()) return HandOutcome.JacksOrBetter;
+                    break;
+                case GameType.RoyalAcesBonusPoker:
+                    if (IsRoyalFlush()) return HandOutcome.RoyalFlush;
+                    if (IsStraightFlush()) return HandOutcome.StraightFlush;
+                    if (IsFourAces()) return HandOutcome.FourAces;
+                    if (IsFour2sThru4s()) return HandOutcome.Four2sThru4s;
+                    if (IsFour5sThruKs()) return HandOutcome.Four5sThruKings;
+                    if (IsFullHouse()) return HandOutcome.FullHouse;
+                    if (IsFlush()) return HandOutcome.Flush;
+                    if (IsStraight()) return HandOutcome.Straight;
+                    if (IsThreeOfAKind()) return HandOutcome.ThreeOfAKind;
+                    if (IsTwoPair()) return HandOutcome.TwoPair;
+                    if (IsPairOfAces()) return HandOutcome.PairOfAces;
+                    break;
             }
             return HandOutcome.Nothing;
+        }
+
+        private bool IsPairOfAces()
+        {
+            if (WhichPair() == 14) return true;
+            return false;
+        }
+
+        private bool IsFour5sThruKs()
+        {
+            if ((WhichFourOfAKind() >= 5) && (WhichFourOfAKind() <= 13)) return true;
+            return false;
+        }
+
+        private bool IsFour2sThru4s()
+        {
+            if ((WhichFourOfAKind() >= 2) && (WhichFourOfAKind() <= 4))return true;
+            return false;
+        }
+
+        private bool IsFourAces()
+        {
+            if (WhichFourOfAKind() == 14) return true;
+            return false;
         }
 
         private bool IsFiveSixesThruKings()

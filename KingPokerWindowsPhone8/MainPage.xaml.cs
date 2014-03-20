@@ -11,6 +11,7 @@ using KingPokerWindowsPhone8.Resources;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using KingPoker;
+using Microsoft.Phone.Tasks;
 
 namespace KingPokerWindowsPhone8
 {
@@ -23,7 +24,30 @@ namespace KingPokerWindowsPhone8
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            
+            ReviewCheck();
+        }
+
+        private void ReviewCheck()
+        {
+            switch((int)App.settings["launchcount"])
+            {
+                case 5:
+                case 15:
+                case 30:
+                case 50:
+                case 75:
+                case 100:
+                case 140:
+                case 200:
+                    if (!(bool)App.settings["stopaskingaboutreviews"]) ShowReviewReminder();
+                    break;
+
+            }
+        }
+
+        private void ShowReviewReminder()
+        {
+            RatingsBox.Visibility = Visibility.Visible;
         }
 
         private void DeucesWild_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -34,8 +58,8 @@ namespace KingPokerWindowsPhone8
 
         private void JacksOrBetter_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //PlayClick();
-            //NavigationService.Navigate(new Uri("/Game.xaml?game=JACKSORBETTER", UriKind.Relative));
+            PlayClick();
+            NavigationService.Navigate(new Uri("/Game.xaml?game=" + GameType.JacksOrBetter, UriKind.Relative));
         }
 
         private void BonusPokerDeluxe_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -122,6 +146,36 @@ namespace KingPokerWindowsPhone8
             SoundEffect effect = SoundEffect.FromStream(stream);
             FrameworkDispatcher.Update();
             effect.Play();
+        }
+
+        private void Rating_Click(object sender, RoutedEventArgs e)
+        {
+            CloseRatingsBox();
+            MarketplaceReviewTask mrt = new MarketplaceReviewTask();
+            mrt.Show();
+        }
+
+        private void CloseRatingsBox()
+        {
+            RatingsBox.Visibility = Visibility.Collapsed;
+            App.settings["launchcount"] = (int)App.settings["launchcount"] + 1;
+        }
+
+        private void NotNow_Click(object sender, RoutedEventArgs e)
+        {
+            CloseRatingsBox();
+            if (NeverAgainBox.IsChecked.Value)
+            {
+                App.settings["stopaskingaboutreviews"] = true;
+            }
+        }
+
+        private void ReportBug_Click(object sender, RoutedEventArgs e)
+        {
+            CloseRatingsBox();
+            WebBrowserTask wbt = new WebBrowserTask();
+            wbt.Uri = new Uri("https://kingpoker.uservoice.com/");
+            wbt.Show();
         }
     }
 }

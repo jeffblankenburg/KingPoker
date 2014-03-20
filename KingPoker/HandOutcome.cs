@@ -18,7 +18,6 @@ namespace KingPoker
         Flush,
         Straight,
         ThreeOfAKind,
-        Four2s3s4s,
         Four5sThruKings,
         TwoPair,
         JacksOrBetter,
@@ -27,7 +26,6 @@ namespace KingPoker
         FourAces,
         FourDeucesPlusAce,
         FiveAces,
-        Five3s4s5s,
         Five6sThruKs,
         Nothing,
         RoyalFlushNoWild,
@@ -35,6 +33,15 @@ namespace KingPoker
         KingsOrBetter,
         RoyalFlush,
         Pair,
-        Five3sThru5s
+        Five3sThru5s,
+        PairOfAces,
+        Four5sThru10s,
+        FourAcesWith234,
+        Four2sThru4sWithA234,
+        Four2sThru4s,
+        FourAcesWithBlackJack,
+        Four2sThru4sWithBlackJack,
+        FourOfAKindWithBlackJack,
+        FourAcesOrJacks
     }
 }

@@ -224,6 +224,8 @@ namespace KingPokerWindowsPhone8
 
         private void HighlightPayTable(DependencyObject target, DependencyObject target2, bool ShouldAwardWinnings)
         {
+            //TODO: This logic really shouldn't be here.  We need to have the "logic" tell the UI which items to highlight.
+            
             var count = VisualTreeHelper.GetChildrenCount(target);
             if (count == 0) return;
 
@@ -289,7 +291,7 @@ namespace KingPokerWindowsPhone8
 
             if (bet == 0)
             {
-                //DO WHATEVER IT IS WE SHOULD DO WHEN THE USER DOESN'T HAVE ENOUGH CREDITS TO MAKE THIS BET.
+                //TODO: DO WHATEVER IT IS WE SHOULD DO WHEN THE USER DOESN'T HAVE ENOUGH CREDITS TO MAKE THIS BET.
             }
             else
             {
@@ -297,25 +299,6 @@ namespace KingPokerWindowsPhone8
                 DrawCredits(player.GetCredits());
                 pokergame.Deal();
             }
-            
-            
-            
-            //int credits = (int)App.settings["credits"];
-
-            //if ((credits - GamePlayer.CurrentBet) >= 0)
-            //{
-            //    int total = (int)App.settings["totalcreditsplayed"];
-            //    credits -= GamePlayer.CurrentBet;
-            //    total += GamePlayer.CurrentBet;
-            //    App.settings["credits"] = credits;
-            //    App.settings["totalcreditsplayed"] = total;
-            //    DrawCredits(credits);
-            //}
-            //else if ((credits - GamePlayer.CurrentBet) < 0)
-            //{
-            //    GamePlayer.CurrentBet = credits;
-            //    Deal();
-            //}
         }
 
         private void ClearHolds()
