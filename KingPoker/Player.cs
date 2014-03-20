@@ -48,9 +48,20 @@ namespace KingPoker
             return Credits;
         }
 
-        public object GetUnitsWagered()
+        public void SetCredits(int credits)
+        {
+            Credits = credits;
+        }
+
+        public int GetUnitsWagered()
         {
             return WageredUnits;
+        }
+
+        public int GetCreditsWagered()
+        {
+            if ((WageredUnits * BetUnit) < Credits) return WageredUnits * BetUnit;
+            return Credits;
         }
     }
 }
