@@ -69,5 +69,10 @@ namespace KingPoker
         {
             return Hand.CheckForOutcome(gametype);
         }
+
+        //public GameType GameTypeConverter(string gametype)
+        //{
+
+        //}
     }
 }

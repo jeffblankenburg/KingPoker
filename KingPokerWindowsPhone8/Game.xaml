@@ -53,7 +53,7 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <local:HelpItemToFontWeightConverter x:Key="HelpItemToFontWeightConverter" />
+        <!--<local:HelpItemToFontWeightConverter x:Key="HelpItemToFontWeightConverter" />-->
     </phone:PhoneApplicationPage.Resources>
 
     <Grid x:Name="LayoutRoot" Background="#00019F">
@@ -242,7 +242,8 @@
                 <ItemsControl x:Name="HelpList" Margin="10">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Text}" FontSize="20" FontWeight="{Binding Converter={StaticResource HelpItemToFontWeightConverter}}" TextWrapping="Wrap" />
+                            <!--<TextBlock Text="{Binding Text}" FontSize="20" FontWeight="{Binding Converter={StaticResource HelpItemToFontWeightConverter}}" TextWrapping="Wrap" />-->
+                            <TextBlock Text="{Binding Text}" FontSize="20" TextWrapping="Wrap" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

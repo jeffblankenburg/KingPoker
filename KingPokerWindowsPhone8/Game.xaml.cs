@@ -7,14 +7,28 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using KingPoker;
 
 namespace KingPokerWindowsPhone8
 {
     public partial class Game : PhoneApplicationPage
     {
+        PokerGame game;
+        GameType gametype;
+        
         public Game()
         {
             InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            string gametype = NavigationContext.QueryString["game"].ToString();
+        }
+
+        private void GameSetup()
+        {
+
         }
 
         private void Card_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

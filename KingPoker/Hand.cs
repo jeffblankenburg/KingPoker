@@ -10,6 +10,7 @@ namespace KingPoker
         public List<Card> Cards = new List<Card>();
         public List<Card> SortedCards = new List<Card>();
         public List<bool> Held = new List<bool>{false, false, false, false, false};
+        public GameType GameType;
 
         internal Hand()
         {
@@ -55,37 +56,89 @@ namespace KingPoker
         {
             Sort();
 
-            if (gametype == GameType.DeucesWild)
-            {
-                if (IsRoyalFlush()) return HandOutcome.RoyalFlushNoDeuces;
-                if (WhichFourOfAKind() == 2) return HandOutcome.FourDeuces;
-                if (IsRoyalFlushWithDeuces()) return HandOutcome.RoyalFlushWithDeuces;
-                if (IsFiveOfAKind()) return HandOutcome.FiveOfAKind;
-                if (IsStraightFlush()) return HandOutcome.StraightFlush;
-                if (IsFourOfAKind()) return HandOutcome.FourOfAKind;
-                if (IsFullHouse()) return HandOutcome.FullHouse;
-                if (IsFlush()) return HandOutcome.Flush;
-                if (IsStraight()) return HandOutcome.Straight;
-                if (IsThreeOfAKind()) return HandOutcome.ThreeOfAKind;
-            }
+            GameType = gametype;
 
+            switch (gametype)
+            {
+                case GameType.DeucesWild:
+                    if (IsRoyalFlush()) return HandOutcome.RoyalFlushNoDeuces;
+                    if (WhichFourOfAKind() == 2) return HandOutcome.FourDeuces;
+                    if (IsRoyalFlushWithWild()) return HandOutcome.RoyalFlushWithDeuces;
+                    if (IsFiveOfAKind()) return HandOutcome.FiveOfAKind;
+                    if (IsStraightFlush()) return HandOutcome.StraightFlush;
+                    if (IsFourOfAKind()) return HandOutcome.FourOfAKind;
+                    if (IsFullHouse()) return HandOutcome.FullHouse;
+                    if (IsFlush()) return HandOutcome.Flush;
+                    if (IsStraight()) return HandOutcome.Straight;
+                    if (IsThreeOfAKind()) return HandOutcome.ThreeOfAKind;
+                    break;
+                case GameType.JacksOrBetter:
+                    if (IsRoyalFlush()) return HandOutcome.RoyalFlush;
+                    if (IsStraightFlush()) return HandOutcome.StraightFlush;
+                    if (IsFourOfAKind()) return HandOutcome.FourOfAKind;
+                    if (IsFullHouse()) return HandOutcome.FullHouse;
+                    if (IsFlush()) return HandOutcome.Flush;
+                    if (IsStraight()) return HandOutcome.Straight;
+                    if (IsThreeOfAKind()) return HandOutcome.ThreeOfAKind;
+                    if (IsTwoPair()) return HandOutcome.TwoPair;
+                    if (IsJacksOrBetter()) return HandOutcome.JacksOrBetter;
+                    if (IsPair()) return HandOutcome.Pair;
+                    break;
+                case GameType.JokerPoker:
+                    if (IsRoyalFlush()) return HandOutcome.RoyalFlushNoWild;
+                    if (IsFiveOfAKind()) return HandOutcome.FiveOfAKind;
+                    if (IsRoyalFlushWithWild()) return HandOutcome.RoyalFlushWithWild;
+                    if (IsStraightFlush()) return HandOutcome.StraightFlush;
+                    if (IsFourOfAKind()) return HandOutcome.FourOfAKind;
+                    if (IsFullHouse()) return HandOutcome.FullHouse;
+                    if (IsFlush()) return HandOutcome.Flush;
+                    if (IsStraight()) return HandOutcome.Straight;
+                    if (IsThreeOfAKind()) return HandOutcome.ThreeOfAKind;
+                    if (IsTwoPair()) return HandOutcome.TwoPair;
+                    if (IsKingsOrBetter()) return HandOutcome.KingsOrBetter;
+                    break;
+            }
             return HandOutcome.Nothing;
+        }
+
+        private bool IsKingsOrBetter()
+        {
+            if (WhichPair() >= 13) return true;
+            if (GameType == GameType.JokerPoker)
+            {
+                if ((CountJokers() == 1) && (WhichHighCard() >=13)) return true;
+            }
+            return false;
         }
 
         private bool IsThreeOfAKind()
         {
             if (WhichThreeOfAKind() != 0) return true;
-            if ((CountDeuces() == 1) && (WhichPair() != 0) && (WhichPair() != 2)) return true;
-            if (CountDeuces() == 2) return true;
+            if (GameType == GameType.DeucesWild)
+            { 
+                if ((CountDeuces() == 1) && (WhichPair() != 0) && (WhichPair() != 2)) return true;
+                if (CountDeuces() == 2) return true;
+            }
+            if (GameType == GameType.JokerPoker)
+            {
+                if ((CountJokers() == 1) && (WhichPair() != 0)) return true;
+            }
             return false;
         }
 
         private bool IsFourOfAKind()
         {
             if (WhichFourOfAKind() != 0) return true;
-            if ((CountDeuces() == 1) && (WhichThreeOfAKind() != 0) && (WhichThreeOfAKind() != 2)) return true;
-            if ((CountDeuces() == 2) && (WhichPair() != 0) && (WhichPair() != 2)) return true;
-            if (CountDeuces() == 3) return true;
+            if (GameType == GameType.DeucesWild)
+            {
+                if ((CountDeuces() == 1) && (WhichThreeOfAKind() != 0) && (WhichThreeOfAKind() != 2)) return true;
+                if ((CountDeuces() == 2) && (WhichPair() != 0) && (WhichPair() != 2)) return true;
+                if (CountDeuces() == 3) return true;
+            }
+            if (GameType == GameType.JokerPoker)
+            {
+                if ((CountJokers() == 1) && (WhichThreeOfAKind() != 0)) return true;
+            }
             return false;
         }
 
@@ -107,7 +160,7 @@ namespace KingPoker
             return false;
         }
 
-        private bool IsRoyalFlushWithDeuces()
+        private bool IsRoyalFlushWithWild()
         {
             if ((IsStraightFlush()) && (((from x in SortedCards where x.CardValue.Number <= 9 where x.CardValue.Number >= 3 select x).Count()) == 0)) return true;
             return false;
@@ -115,9 +168,16 @@ namespace KingPoker
 
         private bool IsFiveOfAKind()
         {
-            if ((CountDeuces() == 1) && (WhichFourOfAKind() != 0) && (WhichFourOfAKind() != 2)) return true;
-            if ((CountDeuces() == 2) && (WhichThreeOfAKind() != 0) && (WhichThreeOfAKind() != 2)) return true;
-            if ((CountDeuces() == 3) && (WhichPair() != 0) && (WhichPair() != 2)) return true;
+            if (GameType == GameType.DeucesWild)
+            {
+                if ((CountDeuces() == 1) && (WhichFourOfAKind() != 0) && (WhichFourOfAKind() != 2)) return true;
+                if ((CountDeuces() == 2) && (WhichThreeOfAKind() != 0) && (WhichThreeOfAKind() != 2)) return true;
+                if ((CountDeuces() == 3) && (WhichPair() != 0) && (WhichPair() != 2)) return true;
+            }
+            if (GameType == GameType.JokerPoker)
+            {
+                if ((CountJokers() == 1) && (WhichFourOfAKind() != 0)) return true;
+            }
             return false;
         }
 
@@ -133,9 +193,16 @@ namespace KingPoker
             if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number) && (SortedCards[2].CardValue.Number == SortedCards[3].CardValue.Number) && (SortedCards[3].CardValue.Number == SortedCards[4].CardValue.Number)) return true;
             //WHEN THE THREE OF A KIND IS HIGHER THAN THE PAIR, LIKE K-K-K-7-7
             if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number) && (SortedCards[3].CardValue.Number == SortedCards[4].CardValue.Number)) return true;
-            if ((CountDeuces() == 1) && (IsNaturalTwoPair())) return true;
-            if ((CountDeuces() == 2) && (WhichPair() != 0) && (WhichPair() != 2)) return true;
-            if (CountDeuces() == 3) return true;
+            if (GameType == GameType.DeucesWild)
+            {
+                if ((CountDeuces() == 1) && (IsNaturalTwoPair())) return true;
+                if ((CountDeuces() == 2) && (WhichPair() != 0) && (WhichPair() != 2)) return true;
+                if (CountDeuces() == 3) return true;
+            }
+            if (GameType == GameType.JokerPoker)
+            {
+                if ((CountJokers() == 1) && (IsNaturalTwoPair())) return true;
+            }
             return false;
         }
 
@@ -143,18 +210,27 @@ namespace KingPoker
         {
             //TRADITIONAL FLUSH WHERE ALL FIVE CARDS HAVE THE SAME SUIT.
             if ((SortedCards[0].Suit.ID == SortedCards[1].Suit.ID) && (SortedCards[1].Suit.ID == SortedCards[2].Suit.ID) && (SortedCards[2].Suit.ID == SortedCards[3].Suit.ID) && (SortedCards[3].Suit.ID == SortedCards[4].Suit.ID)) return true;
-            //HANDLE WILD 2 SITUATIONS
-            if (CountDeuces() == 1)
+            if (GameType == GameType.DeucesWild)
             {
-                if ((SortedCards[0].Suit.ID == SortedCards[1].Suit.ID) && (SortedCards[1].Suit.ID == SortedCards[2].Suit.ID) && (SortedCards[2].Suit.ID == SortedCards[3].Suit.ID)) return true;
+                if ((CountDeuces() == 1))
+                {
+                    if ((SortedCards[0].Suit.ID == SortedCards[1].Suit.ID) && (SortedCards[1].Suit.ID == SortedCards[2].Suit.ID) && (SortedCards[2].Suit.ID == SortedCards[3].Suit.ID)) return true;
+                }
+                if (CountDeuces() == 2)
+                {
+                    if ((SortedCards[0].Suit.ID == SortedCards[1].Suit.ID) && (SortedCards[1].Suit.ID == SortedCards[2].Suit.ID)) return true;
+                }
+                if (CountDeuces() == 3)
+                {
+                    if ((SortedCards[0].Suit.ID == SortedCards[1].Suit.ID)) return true;
+                }
             }
-            if (CountDeuces() == 2)
+            if (GameType == GameType.JokerPoker)
             {
-                if ((SortedCards[0].Suit.ID == SortedCards[1].Suit.ID) && (SortedCards[1].Suit.ID == SortedCards[2].Suit.ID)) return true;
-            }
-            if (CountDeuces() == 3)
-            {
-                if ((SortedCards[0].Suit.ID == SortedCards[1].Suit.ID)) return true;
+                if ((CountJokers() == 1))
+                {
+                    if ((SortedCards[0].Suit.ID == SortedCards[1].Suit.ID) && (SortedCards[1].Suit.ID == SortedCards[2].Suit.ID) && (SortedCards[2].Suit.ID == SortedCards[3].Suit.ID)) return true;
+                }
             }
             return false;
         }
@@ -165,59 +241,72 @@ namespace KingPoker
             if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1) && (SortedCards[2].CardValue.Number == SortedCards[3].CardValue.Number + 1) && (SortedCards[3].CardValue.Number == SortedCards[4].CardValue.Number + 1)) return true;
             //AN ACE LOW STRAIGHT, LIKE A-2-3-4-5
             if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == 5) && (SortedCards[2].CardValue.Number == 4) && (SortedCards[3].CardValue.Number == 3) && (SortedCards[4].CardValue.Number == 2)) return true;
-            //HANDLE WILD 2 SITUATIONS
-            if (CountDeuces() == 1)
+            if (GameType == GameType.DeucesWild)
             {
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1) && (SortedCards[2].CardValue.Number == SortedCards[3].CardValue.Number + 1)) return true;
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 2) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1) && (SortedCards[2].CardValue.Number == SortedCards[3].CardValue.Number + 1)) return true;
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 2) && (SortedCards[2].CardValue.Number == SortedCards[3].CardValue.Number + 1)) return true;
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1) && (SortedCards[2].CardValue.Number == SortedCards[3].CardValue.Number + 2)) return true;
-                if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == 5) && (SortedCards[2].CardValue.Number == 4) && (SortedCards[3].CardValue.Number == 3)) return true;
+                if (CountDeuces() == 1)
+                {
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1) && (SortedCards[2].CardValue.Number == SortedCards[3].CardValue.Number + 1)) return true;
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 2) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1) && (SortedCards[2].CardValue.Number == SortedCards[3].CardValue.Number + 1)) return true;
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 2) && (SortedCards[2].CardValue.Number == SortedCards[3].CardValue.Number + 1)) return true;
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1) && (SortedCards[2].CardValue.Number == SortedCards[3].CardValue.Number + 2)) return true;
+                    if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == 5) && (SortedCards[2].CardValue.Number == 4) && (SortedCards[3].CardValue.Number == 3)) return true;
+                }
+                if (CountDeuces() == 2)
+                {
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1)) return true;
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 2) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1)) return true;
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 2)) return true;
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 3) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1)) return true;
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 2) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 2)) return true;
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 3)) return true;
+                    if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == 5) && (SortedCards[2].CardValue.Number == 4)) return true;
+                    if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == 5) && (SortedCards[2].CardValue.Number == 3)) return true;
+                    if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == 4) && (SortedCards[2].CardValue.Number == 3)) return true;
+                }
+                if (CountDeuces() == 3)
+                {
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1)) return true;
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 2)) return true;
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 3)) return true;
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 4)) return true;
+                    if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == 5)) return true;
+                    if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == 4)) return true;
+                    if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == 3)) return true;
+                }
             }
-            if (CountDeuces() == 2)
+            if (GameType == GameType.JokerPoker)
             {
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1)) return true;
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 2) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1)) return true;
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 2)) return true;
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 3) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1)) return true;
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 2) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 2)) return true;
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 3)) return true;
-                if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == 5) && (SortedCards[2].CardValue.Number == 4)) return true;
-                if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == 4) && (SortedCards[2].CardValue.Number == 3)) return true;
+                if (CountJokers() == 1)
+                {
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1) && (SortedCards[2].CardValue.Number == SortedCards[3].CardValue.Number + 1)) return true;
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 2) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1) && (SortedCards[2].CardValue.Number == SortedCards[3].CardValue.Number + 1)) return true;
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 2) && (SortedCards[2].CardValue.Number == SortedCards[3].CardValue.Number + 1)) return true;
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1) && (SortedCards[2].CardValue.Number == SortedCards[3].CardValue.Number + 2)) return true;
+                    if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == 5) && (SortedCards[2].CardValue.Number == 4) && (SortedCards[3].CardValue.Number == 3)) return true;
+                    if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == 4) && (SortedCards[2].CardValue.Number == 3) && (SortedCards[3].CardValue.Number == 2)) return true;
+                    if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == 5) && (SortedCards[2].CardValue.Number == 3) && (SortedCards[3].CardValue.Number == 2)) return true;
+                }
+                if (CountJokers() == 2)
+                {
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1)) return true;
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 2) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1)) return true;
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 2)) return true;
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 3) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1)) return true;
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 2) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 2)) return true;
+                    if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 3)) return true;
+                    if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1) && (SortedCards[1].CardValue.Number <= 5)) return true;
+                    if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 2) && (SortedCards[1].CardValue.Number <= 5)) return true;
+                    if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 3) && (SortedCards[1].CardValue.Number <= 5)) return true;
+                }
             }
-            if (CountDeuces() == 3)
-            {
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1)) return true;
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 2)) return true;
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 3)) return true;
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 4)) return true;
-                if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == 5)) return true;
-                if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == 4)) return true;
-                if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == 3)) return true;
-            }
-            //HANDLE JOKER SITUATIONS
-            if (CountJokers() == 1)
-            {
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1) && (SortedCards[2].CardValue.Number == SortedCards[3].CardValue.Number + 1)) return true;
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 2) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1) && (SortedCards[2].CardValue.Number == SortedCards[3].CardValue.Number + 1)) return true;
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 2) && (SortedCards[2].CardValue.Number == SortedCards[3].CardValue.Number + 1)) return true;
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1) && (SortedCards[2].CardValue.Number == SortedCards[3].CardValue.Number + 2)) return true;
-                if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == 5) && (SortedCards[2].CardValue.Number == 4) && (SortedCards[3].CardValue.Number == 3)) return true;
-                if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == 4) && (SortedCards[2].CardValue.Number == 3) && (SortedCards[3].CardValue.Number == 2)) return true;
-                if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == 5) && (SortedCards[2].CardValue.Number == 3) && (SortedCards[3].CardValue.Number == 2)) return true;
-            }
-            if (CountJokers() == 2)
-            {
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1)) return true;
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 2) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1)) return true;
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 2)) return true;
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 3) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1)) return true;
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 2) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 2)) return true;
-                if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number + 1) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 3)) return true;
-                if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 1) && (SortedCards[1].CardValue.Number <= 5)) return true;
-                if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 2) && (SortedCards[1].CardValue.Number <= 5)) return true;
-                if ((SortedCards[0].CardValue.Number == 14) && (SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number + 3) && (SortedCards[1].CardValue.Number <= 5)) return true;
-            }
+            return false;
+        }
+
+        private bool IsTwoPair()
+        {
+            if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number) && (SortedCards[2].CardValue.Number == SortedCards[3].CardValue.Number)) return true;
+            if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number) && (SortedCards[3].CardValue.Number == SortedCards[4].CardValue.Number)) return true;
+            if ((SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number) && (SortedCards[3].CardValue.Number == SortedCards[4].CardValue.Number)) return true;
             return false;
         }
 
@@ -226,6 +315,18 @@ namespace KingPoker
             if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number) && (SortedCards[2].CardValue.Number == SortedCards[3].CardValue.Number)) return true;
             if ((SortedCards[1].CardValue.Number == SortedCards[2].CardValue.Number) && (SortedCards[3].CardValue.Number == SortedCards[4].CardValue.Number)) return true;
             if ((SortedCards[0].CardValue.Number == SortedCards[1].CardValue.Number) && (SortedCards[3].CardValue.Number == SortedCards[4].CardValue.Number)) return true;
+            return false;
+        }
+
+        private bool IsJacksOrBetter()
+        {
+            if (WhichPair() >= 11) return true;
+            return false;
+        }
+
+        public bool IsPair()
+        {
+            if (WhichPair() != 0) return true;
             return false;
         }
 
@@ -251,6 +352,11 @@ namespace KingPoker
             if (SortedCards[2].CardValue.Number == SortedCards[3].CardValue.Number) return SortedCards[2].CardValue.Number;
             if (SortedCards[3].CardValue.Number == SortedCards[4].CardValue.Number) return SortedCards[3].CardValue.Number;
             return 0;
+        }
+
+        private int WhichHighCard()
+        {
+            return SortedCards[0].CardValue.Number;
         }
     }
 }

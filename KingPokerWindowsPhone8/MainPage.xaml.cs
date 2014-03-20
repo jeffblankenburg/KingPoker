@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using KingPokerWindowsPhone8.Resources;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using KingPoker;
 
 namespace KingPokerWindowsPhone8
 {
@@ -28,7 +29,7 @@ namespace KingPokerWindowsPhone8
         private void DeucesWild_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             PlayClick();
-            NavigationService.Navigate(new Uri("/Game.xaml?game=DEUCESWILD", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Game.xaml?game=" + GameType.DeucesWild, UriKind.Relative));
         }
 
         private void JacksOrBetter_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)

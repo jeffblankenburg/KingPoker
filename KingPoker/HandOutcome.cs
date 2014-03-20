@@ -29,6 +29,11 @@ namespace KingPoker
         FiveAces,
         Five3s4s5s,
         Five6sThruKs,
-        Nothing
+        Nothing,
+        RoyalFlushNoWild,
+        RoyalFlushWithWild,
+        KingsOrBetter,
+        RoyalFlush,
+        Pair
     }
 }
