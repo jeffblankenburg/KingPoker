@@ -21,7 +21,6 @@ namespace KingPoker
         Four5sThruKings,
         TwoPair,
         JacksOrBetter,
-        FourJsQsKs,
         Four2sThru10s,
         FourAces,
         FourDeucesPlusAce,
@@ -42,6 +41,7 @@ namespace KingPoker
         FourAcesWithBlackJack,
         Four2sThru4sWithBlackJack,
         FourOfAKindWithBlackJack,
-        FourAcesOrJacks
+        FourAcesOrJacks,
+        FourJsThruKs
     }
 }

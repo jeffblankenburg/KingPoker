@@ -18,7 +18,7 @@ namespace KingPokerTests
         public void Player_MakingBetWith5BetUnitsOf1ShouldReducePlayerCreditTotalBy5()
         {
             Player p = new Player();
-            p.IncreaseUnitsWagered(5);
+            if (p.CanIncreaseUnits(5)) p.IncreaseUnitsWagered(5);
             p.RemoveWageredCredits();
             Assert.AreEqual(9995, p.GetCredits());
         }
@@ -50,6 +50,15 @@ namespace KingPokerTests
             p.IncreaseUnitsWagered();
             p.IncreaseUnitsWagered();
             Assert.AreEqual(3, p.GetUnitsWagered());
+        }
+
+        [TestMethod]
+        public void Player_IncreaseUnitsWageredToSixShouldBeOneUnitWagered()
+        {
+            Player p = new Player();
+            p.IncreaseUnitsWagered(5);
+            p.IncreaseUnitsWagered();
+            Assert.AreEqual(1, p.GetUnitsWagered());
         }
 
         

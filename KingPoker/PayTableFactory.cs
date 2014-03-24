@@ -130,7 +130,7 @@ namespace KingPoker
                     payTable.Add(new PayTableItem { Title = "ROYAL FLUSH..............................", Coin1 = 250, Coin2 = 500, Coin3 = 750, Coin4 = 1000, Coin5 = 4000, Outcome = HandOutcome.RoyalFlush });
                     payTable.Add(new PayTableItem { Title = "STRAIGHT FLUSH.......................", Coin1 = 50, Coin2 = 100, Coin3 = 150, Coin4 = 200, Coin5 = 250, Outcome = HandOutcome.StraightFlush });
                     payTable.Add(new PayTableItem { Title = "4 ACES..........................................", Coin1 = 80, Coin2 = 160, Coin3 = 240, Coin4 = 320, Coin5 = 400, Outcome = HandOutcome.FourAces });
-                    payTable.Add(new PayTableItem { Title = "4 Js, Qs, Ks...................................", Coin1 = 40, Coin2 = 80, Coin3 = 120, Coin4 = 160, Coin5 = 200, Outcome = HandOutcome.FourJsQsKs });
+                    payTable.Add(new PayTableItem { Title = "4 Js, Qs, Ks...................................", Coin1 = 40, Coin2 = 80, Coin3 = 120, Coin4 = 160, Coin5 = 200, Outcome = HandOutcome.FourJsThruKs });
                     payTable.Add(new PayTableItem { Title = "4 5s THRU 10s.............................", Coin1 = 25, Coin2 = 50, Coin3 = 75, Coin4 = 100, Coin5 = 125, Outcome = HandOutcome.Four5sThru10s });
                     payTable.Add(new PayTableItem { Title = "FULL HOUSE................................", Coin1 = 7, Coin2 = 14, Coin3 = 21, Coin4 = 28, Coin5 = 35, Outcome = HandOutcome.FullHouse });
                     payTable.Add(new PayTableItem { Title = "FLUSH..........................................", Coin1 = 5, Coin2 = 10, Coin3 = 15, Coin4 = 20, Coin5 = 25, Outcome = HandOutcome.Flush });

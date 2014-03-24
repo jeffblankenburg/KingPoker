@@ -11,22 +11,17 @@ namespace KingPoker
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            //BothHands h = value as BothHands;
-            //int place = Int32.Parse(parameter.ToString());
+            BothHands h = value as BothHands;
+            int place = Int32.Parse(parameter.ToString());
 
-            //string x = String.Empty;
-            //switch (h.GameType)
-            //{
-            //    case "DEUCESWILD":
-            //    case "DOUBLEBONUSDEUCESWILD":
-            //    case "DEUCESWILDBONUSPOKER":
-            //        if (h.ClosingHand.Cards[place].Value.Number == 2) x = "w";
-            //        break;
-            //}
+            string x = String.Empty;
+            if (h.OpeningHand.IsDeucesWildGame())
+            {
+                if (h.OpeningHand.Cards[place].CardValue.Number == 2) x = "w";
+            }
 
-            //string imagepath = "Assets/cards/" + h.ClosingHand.Cards[place].Suit.ID.ToString() + h.ClosingHand.Cards[place].Value.Number.ToString() + x.ToString() + ".png";
-            //return imagepath;
-            return 0;
+            string imagepath = "Assets/cards/" + h.ClosingHand.Cards[place].Suit.ID.ToString() + h.ClosingHand.Cards[place].CardValue.Number.ToString() + x.ToString() + ".png";
+            return imagepath;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

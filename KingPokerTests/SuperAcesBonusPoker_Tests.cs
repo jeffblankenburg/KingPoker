@@ -5,7 +5,7 @@ using KingPoker;
 namespace KingPokerTests
 {
     [TestClass]
-    public class SuperAcesBonusPoker
+    public class SuperAcesBonusPoker_Tests
     {
         PokerGame pg;
 

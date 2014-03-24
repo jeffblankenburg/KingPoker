@@ -41,6 +41,9 @@ namespace KingPokerWindowsPhone8
                 case 200:
                     if (!(bool)App.settings["stopaskingaboutreviews"]) ShowReviewReminder();
                     break;
+                case 201:
+                    App.settings["launchcount"] = 0;
+                    break;
 
             }
         }
@@ -64,80 +67,80 @@ namespace KingPokerWindowsPhone8
 
         private void BonusPokerDeluxe_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //PlayClick();
-            //NavigationService.Navigate(new Uri("/Game.xaml?game=BONUSPOKERDELUXE", UriKind.Relative));
+            PlayClick();
+            NavigationService.Navigate(new Uri("/Game.xaml?game=" + GameType.BonusPokerDeluxe, UriKind.Relative));
         }
 
         private void DoubleBonusPoker_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //PlayClick();
-            //NavigationService.Navigate(new Uri("/Game.xaml?game=DOUBLEBONUSPOKER", UriKind.Relative));
+            PlayClick();
+            NavigationService.Navigate(new Uri("/Game.xaml?game=" + GameType.DoubleBonusPoker, UriKind.Relative));
         }
 
         private void TripleBonusPokerPlus_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //PlayClick();
-            //NavigationService.Navigate(new Uri("/Game.xaml?game=TRIPLEBONUSPOKERPLUS", UriKind.Relative));
+            PlayClick();
+            NavigationService.Navigate(new Uri("/Game.xaml?game=" + GameType.TripleBonusPokerPlus, UriKind.Relative));
         }
 
         private void RoyalAcesBonusPoker_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //PlayClick();
-            //NavigationService.Navigate(new Uri("/Game.xaml?game=ROYALACESBONUSPOKER", UriKind.Relative));
+            PlayClick();
+            NavigationService.Navigate(new Uri("/Game.xaml?game=" + GameType.RoyalAcesBonusPoker, UriKind.Relative));
         }
 
         private void BonusPoker_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //PlayClick();
-            //NavigationService.Navigate(new Uri("/Game.xaml?game=BONUSPOKER", UriKind.Relative));
+            PlayClick();
+            NavigationService.Navigate(new Uri("/Game.xaml?game=" + GameType.BonusPoker, UriKind.Relative));
         }
 
         private void SuperAcesBonusPoker_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //PlayClick();
-            //NavigationService.Navigate(new Uri("/Game.xaml?game=SUPERACESBONUSPOKER", UriKind.Relative));
+            PlayClick();
+            NavigationService.Navigate(new Uri("/Game.xaml?game=" + GameType.SuperAcesBonusPoker, UriKind.Relative));
         }
 
         private void WhiteHotAces_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //PlayClick();
-            //NavigationService.Navigate(new Uri("/Game.xaml?game=WHITEHOTACES", UriKind.Relative));
+            PlayClick();
+            NavigationService.Navigate(new Uri("/Game.xaml?game=" + GameType.WhiteHotAces, UriKind.Relative));
         }
 
         private void AcesAndFacesPoker_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //PlayClick();
-            //NavigationService.Navigate(new Uri("/Game.xaml?game=ACESANDFACESPOKER", UriKind.Relative));
+            PlayClick();
+            NavigationService.Navigate(new Uri("/Game.xaml?game=" + GameType.AcesAndFacesPoker, UriKind.Relative));
         }
 
         private void DoubleBonusDeucesWild_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //PlayClick();
-            //NavigationService.Navigate(new Uri("/Game.xaml?game=DOUBLEBONUSDEUCESWILD", UriKind.Relative));
+            PlayClick();
+            NavigationService.Navigate(new Uri("/Game.xaml?game=" + GameType.DoubleBonusDeucesWild, UriKind.Relative));
         }
 
         private void DeucesWildBonusPoker_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //PlayClick();
-            //NavigationService.Navigate(new Uri("/Game.xaml?game=DEUCESWILDBONUSPOKER", UriKind.Relative));
+            PlayClick();
+            NavigationService.Navigate(new Uri("/Game.xaml?game=" + GameType.DeucesWildBonusPoker, UriKind.Relative));
         }
 
         private void JokerPoker_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //PlayClick();
-            //NavigationService.Navigate(new Uri("/Game.xaml?game=JOKERPOKER", UriKind.Relative));
+            PlayClick();
+            NavigationService.Navigate(new Uri("/Game.xaml?game=" + GameType.JokerPoker, UriKind.Relative));
         }
 
         private void DoubleDoubleBonusPoker_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //PlayClick();
-            //NavigationService.Navigate(new Uri("/Game.xaml?game=DOUBLEDOUBLEBONUSPOKER", UriKind.Relative));
+            PlayClick();
+            NavigationService.Navigate(new Uri("/Game.xaml?game=" + GameType.DoubleDoubleBonusPoker, UriKind.Relative));
         }
 
         private void BlackJackBonusPoker_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //PlayClick();
-            //NavigationService.Navigate(new Uri("/Game.xaml?game=BLACKJACKBONUSPOKER", UriKind.Relative));
+            PlayClick();
+            NavigationService.Navigate(new Uri("/Game.xaml?game=" + GameType.BlackJackBonusPoker, UriKind.Relative));
         }
 
         private void PlayClick()

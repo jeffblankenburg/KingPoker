@@ -13,11 +13,9 @@ namespace KingPoker
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            //BothHands h = value as BothHands;
-            //string s = h.CreditCount.ToString();
-            //return s;
-            return 0;
-
+            BothHands h = value as BothHands;
+            string s = h.CreditCount.ToString();
+            return s;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

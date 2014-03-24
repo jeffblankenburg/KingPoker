@@ -73,6 +73,16 @@ namespace KingPoker
             return Hand.Cards[card].CardValue.Number;
         }
 
+        public List<bool> GetEntireHoldStateOfHand()
+        {
+            return Hand.Held;
+        }
+
+        public List<Card> GetEntireHand()
+        {
+            return Hand.Cards;
+        }
+
         public int GetCardSuit(int card)
         {
             return Hand.Cards[card].Suit.ID;

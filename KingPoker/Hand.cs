@@ -16,6 +16,15 @@ namespace KingPoker
         {
             GameType = gametype;
         }
+
+        public Hand(List<Card> NewCards, List<bool> NewHeld)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                Cards.Add(NewCards[i]);
+                Held.Add(NewHeld[i]);
+            }
+        }
         
         internal void Sort()
         {
@@ -71,6 +80,7 @@ namespace KingPoker
                     if (IsThreeOfAKind()) return HandOutcome.ThreeOfAKind;
                     break;
                 case GameType.DoubleBonusDeucesWild:
+                case GameType.DeucesWildBonusPoker:
                     if (IsRoyalFlush()) return HandOutcome.RoyalFlushNoDeuces;
                     if (IsFourDeucesPlusAce()) return HandOutcome.FourDeucesPlusAce;
                     if (IsFourDeuces()) return HandOutcome.FourDeuces;
@@ -86,6 +96,7 @@ namespace KingPoker
                     if (IsThreeOfAKind()) return HandOutcome.ThreeOfAKind;
                     break;
                 case GameType.JacksOrBetter:
+                case GameType.BonusPokerDeluxe:
                     if (IsRoyalFlush()) return HandOutcome.RoyalFlush;
                     if (IsStraightFlush()) return HandOutcome.StraightFlush;
                     if (IsFourOfAKind()) return HandOutcome.FourOfAKind;
@@ -140,8 +151,128 @@ namespace KingPoker
                     if (IsTwoPair()) return HandOutcome.TwoPair;
                     if (IsPairOfAces()) return HandOutcome.PairOfAces;
                     break;
+                case GameType.BlackJackBonusPoker:
+                    if (IsRoyalFlush()) return HandOutcome.RoyalFlush;
+                    if (IsFourAcesWithBlackJack()) return HandOutcome.FourAcesWithBlackJack;
+                    if (IsFour2sThru4sWithBlackJack()) return HandOutcome.Four2sThru4sWithBlackJack;
+                    if (IsFourOfAKindWithBlackJack()) return HandOutcome.FourOfAKindWithBlackJack;
+                    if (IsFourAcesOrJacks()) return HandOutcome.FourAcesOrJacks;
+                    if (IsStraightFlush()) return HandOutcome.StraightFlush;
+                    if (IsFourOfAKind()) return HandOutcome.FourOfAKind;
+                    if (IsFullHouse()) return HandOutcome.FullHouse;
+                    if (IsFlush()) return HandOutcome.Flush;
+                    if (IsStraight()) return HandOutcome.Straight;
+                    if (IsThreeOfAKind()) return HandOutcome.ThreeOfAKind;
+                    if (IsTwoPair()) return HandOutcome.TwoPair;
+                    if (IsJacksOrBetter()) return HandOutcome.JacksOrBetter;
+                    break;
+                case GameType.DoubleDoubleBonusPoker:
+                    if (IsRoyalFlush()) return HandOutcome.RoyalFlush;
+                    if (IsStraightFlush()) return HandOutcome.StraightFlush;
+                    if (IsFourAcesWith234()) return HandOutcome.FourAcesWith234;
+                    if (IsFour2sThru4sWithA234()) return HandOutcome.Four2sThru4sWithA234;
+                    if (IsFourAces()) return HandOutcome.FourAces;
+                    if (IsFour2sThru4s()) return HandOutcome.Four2sThru4s;
+                    if (IsFour5sThruKs()) return HandOutcome.Four5sThruKings;
+                    if (IsFullHouse()) return HandOutcome.FullHouse;
+                    if (IsFlush()) return HandOutcome.Flush;
+                    if (IsStraight()) return HandOutcome.Straight;
+                    if (IsThreeOfAKind()) return HandOutcome.ThreeOfAKind;
+                    if (IsTwoPair()) return HandOutcome.TwoPair;
+                    if (IsJacksOrBetter()) return HandOutcome.JacksOrBetter;
+                    break;
+                case GameType.AcesAndFacesPoker:
+                    if (IsRoyalFlush()) return HandOutcome.RoyalFlush;
+                    if (IsStraightFlush()) return HandOutcome.StraightFlush;
+                    if (IsFourAces()) return HandOutcome.FourAces;
+                    if (IsFourJsThruKs()) return HandOutcome.FourJsThruKs;
+                    if (IsFour2sThru10s()) return HandOutcome.Four2sThru10s;
+                    if (IsFourOfAKind()) return HandOutcome.FourOfAKind;
+                    if (IsFullHouse()) return HandOutcome.FullHouse;
+                    if (IsFlush()) return HandOutcome.Flush;
+                    if (IsStraight()) return HandOutcome.Straight;
+                    if (IsThreeOfAKind()) return HandOutcome.ThreeOfAKind;
+                    if (IsTwoPair()) return HandOutcome.TwoPair;
+                    if (IsJacksOrBetter()) return HandOutcome.JacksOrBetter;
+                    if (IsPair()) return HandOutcome.Pair;
+                    break;
             }
             return HandOutcome.Nothing;
+        }
+
+        private bool IsFour2sThru10s()
+        {
+            if ((WhichFourOfAKind() >= 2) && (WhichFourOfAKind() <=10)) return true;
+            return false;
+        }
+
+        private bool IsFourJsThruKs()
+        {
+            if (WhichFourOfAKind() == 11) return true;
+            if (WhichFourOfAKind() == 12) return true;
+            if (WhichFourOfAKind() == 13) return true;
+            return false;
+        }
+
+        private bool IsFour2sThru4sWithA234()
+        {
+            if (WhichFourOfAKind() == 2)
+            {
+                if (SortedCards[0].CardValue.Number == 14) return true;
+                if (SortedCards[0].CardValue.Number == 4) return true;
+                if (SortedCards[0].CardValue.Number == 3) return true;
+            }
+            if (WhichFourOfAKind() == 3)
+            {
+                if (SortedCards[0].CardValue.Number == 14) return true;
+                if (SortedCards[0].CardValue.Number == 4) return true;
+                if (SortedCards[4].CardValue.Number == 2) return true;
+            }
+            if (WhichFourOfAKind() == 4)
+            {
+                if (SortedCards[0].CardValue.Number == 14) return true;
+                if (SortedCards[4].CardValue.Number == 3) return true;
+                if (SortedCards[4].CardValue.Number == 2) return true;
+            }
+
+            return false;
+        }
+
+        private bool IsFourAcesWith234()
+        {
+            if ((WhichFourOfAKind() == 14) && (SortedCards[4].CardValue.Number == 2)) return true;
+            if ((WhichFourOfAKind() == 14) && (SortedCards[4].CardValue.Number == 3)) return true;
+            if ((WhichFourOfAKind() == 14) && (SortedCards[4].CardValue.Number == 4)) return true;
+            return false;
+        }
+
+        private bool IsFourAcesOrJacks()
+        {
+            if (WhichFourOfAKind() == 14) return true;
+            if (WhichFourOfAKind() == 11) return true;
+            return false;
+        }
+
+        private bool IsFourOfAKindWithBlackJack()
+        {
+            if (IsFourOfAKind())
+            {
+                if ((WhichFourOfAKind() >= 12) && ((SortedCards[4].CardValue.Number == 11) && ((SortedCards[4].Suit.ID == 3) || (SortedCards[4].Suit.ID == 4)))) return true;
+                if ((WhichFourOfAKind() <= 10) && ((SortedCards[0].CardValue.Number == 11) && ((SortedCards[0].Suit.ID == 3) || (SortedCards[0].Suit.ID == 4)))) return true;
+            }
+            return false;
+        }
+
+        private bool IsFour2sThru4sWithBlackJack()
+        {
+            if ((IsFour2sThru4s()) && (SortedCards[0].CardValue.Number == 11) && ((SortedCards[0].Suit.ID == 3) || (SortedCards[0].Suit.ID == 4))) return true;
+            return false;
+        }
+
+        private bool IsFourAcesWithBlackJack()
+        {
+            if ((IsFourAces()) && (SortedCards[4].CardValue.Number == 11) && ((SortedCards[4].Suit.ID == 3) || (SortedCards[4].Suit.ID == 4))) return true;
+            return false;
         }
 
         private bool IsPairOfAces()
@@ -229,9 +360,9 @@ namespace KingPoker
             return false;
         }
 
-        private bool IsDeucesWildGame()
+        public bool IsDeucesWildGame()
         {
-            if ((GameType == GameType.DeucesWild) || (GameType == GameType.DoubleBonusDeucesWild)) return true;
+            if ((GameType == GameType.DeucesWild) || (GameType == GameType.DoubleBonusDeucesWild) || (GameType == GameType.DeucesWildBonusPoker)) return true;
             return false;
         }
 

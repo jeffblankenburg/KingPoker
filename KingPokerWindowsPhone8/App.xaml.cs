@@ -8,6 +8,8 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using KingPokerWindowsPhone8.Resources;
 using System.IO.IsolatedStorage;
+using KingPoker;
+using System.Collections.Generic;
 
 namespace KingPokerWindowsPhone8
 {
@@ -65,13 +67,22 @@ namespace KingPokerWindowsPhone8
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             UpdateLaunchCounter();
+
+            if (!settings.Contains("totalcreditsplayed"))
+            {
+                settings["totalcreditsplayed"] = 0;
+            }
         }
 
         private void UpdateLaunchCounter()
         {
             int launchcount = 0;
             if (settings.Contains("launchcount")) launchcount = (int)settings["launchcount"];
-            else settings["stopaskingaboutreviews"] = false;
+            else
+            {
+                settings["handhistory"] = new List<BothHands>();
+                settings["stopaskingaboutreviews"] = false;
+            }
             launchcount++;
             settings["launchcount"] = launchcount;
         }

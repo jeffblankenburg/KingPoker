@@ -12,25 +12,31 @@ namespace KingPoker
         private int Credits = 10000;
         private int BetUnit = 1;
 
-        public bool IncreaseUnitsWagered(int Units = 1)
+        public bool CanIncreaseUnits(int Units = 1)
         {
-            int PreviousUnitsWagered = WageredUnits;
+            int tempUnits;
 
-            if (Units == 1)
+            if (Units != 1) tempUnits = Units;
+            else
             {
-                WageredUnits += 1;
-                if (WageredUnits > 5) WageredUnits = 1;
+                tempUnits = WageredUnits + 1;
+                if (tempUnits == 6) return true;
             }
-            else WageredUnits = 5;
 
-            if ((WageredUnits * BetUnit) > Credits)
-            {
-                WageredUnits = PreviousUnitsWagered;
-                return false;
-            }
+            if (tempUnits > 5) return false;
+            if (tempUnits > Credits) return false;
+
             return true;
+        }
 
-            
+        public void IncreaseUnitsWagered(int Units = 1)
+        {
+            if (Units > 1) WageredUnits = Units;
+            else
+            {
+                WageredUnits++;
+                if (WageredUnits == 6) WageredUnits = 1;
+            }
         }
 
         public void ChangeBetUnit(int betunit)

@@ -61,8 +61,13 @@
     <Compile Include="DoubleBonusPoker_Tests.cs" />
     <Compile Include="RoyalAcesBonusPoker_Tests.cs" />
     <Compile Include="TripleBonusPokerPlus_Tests.cs" />
-    <Compile Include="BonusPoker.cs" />
-    <Compile Include="SuperAcesBonusPoker.cs" />
+    <Compile Include="BonusPoker_Tests.cs" />
+    <Compile Include="SuperAcesBonusPoker_Tests.cs" />
+    <Compile Include="BlackJackBonusPoker_Tests.cs" />
+    <Compile Include="DoubleDoubleBonusPoker_Tests.cs" />
+    <Compile Include="DeucesWildBonusPoker_Tests.cs" />
+    <Compile Include="AcesAndFacesPoker_Tests.cs" />
+    <Compile Include="BonusPokerDeluxe_Tests.cs" />
     <Compile Include="WhiteHotAces_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
