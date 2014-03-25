@@ -8,9 +8,9 @@ namespace KingPoker
 {
     public class PokerGame
     {
-        Deck Deck;
-        GameType GameType;
-        Hand Hand;
+        internal Deck Deck;
+        internal GameType GameType;
+        internal Hand Hand;
         PayTableFactory paytablefactory = new PayTableFactory();
         List<PayTableItem> PayTables;
 
@@ -24,6 +24,7 @@ namespace KingPoker
 
         public void Deal()
         {
+            Hand.Cards.Clear();
             for (int i = 0; i <= 4; i++)
             {
                 Hand.AddCard(Deck.Draw());
@@ -78,9 +79,9 @@ namespace KingPoker
             return Hand.Held;
         }
 
-        public List<Card> GetEntireHand()
+        public Hand GetEntireHand()
         {
-            return Hand.Cards;
+            return Hand;
         }
 
         public int GetCardSuit(int card)
@@ -114,6 +115,16 @@ namespace KingPoker
                     return true;
             }
             return false;
+        }
+
+        public Deck GetDeck()
+        {
+            return Deck;
+        }
+
+        public void SetDeck(Deck d)
+        {
+            Deck = d;
         }
     }
 }

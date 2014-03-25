@@ -44,8 +44,39 @@ namespace KingPoker
             BetUnit = betunit;
         }
 
-        public void AwardCredits(int award)
+        public void AwardCredits(Hand h)
         {
+            PayTableFactory factory = new PayTableFactory();
+            List<PayTableItem> PayTableItems = factory.GetPayTable(h.GameType);
+
+            PayTableItem pti = (PayTableItem)((from p in PayTableItems
+                               where p.Outcome == h.CheckForOutcome()
+                               select p).FirstOrDefault());
+
+            int award = 0;
+
+            if (pti != null)
+            {
+                switch (WageredUnits)
+                {
+                    case 1:
+                        award = pti.Coin1;
+                        break;
+                    case 2:
+                        award = pti.Coin2;
+                        break;
+                    case 3:
+                        award = pti.Coin3;
+                        break;
+                    case 4:
+                        award = pti.Coin4;
+                        break;
+                    case 5:
+                        award = pti.Coin5;
+                        break;
+                }
+            }
+            
             Credits += award;
         }
 
@@ -78,6 +109,11 @@ namespace KingPoker
         {
             if ((WageredUnits * BetUnit) <= Credits) return (WageredUnits * BetUnit);
             return 0;
+        }
+
+        public void AwardCredits()
+        {
+            throw new NotImplementedException();
         }
     }
 }

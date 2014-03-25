@@ -10,6 +10,11 @@ namespace KingPoker
         public Suit Suit {get; set;}
         public CardValue CardValue { get; set; }
 
+        public Card()
+        {
+
+        }
+        
         public Card (Suit suit, CardValue cardvalue)
         {
             Suit = suit;

@@ -68,6 +68,7 @@
     <Compile Include="DeucesWildBonusPoker_Tests.cs" />
     <Compile Include="AcesAndFacesPoker_Tests.cs" />
     <Compile Include="BonusPokerDeluxe_Tests.cs" />
+    <Compile Include="SuperDoubleDoubleBonusPoker_Tests.cs" />
     <Compile Include="WhiteHotAces_Tests.cs" />
   </ItemGroup>
   <ItemGroup>

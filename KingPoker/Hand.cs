@@ -7,7 +7,8 @@ namespace KingPoker
 {
     public class Hand
     {
-        public List<Card> Cards = new List<Card>();
+        public List<Card> Cards = new List<Card> {new Card(), new Card(), new Card(), new Card(), new Card() };
+        //public List<Card> Cards = new List<Card>();
         public List<Card> SortedCards = new List<Card>();
         public List<bool> Held = new List<bool>{false, false, false, false, false};
         public GameType GameType;
@@ -196,8 +197,57 @@ namespace KingPoker
                     if (IsJacksOrBetter()) return HandOutcome.JacksOrBetter;
                     if (IsPair()) return HandOutcome.Pair;
                     break;
+                case GameType.SuperDoubleDoubleBonusPoker:
+                    if (IsRoyalFlush()) return HandOutcome.RoyalFlush;
+                    if (IsStraightFlush()) return HandOutcome.StraightFlush;
+                    if (IsFourAcesWith234()) return HandOutcome.FourAcesWith234;
+                    if (IsFourAcesWithJQK()) return HandOutcome.FourAcesWithJQK;
+                    if (IsFour2sThru4sWithA234()) return HandOutcome.Four2sThru4sWithA234;
+                    if (IsFourJsThruKsWithJQKA()) return HandOutcome.FourJsThruKsWithJQKA;
+                    if (IsFourAces()) return HandOutcome.FourAces;
+                    if (IsFour2sThru4s()) return HandOutcome.Four2sThru4s;
+                    if (IsFour5sThruKs()) return HandOutcome.Four5sThruKings;
+                    if (IsFullHouse()) return HandOutcome.FullHouse;
+                    if (IsFlush()) return HandOutcome.Flush;
+                    if (IsStraight()) return HandOutcome.Straight;
+                    if (IsThreeOfAKind()) return HandOutcome.ThreeOfAKind;
+                    if (IsTwoPair()) return HandOutcome.TwoPair;
+                    if (IsJacksOrBetter()) return HandOutcome.JacksOrBetter;
+                    break;
             }
             return HandOutcome.Nothing;
+        }
+
+        private bool IsFourJsThruKsWithJQKA()
+        {
+            if (WhichFourOfAKind() == 11)
+            {
+                if (SortedCards[0].CardValue.Number == 14) return true;
+                if (SortedCards[0].CardValue.Number == 13) return true;
+                if (SortedCards[0].CardValue.Number == 12) return true;
+            }
+            if (WhichFourOfAKind() == 12)
+            {
+                if (SortedCards[0].CardValue.Number == 14) return true;
+                if (SortedCards[0].CardValue.Number == 13) return true;
+                if (SortedCards[4].CardValue.Number == 11) return true;
+            }
+            if (WhichFourOfAKind() == 13)
+            {
+                if (SortedCards[0].CardValue.Number == 14) return true;
+                if (SortedCards[4].CardValue.Number == 12) return true;
+                if (SortedCards[4].CardValue.Number == 11) return true;
+            }
+
+            return false;
+        }
+
+        private bool IsFourAcesWithJQK()
+        {
+            if ((WhichFourOfAKind() == 14) && (SortedCards[4].CardValue.Number == 11)) return true;
+            if ((WhichFourOfAKind() == 14) && (SortedCards[4].CardValue.Number == 12)) return true;
+            if ((WhichFourOfAKind() == 14) && (SortedCards[4].CardValue.Number == 13)) return true;
+            return false;
         }
 
         private bool IsFour2sThru10s()

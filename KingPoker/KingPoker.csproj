@@ -40,6 +40,7 @@
     <Compile Include="Card.cs" />
     <Compile Include="CardValue.cs" />
     <Compile Include="Deck.cs" />
+    <Compile Include="FiveHandsPokerGame.cs" />
     <Compile Include="GameType.cs" />
     <Compile Include="Hand.cs" />
     <Compile Include="HandOutcome.cs" />

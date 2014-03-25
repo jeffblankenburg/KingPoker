@@ -103,6 +103,9 @@
     <Compile Include="Converters\HelpItemToFontWeightConverter.cs" />
     <Compile Include="Converters\HoldToVisibilityConverter.cs" />
     <Compile Include="Converters\OpeningHandCardToImageConverter.cs" />
+    <Compile Include="FiveHandsGame.xaml.cs">
+      <DependentUpon>FiveHandsGame.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Game.xaml.cs">
       <DependentUpon>Game.xaml</DependentUpon>
     </Compile>
@@ -126,6 +129,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FiveHandsGame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -254,6 +261,7 @@
     <Content Include="Assets\gamelogo\SuperAcesBonusPoker.png" />
     <Content Include="Assets\gamelogo\SuperDoubleDoubleBonusPoker.png" />
     <Content Include="Assets\gamelogo\TripleBonusPokerPlus.png" />
+    <Content Include="Assets\gamelogo\TripleDoubleBonusPoker.png" />
     <Content Include="Assets\gamelogo\WhiteHotAces.png" />
     <Content Include="Assets\Large.png" />
     <Content Include="Assets\Medium.png" />

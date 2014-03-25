@@ -8,18 +8,18 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using KingPoker;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.Animation;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 
 namespace KingPokerWindowsPhone8
 {
-    public partial class Game : PhoneApplicationPage
+    public partial class FiveHandsGame : PhoneApplicationPage
     {
         Player player;
-        PokerGame pokergame;
+        FiveHandsPokerGame pokergame;
         GameType gametype;
         Hand HandStart;
         Hand HandEnd;
@@ -35,7 +35,7 @@ namespace KingPokerWindowsPhone8
         SolidColorBrush Red = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xFF, 0xB0, 0x00, 0x00));
         
         
-        public Game()
+        public FiveHandsGame()
         {
             InitializeComponent();
         }
@@ -55,7 +55,7 @@ namespace KingPokerWindowsPhone8
 
         void CardPause_Completed(object sender, object e)
         {
-            ShowCards();
+            ShowCards(ShouldPayUser);
         }
 
         void CreditPause_Completed(object sender, object e)
@@ -65,10 +65,12 @@ namespace KingPokerWindowsPhone8
 
         private void GameSetup()
         {
-            if (pokergame == null) pokergame = new PokerGame(gametype);
+            if (pokergame == null) pokergame = new FiveHandsPokerGame(gametype);
             LoadPlayer();
             ChangeBetHighlight();
             LoadPayTable();
+            LoadGameTitle();
+            SetGameLogo();
             LoadHelpContent();
             DrawCredits(player.GetCredits());
         }
@@ -84,6 +86,18 @@ namespace KingPokerWindowsPhone8
             HelpFactory h = new HelpFactory(gametype);
             HelpTitle.Text = h.Title;
             HelpList.ItemsSource = h.HelpItems;
+        }
+
+        private void LoadGameTitle()
+        {
+            GameName.Text = gametype.ToString().ToUpper();
+        }
+
+        private void SetGameLogo()
+        {
+            string imagepath = "Assets/gamelogo/" + gametype + ".png";
+            BitmapImage imagesource = new BitmapImage(new Uri(imagepath, UriKind.Relative));
+            GameLogo.Source = imagesource;
         }
 
         private void LoadPlayer()
@@ -151,17 +165,21 @@ namespace KingPokerWindowsPhone8
                             ResetCardBacks();
                             ChargeCredits();
                             //DisableShareButton();
-                            pokergame = new PokerGame(gametype);
+                            pokergame = new FiveHandsPokerGame(gametype);
                             pokergame.Deal();
-                            handCounter++;
+                            //handCounter++;
                             IsHoldRound = true;
-                            HandStart = pokergame.GetEntireHand();
+                            HandStart = new Hand(pokergame.GetEntireHand(0), pokergame.GetEntireHoldStateOfHand(0));
                         }
                         else
                         {
-                            Draw();
+                            pokergame.Draw();
+                            ResetCardBacks();
+                            //ActivateShareButton();
+                            IsHoldRound = false;
+                            HandEnd = new Hand(pokergame.GetEntireHand(0), pokergame.GetEntireHoldStateOfHand(0));
                         }
-                        ShowCards();
+                        ShowCards(!IsHoldRound);
                     }
                 }
             }
@@ -172,34 +190,24 @@ namespace KingPokerWindowsPhone8
             }
         }
 
-        private void Draw()
+        private void SaveHands()
         {
-            //if (!IsShowingCards)
-            //{
-            //    if (!IsDrawingCredits)
-            //    {
-            //        StopPayTableAnimations();
-            //        ResetBox.Visibility = Visibility.Collapsed;
-                    
-                    pokergame.Draw();
-                    ResetCardBacks();
-                    //ActivateShareButton();
-                    IsHoldRound = false;
-                    HandEnd = pokergame.GetEntireHand();
-                    SaveHands();
-            //    }
-            //}
+            List<BothHands> handhistory = (List<BothHands>)App.settings["handhistory"];
+            BothHands bothhands = new BothHands { OpeningHand = HandStart, ClosingHand = HandEnd, GameType = gametype, Outcome = HandEnd.CheckForOutcome(), CreditCount = player.GetCredits(), IsSnapped = false, IsOnline = false };
+            handhistory.Add(bothhands);
+            App.settings["handhistory"] = handhistory;
         }
 
-        private void ShowCards()
+        private void ShowCards(bool shouldPayFlag)
         {
+            ShouldPayUser = shouldPayFlag;
             IsShowingCards = true;
-            
-            if (cardCounter <= 4)
+
+            if (cardCounter <=4)
             {
                 if (!pokergame.IsCardHeld(cardCounter))
                 {
-                    DrawCard(cardCounter);
+                    DrawCard(handCounter, cardCounter);
                     cardCounter++;
                     PlayCardDeal();
                     CardPause.Begin();
@@ -207,75 +215,29 @@ namespace KingPokerWindowsPhone8
                 else
                 {
                     cardCounter++;
-                    ShowCards();
+                    ShowCards(ShouldPayUser);
                 }
             }
             else
             {
                 cardCounter = 0;
-                AwardWinnings();
-                HighlightPayTable(PayTableNames, (ItemsControl)FindName("PayTableCoin" + player.GetUnitsWagered()));
+                handCounter++;
+                ShowCards(ShouldPayUser);
+            }
+
+            if (handCounter == 5)
+            {
+                HighlightPayTable(PayTableNames, (ItemsControl)FindName("PayTableCoin" + player.GetUnitsWagered()), ShouldPayUser);
                 if ((!IsHoldRound) && player.GetCredits() == 0)
                 {
                     ResetBox.Visibility = Visibility.Visible;
                     player.SetCredits(10000);
                     DrawCredits(player.GetCredits());
                 }
+
+                if (ShouldPayUser) SaveHands();
                 IsShowingCards = false;
             }
-        }
-
-        
-
-        //private void ShowCards(bool shouldPayFlag)
-        //{
-        //    ShouldPayUser = shouldPayFlag;
-        //    IsShowingCards = true;
-
-        //    if (cardCounter <= 4)
-        //    {
-        //        if (!pokergame.IsCardHeld(cardCounter))
-        //        {
-        //            DrawCard(cardCounter);
-        //            cardCounter++;
-        //            PlayCardDeal();
-        //            CardPause.Begin();
-        //        }
-        //        else
-        //        {
-        //            cardCounter++;
-        //            ShowCards(ShouldPayUser);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        cardCounter = 0;
-        //        HighlightPayTable(PayTableNames, (ItemsControl)FindName("PayTableCoin" + player.GetUnitsWagered()), ShouldPayUser);
-        //        if ((!IsHoldRound) && player.GetCredits() == 0)
-        //        {
-        //            ResetBox.Visibility = Visibility.Visible;
-        //            player.SetCredits(10000);
-        //            DrawCredits(player.GetCredits());
-        //        }
-                
-        //        if (ShouldPayUser) SaveHands();
-        //        IsShowingCards = false;
-        //    }
-        //}
-
-        private void DrawCard(int card)
-        {
-            string x = String.Empty;
-
-            if (pokergame.AreDeucesWild())
-            {
-                if (pokergame.GetCardValue(cardCounter) == 2) x = "w";
-            }
-
-            Image image = (Image)FindName("Card" + card);
-            string imagepath = "Assets/cards/" + pokergame.GetCardSuit(card).ToString() + pokergame.GetCardValue(card).ToString() + x.ToString() + ".png";
-            BitmapImage imagesource = new BitmapImage(new Uri(imagepath, UriKind.Relative));
-            image.Source = imagesource;
         }
 
         private void DrawCredits(int credits)
@@ -291,8 +253,10 @@ namespace KingPokerWindowsPhone8
             }
         }
 
-        private void HighlightPayTable(DependencyObject target, DependencyObject target2)
+        private void HighlightPayTable(DependencyObject target, DependencyObject target2, bool ShouldAwardWinnings)
         {
+            //TODO: This logic really shouldn't be here.  We need to have the "logic" tell the UI which items to highlight.
+            
             var count = VisualTreeHelper.GetChildrenCount(target);
             if (count == 0) return;
 
@@ -306,7 +270,7 @@ namespace KingPokerWindowsPhone8
                     TextBlock targetItem = (TextBlock)child;
                     TextBlock targetItem2 = (TextBlock)child2;
                     HandOutcome current = ((PayTableItem)targetItem.DataContext).Outcome;
-                    HandOutcome outcome = pokergame.CheckHandForOutcome();
+                    HandOutcome outcome = pokergame.CheckHandForOutcome(0);
                     if (current == outcome)
                     {
                         Storyboard.SetTarget(PayTableTitleBlink, targetItem);
@@ -314,24 +278,26 @@ namespace KingPokerWindowsPhone8
                         PayTableTitleBlink.Begin();
                         PayTableNumberBlink.Begin();
 
-                        if (IsHoldRound) PlayHoldAlert();
+                        if (ShouldAwardWinnings)
+                        {
+                            AwardWinnings(Int32.Parse(targetItem2.Text));
+                            //RecordHand(outcome);
+                        }
+                        else PlayHoldAlert();
                         return;
                     }
                 }
-                else HighlightPayTable(child, child2);
+                else HighlightPayTable(child, child2, ShouldPayUser);
 
             }
         }
 
-        private void AwardWinnings()
+        private void AwardWinnings(int award)
         {
-            if (!IsHoldRound)
-            {
-                int credits = player.GetCredits();
-                OldCredits = credits;
-                player.AwardCredits(pokergame.GetEntireHand());
-                UpdateCredits();
-            }
+            //int credits = player.GetCredits();
+            //OldCredits = credits;
+            //player.AwardCredits(award);
+            //UpdateCredits();
         }
 
         private void UpdateCredits()
@@ -405,9 +371,46 @@ namespace KingPokerWindowsPhone8
             for (int i = 0; i <= 4; i++)
             {
                 TextBlock hold = (TextBlock)FindName("Hold" + i);
-                if (pokergame.IsCardHeld(i)) hold.Opacity = 1;
-                else hold.Opacity = .024;
+                if (pokergame.IsCardHeld(i))
+                {
+                    hold.Opacity = 1;
+                    for (int j = 1; j <= 4; j++)
+                    {
+                        DrawCard(j, i);
+                    }
+                }
+                else
+                {
+                    hold.Opacity = .024;
+                    for (int j = 1; j <= 4; j++)
+                    {
+                        ResetCard(j, i);
+                    }
+                }
             }
+        }
+
+        private void ResetCard(int group, int card)
+        {
+            Image image = (Image)FindName("Card" + (group * 10 + card));
+            string imagepath = "Assets/cards/BACK.png";
+            BitmapImage imagesource = new BitmapImage(new Uri(imagepath, UriKind.Relative));
+            image.Source = imagesource;
+        }
+
+        private void DrawCard(int group, int card)
+        {
+            string x = String.Empty;
+
+            if (pokergame.AreDeucesWild())
+            {
+                if (pokergame.GetCardValue(0, cardCounter) == 2) x = "w";
+            }
+
+            Image image = (Image)FindName("Card" + (group*10 + card));
+            string imagepath = "Assets/cards/" + pokergame.GetCardSuit(group, card).ToString() + pokergame.GetCardValue(group, card).ToString() + x.ToString() + ".png";
+            BitmapImage imagesource = new BitmapImage(new Uri(imagepath, UriKind.Relative));
+            image.Source = imagesource;
         }
 
         private void ResetCardBacks()
@@ -422,14 +425,6 @@ namespace KingPokerWindowsPhone8
                     image.Source = imagesource;
                 }
             }
-        }
-
-        private void SaveHands()
-        {
-            List<BothHands> handhistory = (List<BothHands>)App.settings["handhistory"];
-            BothHands bothhands = new BothHands { OpeningHand = HandStart, ClosingHand = HandEnd, GameType = gametype, Outcome = HandEnd.CheckForOutcome(), CreditCount = player.GetCredits(), IsSnapped = false, IsOnline = false };
-            handhistory.Add(bothhands);
-            App.settings["handhistory"] = handhistory;
         }
 
         private void Card_ImageOpened(object sender, RoutedEventArgs e)
