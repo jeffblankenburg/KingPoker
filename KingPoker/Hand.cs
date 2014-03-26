@@ -214,6 +214,21 @@ namespace KingPoker
                     if (IsTwoPair()) return HandOutcome.TwoPair;
                     if (IsJacksOrBetter()) return HandOutcome.JacksOrBetter;
                     break;
+                case GameType.TripleDoubleBonusPoker:
+                    if (IsRoyalFlush()) return HandOutcome.RoyalFlush;
+                    if (IsFourAcesWith234()) return HandOutcome.FourAcesWith234;
+                    if (IsFour2sThru4sWithA234()) return HandOutcome.Four2sThru4sWithA234;
+                    if (IsFourAces()) return HandOutcome.FourAces;
+                    if (IsFour2sThru4s()) return HandOutcome.Four2sThru4s;
+                    if (IsFour5sThruKs()) return HandOutcome.Four5sThruKings;
+                    if (IsStraightFlush()) return HandOutcome.StraightFlush;
+                    if (IsFullHouse()) return HandOutcome.FullHouse;
+                    if (IsFlush()) return HandOutcome.Flush;
+                    if (IsStraight()) return HandOutcome.Straight;
+                    if (IsThreeOfAKind()) return HandOutcome.ThreeOfAKind;
+                    if (IsTwoPair()) return HandOutcome.TwoPair;
+                    if (IsJacksOrBetter()) return HandOutcome.JacksOrBetter;
+                    break;
             }
             return HandOutcome.Nothing;
         }

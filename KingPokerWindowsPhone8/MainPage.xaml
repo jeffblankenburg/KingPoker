@@ -108,8 +108,10 @@
                         <RowDefinition Height="67" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Image Grid.Column="1" Grid.Row="0" Source="Assets/gamelogo/SuperDoubleDoubleBonusPoker.png" />
-                    <Image Grid.Column="3" Grid.Row="0" Source="Assets/gamelogo/TripleDoubleBonusPoker.png" />
+                    
+                    <Image Grid.Column="1" Grid.Row="0" Source="Assets/gamelogo/SuperDoubleDoubleBonusPoker.png" Tap="SuperDoubleDoubleBonusPoker_Tapped" />
+                    <Rectangle Grid.Column="1" Grid.Row="0" Fill="Black" Opacity=".7" />
+                    <Image Grid.Column="3" Grid.Row="0" Source="Assets/gamelogo/TripleDoubleBonusPoker.png" Tap="TripleDoubleBonusPoker_Tapped" />
 
                     <Image Grid.Column="3" Grid.Row="6" Source="Assets/gamelogo/DeucesWild.png" Tap="DeucesWild_5X_Tapped" />
 
@@ -140,7 +142,8 @@
                 <TextBlock Text="Never ask me again." VerticalAlignment="Center" />
             </StackPanel>
         </Grid>
-        <UI:AdControl Grid.Row="2" Height="80" Width="480" AdUnitId="10064434" ApplicationId="a9715b4b-5605-4435-8277-a77762734368" />
+        <!--<UI:AdControl Grid.Row="2" Height="80" Width="480" AdUnitId="10064434" ApplicationId="a9715b4b-5605-4435-8277-a77762734368" />-->
+        <UI:AdControl Grid.Row="2" Height="80" Width="480" AdUnitId="Image480_80" ApplicationId="test_client" />
     </Grid>
 
 </phone:PhoneApplicationPage>

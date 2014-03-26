@@ -23,7 +23,8 @@ namespace KingPoker
         JokerPoker,
         BlackJackBonusPoker,
         DoubleDoubleBonusPoker,
-        SuperDoubleDoubleBonusPoker
+        SuperDoubleDoubleBonusPoker,
+        TripleDoubleBonusPoker
     }
 
 }

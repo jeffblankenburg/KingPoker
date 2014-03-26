@@ -186,5 +186,17 @@ namespace KingPokerWindowsPhone8
             PlayClick();
             NavigationService.Navigate(new Uri("/FiveHandsGame.xaml?game=" + GameType.DeucesWild, UriKind.Relative));
         }
+
+        private void SuperDoubleDoubleBonusPoker_Tapped(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            PlayClick();
+            NavigationService.Navigate(new Uri("/Game.xaml?game=" + GameType.SuperDoubleDoubleBonusPoker, UriKind.Relative));
+        }
+
+        private void TripleDoubleBonusPoker_Tapped(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            PlayClick();
+            NavigationService.Navigate(new Uri("/Game.xaml?game=" + GameType.TripleDoubleBonusPoker, UriKind.Relative));
+        }
     }
 }
