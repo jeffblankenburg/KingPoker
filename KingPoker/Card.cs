@@ -14,6 +14,12 @@ namespace KingPoker
         {
 
         }
+
+        public Card(Card c)
+        {
+            Suit = new Suit(c.Suit);
+            CardValue = new CardValue(c.CardValue);
+        }
         
         public Card (Suit suit, CardValue cardvalue)
         {

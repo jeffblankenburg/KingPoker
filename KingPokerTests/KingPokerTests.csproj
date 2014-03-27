@@ -71,6 +71,10 @@
     <Compile Include="SuperDoubleDoubleBonusPoker_Tests.cs" />
     <Compile Include="AcesAndEights_Tests.cs" />
     <Compile Include="TripleDoubleBonusPoker_Tests.cs" />
+    <Compile Include="DoubleJokerPoker_Tests.cs" />
+    <Compile Include="DeucesAndJokerPoker_Tests.cs" />
+    <Compile Include="AllAmericanPoker_Tests.cs" />
+    <Compile Include="FiveHandsPokerGame_Tests.cs" />
     <Compile Include="WhiteHotAces_Tests.cs" />
   </ItemGroup>
   <ItemGroup>

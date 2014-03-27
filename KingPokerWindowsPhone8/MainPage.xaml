@@ -110,9 +110,12 @@
                     </Grid.RowDefinitions>
                     
                     <Image Grid.Column="1" Grid.Row="0" Source="Assets/gamelogo/SuperDoubleDoubleBonusPoker.png" Tap="SuperDoubleDoubleBonusPoker_Tapped" />
-                    <Rectangle Grid.Column="1" Grid.Row="0" Fill="Black" Opacity=".7" />
+                    <Image Grid.Column="1" Source="Assets/icons/lock.png" />
                     <Image Grid.Column="3" Grid.Row="0" Source="Assets/gamelogo/TripleDoubleBonusPoker.png" Tap="TripleDoubleBonusPoker_Tapped" />
-
+                    <Image Grid.Column="5" Grid.Row="0" Source="Assets/gamelogo/AcesAndEightsPoker.png" Tap="AcesAndEightsPoker_Tapped" />
+                    <Image Grid.Column="1" Grid.Row="2" Source="Assets/gamelogo/DoubleJokerPoker.png" Tap="DoubleJokerPoker_Tapped" />
+                    <Image Grid.Column="3" Grid.Row="2" Source="Assets/gamelogo/DeucesAndJokerPoker.png" Tap="DeucesAndJokerPoker_Tapped" />
+                    <Image Grid.Column="5" Grid.Row="2" Source="Assets/gamelogo/AllAmericanPoker.png" Tap="AllAmericanPoker_Tapped" />
                     <Image Grid.Column="3" Grid.Row="6" Source="Assets/gamelogo/DeucesWild.png" Tap="DeucesWild_5X_Tapped" />
 
                 </Grid>

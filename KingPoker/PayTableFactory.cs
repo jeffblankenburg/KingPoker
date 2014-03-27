@@ -37,6 +37,17 @@ namespace KingPoker
                     payTable.Add(new PayTableItem { Title = "TWO PAIR....................................", Coin1 = 2, Coin2 = 4, Coin3 = 6, Coin4 = 8, Coin5 = 10, Outcome = HandOutcome.TwoPair });
                     payTable.Add(new PayTableItem { Title = "JACKS OR BETTER.......................", Coin1 = 1, Coin2 = 2, Coin3 = 3, Coin4 = 4, Coin5 = 5, Outcome = HandOutcome.JacksOrBetter });
                     break;
+                case GameType.AllAmericanPoker:
+                    payTable.Add(new PayTableItem { Title = "ROYAL FLUSH..............................", Coin1 = 250, Coin2 = 500, Coin3 = 750, Coin4 = 1000, Coin5 = 4000, Outcome = HandOutcome.RoyalFlush });
+                    payTable.Add(new PayTableItem { Title = "STRAIGHT FLUSH.......................", Coin1 = 100, Coin2 = 200, Coin3 = 300, Coin4 = 400, Coin5 = 500, Outcome = HandOutcome.StraightFlush });
+                    payTable.Add(new PayTableItem { Title = "4 OF A KIND................................", Coin1 = 25, Coin2 = 50, Coin3 = 75, Coin4 = 100, Coin5 = 125, Outcome = HandOutcome.FourOfAKind });
+                    payTable.Add(new PayTableItem { Title = "FULL HOUSE................................", Coin1 = 8, Coin2 = 16, Coin3 = 24, Coin4 = 32, Coin5 = 40, Outcome = HandOutcome.FullHouse });
+                    payTable.Add(new PayTableItem { Title = "FLUSH..........................................", Coin1 = 8, Coin2 = 16, Coin3 = 24, Coin4 = 32, Coin5 = 40, Outcome = HandOutcome.Flush });
+                    payTable.Add(new PayTableItem { Title = "STRAIGHT....................................", Coin1 = 8, Coin2 = 16, Coin3 = 24, Coin4 = 32, Coin5 = 40, Outcome = HandOutcome.Straight });
+                    payTable.Add(new PayTableItem { Title = "3 OF A KIND................................", Coin1 = 3, Coin2 = 6, Coin3 = 9, Coin4 = 12, Coin5 = 15, Outcome = HandOutcome.ThreeOfAKind });
+                    payTable.Add(new PayTableItem { Title = "TWO PAIR....................................", Coin1 = 1, Coin2 = 2, Coin3 = 3, Coin4 = 4, Coin5 = 5, Outcome = HandOutcome.TwoPair });
+                    payTable.Add(new PayTableItem { Title = "JACKS OR BETTER.......................", Coin1 = 1, Coin2 = 2, Coin3 = 3, Coin4 = 4, Coin5 = 5, Outcome = HandOutcome.JacksOrBetter });
+                    break;
                 case GameType.BonusPokerDeluxe:
                     payTable.Add(new PayTableItem { Title = "ROYAL FLUSH..............................", Coin1 = 250, Coin2 = 500, Coin3 = 750, Coin4 = 1000, Coin5 = 4000, Outcome = HandOutcome.RoyalFlush });
                     payTable.Add(new PayTableItem { Title = "STRAIGHT FLUSH.......................", Coin1 = 50, Coin2 = 100, Coin3 = 150, Coin4 = 200, Coin5 = 250, Outcome = HandOutcome.StraightFlush });
@@ -244,6 +255,44 @@ namespace KingPoker
                     payTable.Add(new PayTableItem { Title = "3 OF A KIND................................", Coin1 = 2, Coin2 = 4, Coin3 = 6, Coin4 = 8, Coin5 = 10, Outcome = HandOutcome.ThreeOfAKind });
                     payTable.Add(new PayTableItem { Title = "TWO PAIR....................................", Coin1 = 1, Coin2 = 2, Coin3 = 3, Coin4 = 4, Coin5 = 5, Outcome = HandOutcome.TwoPair });
                     payTable.Add(new PayTableItem { Title = "JACKS OR BETTER.......................", Coin1 = 1, Coin2 = 2, Coin3 = 3, Coin4 = 4, Coin5 = 5, Outcome = HandOutcome.JacksOrBetter });
+                    break;
+                case GameType.AcesAndEightsPoker:
+                    payTable.Add(new PayTableItem { Title = "ROYAL FLUSH.........................................", Coin1 = 250, Coin2 = 500, Coin3 = 750, Coin4 = 1000, Coin5 = 4000, Outcome = HandOutcome.RoyalFlush });
+                    payTable.Add(new PayTableItem { Title = "STRAIGHT FLUSH..................................", Coin1 = 50, Coin2 = 100, Coin3 = 150, Coin4 = 200, Coin5 = 250, Outcome = HandOutcome.StraightFlush });
+                    payTable.Add(new PayTableItem { Title = "4 ACES OR 8S.........................................", Coin1 = 80, Coin2 = 160, Coin3 = 240, Coin4 = 320, Coin5 = 400, Outcome = HandOutcome.FourAcesOr8s });
+                    payTable.Add(new PayTableItem { Title = "4 SEVENS................................................", Coin1 = 50, Coin2 = 100, Coin3 = 150, Coin4 = 200, Coin5 = 250, Outcome = HandOutcome.Four7s });
+                    payTable.Add(new PayTableItem { Title = "4 OF A KIND...........................................", Coin1 = 25, Coin2 = 50, Coin3 = 75, Coin4 = 100, Coin5 = 125, Outcome = HandOutcome.FourOfAKind });
+                    payTable.Add(new PayTableItem { Title = "FULL HOUSE...........................................", Coin1 = 8, Coin2 = 16, Coin3 = 24, Coin4 = 32, Coin5 = 40, Outcome = HandOutcome.FullHouse });
+                    payTable.Add(new PayTableItem { Title = "FLUSH.....................................................", Coin1 = 5, Coin2 = 10, Coin3 = 15, Coin4 = 20, Coin5 = 25, Outcome = HandOutcome.Flush });
+                    payTable.Add(new PayTableItem { Title = "STRAIGHT...............................................", Coin1 = 4, Coin2 = 8, Coin3 = 12, Coin4 = 16, Coin5 = 20, Outcome = HandOutcome.Straight });
+                    payTable.Add(new PayTableItem { Title = "3 OF A KIND...........................................", Coin1 = 3, Coin2 = 6, Coin3 = 9, Coin4 = 12, Coin5 = 15, Outcome = HandOutcome.ThreeOfAKind });
+                    payTable.Add(new PayTableItem { Title = "TWO PAIR...............................................", Coin1 = 2, Coin2 = 4, Coin3 = 6, Coin4 = 8, Coin5 = 10, Outcome = HandOutcome.TwoPair });
+                    payTable.Add(new PayTableItem { Title = "JACKS OR BETTER..................................", Coin1 = 1, Coin2 = 2, Coin3 = 3, Coin4 = 4, Coin5 = 5, Outcome = HandOutcome.JacksOrBetter });
+                    break;
+                case GameType.DoubleJokerPoker:
+                    payTable.Add(new PayTableItem { Title = "ROYAL FLUSH NO WILD............", Coin1 = 250, Coin2 = 500, Coin3 = 750, Coin4 = 1000, Coin5 = 4000, Outcome = HandOutcome.RoyalFlushNoWild });
+                    payTable.Add(new PayTableItem { Title = "ROYAL FLUSH WITH WILD........", Coin1 = 100, Coin2 = 200, Coin3 = 300, Coin4 = 400, Coin5 = 500, Outcome = HandOutcome.RoyalFlushWithWild });
+                    payTable.Add(new PayTableItem { Title = "5 OF A KIND................................", Coin1 = 50, Coin2 = 100, Coin3 = 150, Coin4 = 200, Coin5 = 250, Outcome = HandOutcome.FiveOfAKind });
+                    payTable.Add(new PayTableItem { Title = "STRAIGHT FLUSH.......................", Coin1 = 25, Coin2 = 50, Coin3 = 75, Coin4 = 100, Coin5 = 125, Outcome = HandOutcome.StraightFlush });
+                    payTable.Add(new PayTableItem { Title = "4 OF A KIND................................", Coin1 = 9, Coin2 = 18, Coin3 = 27, Coin4 = 36, Coin5 = 45, Outcome = HandOutcome.FourOfAKind });
+                    payTable.Add(new PayTableItem { Title = "FULL HOUSE................................", Coin1 = 5, Coin2 = 10, Coin3 = 15, Coin4 = 20, Coin5 = 25, Outcome = HandOutcome.FullHouse });
+                    payTable.Add(new PayTableItem { Title = "FLUSH..........................................", Coin1 = 4, Coin2 = 8, Coin3 = 12, Coin4 = 16, Coin5 = 20, Outcome = HandOutcome.Flush });
+                    payTable.Add(new PayTableItem { Title = "STRAIGHT....................................", Coin1 = 3, Coin2 = 6, Coin3 = 9, Coin4 = 12, Coin5 = 15, Outcome = HandOutcome.Straight });
+                    payTable.Add(new PayTableItem { Title = "3 OF A KIND................................", Coin1 = 2, Coin2 = 4, Coin3 = 6, Coin4 = 8, Coin5 = 10, Outcome = HandOutcome.ThreeOfAKind });
+                    payTable.Add(new PayTableItem { Title = "TWO PAIR...................................", Coin1 = 1, Coin2 = 2, Coin3 = 3, Coin4 = 4, Coin5 = 5, Outcome = HandOutcome.TwoPair });
+                    break;
+                case GameType.DeucesAndJokerPoker:
+                    payTable.Add(new PayTableItem { Title = "FOUR DEUCES + JOKER.............", Coin1 = 0, Coin2 = 0, Coin3 = 0, Coin4 = 0, Coin5 = 10000, Outcome = HandOutcome.FourDeucesAndJoker });
+                    payTable.Add(new PayTableItem { Title = "ROYAL FLUSH NO DEUCES........", Coin1 = 800, Coin2 = 1600, Coin3 = 2400, Coin4 = 3200, Coin5 = 4000, Outcome = HandOutcome.RoyalFlushNoDeuces });
+                    payTable.Add(new PayTableItem { Title = "4 DEUCES.....................................", Coin1 = 25, Coin2 = 50, Coin3 = 75, Coin4 = 100, Coin5 = 125, Outcome = HandOutcome.FourDeuces });
+                    payTable.Add(new PayTableItem { Title = "ROYAL FLUSH WITH WILD........", Coin1 = 12, Coin2 = 24, Coin3 = 36, Coin4 = 48, Coin5 = 60, Outcome = HandOutcome.RoyalFlushWithWild });
+                    payTable.Add(new PayTableItem { Title = "5 OF A KIND................................", Coin1 = 9, Coin2 = 18, Coin3 = 27, Coin4 = 36, Coin5 = 45, Outcome = HandOutcome.FiveOfAKind });
+                    payTable.Add(new PayTableItem { Title = "STRAIGHT FLUSH.......................", Coin1 = 6, Coin2 = 12, Coin3 = 18, Coin4 = 24, Coin5 = 30, Outcome = HandOutcome.StraightFlush });
+                    payTable.Add(new PayTableItem { Title = "4 OF A KIND................................", Coin1 = 3, Coin2 = 6, Coin3 = 9, Coin4 = 12, Coin5 = 15, Outcome = HandOutcome.FourOfAKind });
+                    payTable.Add(new PayTableItem { Title = "FULL HOUSE................................", Coin1 = 3, Coin2 = 6, Coin3 = 9, Coin4 = 12, Coin5 = 15, Outcome = HandOutcome.FullHouse });
+                    payTable.Add(new PayTableItem { Title = "FLUSH..........................................", Coin1 = 3, Coin2 = 6, Coin3 = 9, Coin4 = 12, Coin5 = 15, Outcome = HandOutcome.Flush });
+                    payTable.Add(new PayTableItem { Title = "STRAIGHT....................................", Coin1 = 2, Coin2 = 4, Coin3 = 6, Coin4 = 8, Coin5 = 10, Outcome = HandOutcome.Straight });
+                    payTable.Add(new PayTableItem { Title = "3 OF A KIND................................", Coin1 = 1, Coin2 = 2, Coin3 = 3, Coin4 = 4, Coin5 = 5, Outcome = HandOutcome.ThreeOfAKind });
                     break;
             }
 

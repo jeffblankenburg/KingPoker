@@ -5,25 +5,26 @@ using KingPoker;
 namespace KingPokerTests
 {
     [TestClass]
-    public class AcesAndEights_Tests
+    public class AllAmericanPoker_Tests
     {
         PokerGame pg;
+        GameType gt = GameType.AllAmericanPoker;
 
         public void GameSetup(bool ShouldDeal = true)
         {
-            pg = new PokerGame(GameType.AcesAndEightsPoker);
+            pg = new PokerGame(gt);
             if (ShouldDeal) pg.Deal();
         }
 
         [TestMethod]
-        public void AcesAndEightsPoker_DeckCount()
+        public void AllAmericanPoker_DeckCount()
         {
             GameSetup(false);
             Assert.AreEqual(52, pg.CountCardsInDeck());
         }
 
         [TestMethod]
-        public void AcesAndEightsPoker_RoyalFlush()
+        public void AllAmericanPoker_RoyalFlush()
         {
             GameSetup();
             pg.SetCardSuitAndValue(0, new Suit { ID = 1, Name = "Hearts" }, new CardValue { Number = 14, Name = "Ace" });
@@ -35,7 +36,7 @@ namespace KingPokerTests
         }
 
         [TestMethod]
-        public void AcesAndEightsPoker_StraightFlush()
+        public void AllAmericanPoker_StraightFlush()
         {
             GameSetup();
             pg.SetCardSuitAndValue(0, new Suit { ID = 1, Name = "Hearts" }, new CardValue { Number = 2, Name = "Two" });
@@ -47,31 +48,7 @@ namespace KingPokerTests
         }
 
         [TestMethod]
-        public void AcesAndEightsPoker_FourAces()
-        {
-            GameSetup();
-            pg.SetCardSuitAndValue(0, new Suit { ID = 1, Name = "Hearts" }, new CardValue { Number = 14, Name = "Ace" });
-            pg.SetCardSuitAndValue(1, new Suit { ID = 2, Name = "Diamonds" }, new CardValue { Number = 14, Name = "Ace" });
-            pg.SetCardSuitAndValue(2, new Suit { ID = 3, Name = "Clubs" }, new CardValue { Number = 2, Name = "Two" });
-            pg.SetCardSuitAndValue(3, new Suit { ID = 4, Name = "Spades" }, new CardValue { Number = 14, Name = "Ace" });
-            pg.SetCardSuitAndValue(4, new Suit { ID = 3, Name = "Clubs" }, new CardValue { Number = 14, Name = "Ace" });
-            Assert.AreEqual(HandOutcome.FourAcesOr8s, pg.CheckHandForOutcome());
-        }
-
-        [TestMethod]
-        public void AcesAndEightsPoker_FourEights()
-        {
-            GameSetup();
-            pg.SetCardSuitAndValue(0, new Suit { ID = 1, Name = "Hearts" }, new CardValue { Number = 8, Name = "Eight" });
-            pg.SetCardSuitAndValue(1, new Suit { ID = 2, Name = "Diamonds" }, new CardValue { Number = 8, Name = "Eight" });
-            pg.SetCardSuitAndValue(2, new Suit { ID = 3, Name = "Clubs" }, new CardValue { Number = 14, Name = "Ace" });
-            pg.SetCardSuitAndValue(3, new Suit { ID = 4, Name = "Spades" }, new CardValue { Number = 8, Name = "Eight" });
-            pg.SetCardSuitAndValue(4, new Suit { ID = 3, Name = "Clubs" }, new CardValue { Number = 8, Name = "Eight" });
-            Assert.AreEqual(HandOutcome.FourAcesOr8s, pg.CheckHandForOutcome());
-        }
-
-        [TestMethod]
-        public void AcesAndEightsPoker_FourOfAKind()
+        public void AllAmericanPoker_FourOfAKind()
         {
             GameSetup();
             pg.SetCardSuitAndValue(0, new Suit { ID = 1, Name = "Hearts" }, new CardValue { Number = 12, Name = "Queen" });
@@ -83,7 +60,7 @@ namespace KingPokerTests
         }
 
         [TestMethod]
-        public void AcesAndEightsPoker_FullHouse()
+        public void AllAmericanPoker_FullHouse()
         {
             GameSetup();
             pg.SetCardSuitAndValue(0, new Suit { ID = 1, Name = "Hearts" }, new CardValue { Number = 13, Name = "King" });
@@ -95,7 +72,7 @@ namespace KingPokerTests
         }
 
         [TestMethod]
-        public void AcesAndEightsPoker_Flush()
+        public void AllAmericanPoker_Flush()
         {
             GameSetup();
             pg.SetCardSuitAndValue(0, new Suit { ID = 2, Name = "Diamonds" }, new CardValue { Number = 3, Name = "Three" });
@@ -107,7 +84,7 @@ namespace KingPokerTests
         }
 
         [TestMethod]
-        public void AcesAndEightsPoker_Straight()
+        public void AllAmericanPoker_Straight()
         {
             GameSetup();
             pg.SetCardSuitAndValue(0, new Suit { ID = 1, Name = "Hearts" }, new CardValue { Number = 5, Name = "Five" });
@@ -119,7 +96,7 @@ namespace KingPokerTests
         }
 
         [TestMethod]
-        public void AcesAndEightsPoker_ThreeOfAKind()
+        public void AllAmericanPoker_ThreeOfAKind()
         {
             GameSetup();
             pg.SetCardSuitAndValue(0, new Suit { ID = 1, Name = "Hearts" }, new CardValue { Number = 4, Name = "Four" });
@@ -131,7 +108,7 @@ namespace KingPokerTests
         }
 
         [TestMethod]
-        public void AcesAndEightsPoker_TwoPair()
+        public void AllAmericanPoker_TwoPair()
         {
             GameSetup();
             pg.SetCardSuitAndValue(0, new Suit { ID = 1, Name = "Hearts" }, new CardValue { Number = 2, Name = "Two" });
@@ -143,7 +120,7 @@ namespace KingPokerTests
         }
 
         [TestMethod]
-        public void AcesAndEightsPoker_JacksOrBetter()
+        public void AllAmericanPoker_JacksOrBetter()
         {
             GameSetup();
             pg.SetCardSuitAndValue(0, new Suit { ID = 1, Name = "Hearts" }, new CardValue { Number = 6, Name = "Six" });

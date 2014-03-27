@@ -130,17 +130,5 @@ namespace KingPokerTests
             pg.SetCardSuitAndValue(4, new Suit { ID = 3, Name = "Clubs" }, new CardValue { Number = 12, Name = "Queen" });
             Assert.AreEqual(HandOutcome.JacksOrBetter, pg.CheckHandForOutcome());
         }
-
-        [TestMethod]
-        public void JacksOrBetter_Pair()
-        {
-            GameSetup();
-            pg.SetCardSuitAndValue(0, new Suit { ID = 1, Name = "Hearts" }, new CardValue { Number = 6, Name = "Six" });
-            pg.SetCardSuitAndValue(1, new Suit { ID = 2, Name = "Diamonds" }, new CardValue { Number = 13, Name = "King" });
-            pg.SetCardSuitAndValue(2, new Suit { ID = 3, Name = "Clubs" }, new CardValue { Number = 2, Name = "Two" });
-            pg.SetCardSuitAndValue(3, new Suit { ID = 4, Name = "Spades" }, new CardValue { Number = 6, Name = "Six" });
-            pg.SetCardSuitAndValue(4, new Suit { ID = 3, Name = "Clubs" }, new CardValue { Number = 12, Name = "Queen" });
-            Assert.AreEqual(HandOutcome.Pair, pg.CheckHandForOutcome());
-        }
     }
 }

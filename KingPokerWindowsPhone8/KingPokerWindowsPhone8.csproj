@@ -98,6 +98,7 @@
     </Compile>
     <Compile Include="Converters\BothHandsToCredits.cs" />
     <Compile Include="Converters\ClosingHandCardToImageConverter.cs" />
+    <Compile Include="Converters\ConditionalCreditConverter.cs" />
     <Compile Include="Converters\GameTypeToImagePathConverter.cs" />
     <Compile Include="Converters\HandToOutcomeConverter.cs" />
     <Compile Include="Converters\HelpItemToFontWeightConverter.cs" />
@@ -246,15 +247,19 @@
     <Content Include="Assets\cards\BACK.png" />
     <Content Include="Assets\cards\HOLD.png" />
     <Content Include="Assets\gamekinglogo.png" />
+    <Content Include="Assets\gamelogo\AcesAndEightsPoker.png" />
     <Content Include="Assets\gamelogo\AcesAndFacesPoker.png" />
+    <Content Include="Assets\gamelogo\AllAmericanPoker.png" />
     <Content Include="Assets\gamelogo\BlackJackBonusPoker.png" />
     <Content Include="Assets\gamelogo\BonusPoker.png" />
     <Content Include="Assets\gamelogo\BonusPokerDeluxe.png" />
+    <Content Include="Assets\gamelogo\DeucesAndJokerPoker.png" />
     <Content Include="Assets\gamelogo\DeucesWild.png" />
     <Content Include="Assets\gamelogo\DeucesWildBonusPoker.png" />
     <Content Include="Assets\gamelogo\DoubleBonusDeucesWild.png" />
     <Content Include="Assets\gamelogo\DoubleBonusPoker.png" />
     <Content Include="Assets\gamelogo\DoubleDoubleBonusPoker.png" />
+    <Content Include="Assets\gamelogo\DoubleJokerPoker.png" />
     <Content Include="Assets\gamelogo\JacksOrBetter.png" />
     <Content Include="Assets\gamelogo\JokerPoker.png" />
     <Content Include="Assets\gamelogo\RoyalAcesBonusPoker.png" />
@@ -263,6 +268,7 @@
     <Content Include="Assets\gamelogo\TripleBonusPokerPlus.png" />
     <Content Include="Assets\gamelogo\TripleDoubleBonusPoker.png" />
     <Content Include="Assets\gamelogo\WhiteHotAces.png" />
+    <Content Include="Assets\icons\lock.png" />
     <Content Include="Assets\Large.png" />
     <Content Include="Assets\Medium.png" />
     <Content Include="Assets\numbers\0.png" />
@@ -278,6 +284,8 @@
     <Content Include="Assets\numbers\CREDITS.png" />
     <Content Include="Assets\numbers\WIN.png" />
     <Content Include="Assets\pattern480_800.png" />
+    <Content Include="Assets\products\gamepack1.png" />
+    <Content Include="Assets\products\nomoreads.png" />
     <Content Include="Assets\Small.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

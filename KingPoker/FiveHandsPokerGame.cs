@@ -8,7 +8,7 @@ namespace KingPoker
 {
     public class FiveHandsPokerGame
     {
-        internal List<PokerGame> PokerGames = new List<PokerGame>();
+        public List<PokerGame> PokerGames = new List<PokerGame>();
         GameType GameType;
 
         public FiveHandsPokerGame(GameType gametype)
@@ -24,28 +24,21 @@ namespace KingPoker
         public void Deal()
         {
             PokerGames[0].Deal();
-            PokerGames[1].SetDeck(PokerGames[0].GetDeck());
-            PokerGames[2].SetDeck(PokerGames[0].GetDeck());
-            PokerGames[3].SetDeck(PokerGames[0].GetDeck());
-            PokerGames[4].SetDeck(PokerGames[0].GetDeck());
-            PokerGames[1].Hand = PokerGames[0].Hand;
-            PokerGames[2].Hand = PokerGames[0].Hand;
-            PokerGames[3].Hand = PokerGames[0].Hand;
-            PokerGames[4].Hand = PokerGames[0].Hand;
 
+            for (int i = 1; i <= 4;i++)
+            {
+                PokerGames[i].Deck = new Deck(PokerGames[0].Deck);
+                PokerGames[i].Deck.Shuffle();
+                PokerGames[i].Hand = new Hand(PokerGames[0].Hand);
+            }
         }
 
         public void Draw()
         {
             for (int i = 0; i <= 4; i++)
             {
-                for (int j = 0; j<= 4;j++)
-                {
-                    if (!PokerGames[0].Hand.IsCardHeld(j))
-                    {
-                        PokerGames[i].Hand.Cards[j] = PokerGames[i].Deck.Draw();
-                    }
-                }
+                PokerGames[i].Hand.Held = PokerGames[0].Hand.Held;
+                PokerGames[i].Draw();
             }
         }
 
@@ -61,18 +54,6 @@ namespace KingPoker
         {
             Hand h = PokerGames[0].GetEntireHand();
             return h.IsCardHeld(card);
-        }
-
-        public bool AreDeucesWild()
-        {
-            switch (GameType)
-            {
-                case GameType.DeucesWild:
-                case GameType.DeucesWildBonusPoker:
-                case GameType.DoubleBonusDeucesWild:
-                    return true;
-            }
-            return false;
         }
 
         public List<PayTableItem> GetPayTable()

@@ -51,5 +51,7 @@ namespace KingPokerTests
             pg.Draw();
             Assert.AreEqual(47-expected, pg.CountCardsInDeck());
         }
+
+        
     }
 }

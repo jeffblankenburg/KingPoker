@@ -8,9 +8,9 @@ namespace KingPoker
 {
     public class PokerGame
     {
-        internal Deck Deck;
+        public Deck Deck;
         internal GameType GameType;
-        internal Hand Hand;
+        public Hand Hand;
         PayTableFactory paytablefactory = new PayTableFactory();
         List<PayTableItem> PayTables;
 
@@ -25,6 +25,7 @@ namespace KingPoker
         public void Deal()
         {
             Hand.Cards.Clear();
+            Hand.Held.Clear();
             for (int i = 0; i <= 4; i++)
             {
                 Hand.AddCard(Deck.Draw());
@@ -107,14 +108,7 @@ namespace KingPoker
 
         public bool AreDeucesWild()
         {
-            switch(GameType)
-            {
-                case GameType.DeucesWild:
-                case GameType.DeucesWildBonusPoker:
-                case GameType.DoubleBonusDeucesWild:
-                    return true;
-            }
-            return false;
+            return Hand.IsDeucesWildGame();
         }
 
         public Deck GetDeck()
@@ -124,7 +118,13 @@ namespace KingPoker
 
         public void SetDeck(Deck d)
         {
-            Deck = d;
+            Deck.Cards.Clear();
+            for (int i = 0; i < d.CountCardsInDeck(); i++)
+            {
+                //Deck.Cards.Add(d.Cards[i]);
+                //Deck.Cards.Add(new Card(new Suit{ ID = Int32.Parse(d.Cards[i].Suit.ID.ToString()), Name = d.Cards[i].Suit.Name.ToString()}, new CardValue{Number = Int32.Parse(d.Cards[i].CardValue.Number.ToString()), Name=d.Cards[i].CardValue.Name.ToString()}));
+            }
+            Deck.Shuffle();
         }
     }
 }

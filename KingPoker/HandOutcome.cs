@@ -44,6 +44,9 @@ namespace KingPoker
         FourAcesOrJacks,
         FourJsThruKs,
         FourAcesWithJQK,
-        FourJsThruKsWithJQKA
+        FourJsThruKsWithJQKA,
+        FourAcesOr8s,
+        Four7s,
+        FourDeucesAndJoker
     }
 }

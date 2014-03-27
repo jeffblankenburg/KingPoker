@@ -8,6 +8,16 @@ namespace KingPoker
 {
     public class CardValue
     {
+        public CardValue()
+        {
+
+        }
+
+        public CardValue(CardValue cardvalue)
+        {
+            Name = cardvalue.Name;
+            Number = cardvalue.Number;
+        }
         public string Name { get; set; }
         public int Number { get; set; }
     }
