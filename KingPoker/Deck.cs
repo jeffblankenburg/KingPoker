@@ -7,7 +7,7 @@ namespace KingPoker
 {
     public class Deck
     {
-        internal List<Card> Cards;
+        public List<Card> Cards;
 
         private List<Suit> Suits = new List<Suit> { new Suit { Name = "Hearts", ID = 1 }, new Suit { Name = "Diamonds", ID = 2 }, new Suit { Name = "Clubs", ID = 3 }, new Suit { Name = "Spades", ID = 4 } };
         private List<CardValue> CardValues = new List<CardValue> { new CardValue { Name = "Two", Number = 2 }, new CardValue { Name = "Three", Number = 3 }, new CardValue { Name = "Four", Number = 4 }, new CardValue { Name = "Five", Number = 5 }, new CardValue { Name = "Six", Number = 6 }, new CardValue { Name = "Seven", Number = 7 }, new CardValue { Name = "Eight", Number = 8 }, new CardValue { Name = "Nine", Number = 9 }, new CardValue { Name = "Ten", Number = 10 }, new CardValue { Name = "Jack", Number = 11 }, new CardValue { Name = "Queen", Number = 12 }, new CardValue { Name = "King", Number = 13 }, new CardValue { Name = "Ace", Number = 14 } };
@@ -48,11 +48,12 @@ namespace KingPoker
             }
         }
 
-        public void Shuffle()
+        public void Shuffle(Random r = null)
         {
+            if (r == null) r = new Random();
             for (int i = 0; i < Cards.Count; i++)
             {
-                Random r = new Random();
+                
                 int index1 = i;
                 int index2 = r.Next(Cards.Count);
                 SwapCard(index1, index2);

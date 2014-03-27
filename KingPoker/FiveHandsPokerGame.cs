@@ -24,11 +24,11 @@ namespace KingPoker
         public void Deal()
         {
             PokerGames[0].Deal();
-
+            Random r = new Random();
             for (int i = 1; i <= 4;i++)
             {
                 PokerGames[i].Deck = new Deck(PokerGames[0].Deck);
-                PokerGames[i].Deck.Shuffle();
+                PokerGames[i].Deck.Shuffle(r);
                 PokerGames[i].Hand = new Hand(PokerGames[0].Hand);
             }
         }

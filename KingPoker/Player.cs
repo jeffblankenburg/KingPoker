@@ -8,7 +8,7 @@ namespace KingPoker
 {
     public class Player
     {
-        private int WageredUnits = 1;
+        public int WageredUnits = 1;
         private int Credits = 10000;
         private int BetUnit = 1;
 

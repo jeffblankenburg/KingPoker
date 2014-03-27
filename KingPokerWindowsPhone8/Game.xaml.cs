@@ -26,7 +26,6 @@ namespace KingPokerWindowsPhone8
         bool IsHoldRound = false;
         bool IsShowingCards = false;
         bool IsDrawingCredits = false;
-        bool ShouldPayUser = false;
         int handCounter = 0;
         int cardCounter = 0;
         int OldCredits;

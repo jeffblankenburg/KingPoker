@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using KingPoker;
+using System.Diagnostics;
 
 namespace KingPokerTests
 {
@@ -21,13 +22,37 @@ namespace KingPokerTests
         }
 
         [TestMethod]
-        public void FiveHandsPokerGame_CreateTwoGamesAndCopyHandFromOneToTheOtherThenDraw_HandsShouldBeDifferentAgain()
+        public void FiveHandsPokerGame_AfterDealAllFiveDecksShouldBeDifferent()
         {
             FiveHandsPokerGame pg = new FiveHandsPokerGame(GameType.DeucesWild);
 
-            pg.PokerGames[0].Deal();
+            pg.Deal();
+            WriteDeckToOutput(pg.PokerGames[0].Deck);
+            WriteDeckToOutput(pg.PokerGames[1].Deck);
+            WriteDeckToOutput(pg.PokerGames[2].Deck);
+            WriteDeckToOutput(pg.PokerGames[3].Deck);
+            WriteDeckToOutput(pg.PokerGames[4].Deck);
 
-            Assert.AreEqual(false, pg.PokerGames[0].Deck == pg.PokerGames[1].Deck);
+            //Assert.AreEqual(47, pg.PokerGames[0].CountCardsInDeck());
+            //Assert.AreEqual(47, pg.PokerGames[1].CountCardsInDeck());
+            //Assert.AreEqual(47, pg.PokerGames[2].CountCardsInDeck());
+            //Assert.AreEqual(47, pg.PokerGames[3].CountCardsInDeck());
+            //Assert.AreEqual(47, pg.PokerGames[4].CountCardsInDeck());
+
+            Assert.AreEqual(false, pg.PokerGames[0].Deck.Cards[0] == pg.PokerGames[1].Deck.Cards[0]);
+            Assert.AreEqual(false, pg.PokerGames[1].Deck.Cards[0] == pg.PokerGames[2].Deck.Cards[0]);
+            Assert.AreEqual(false, pg.PokerGames[2].Deck.Cards[0] == pg.PokerGames[3].Deck.Cards[0]);
+            Assert.AreEqual(false, pg.PokerGames[3].Deck.Cards[0] == pg.PokerGames[4].Deck.Cards[0]);
+            Assert.AreEqual(false, pg.PokerGames[4].Deck.Cards[0] == pg.PokerGames[0].Deck.Cards[0]);
+        }
+
+        private void WriteDeckToOutput(Deck d)
+        {
+            foreach (Card c in d.Cards)
+            {
+                Debug.Write(c.CardValue.Number.ToString() + c.Suit.Name.Substring(0, 1) + " ");
+            }
+            Debug.WriteLine("");
         }
     }
 }
