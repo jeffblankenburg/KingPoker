@@ -50,7 +50,7 @@ namespace KingPokerWindowsPhone8
         {
             if (pokergame == null) pokergame = new FiveHandsPokerGame(gametype);
             LoadPlayer();
-            //    ChangeBetHighlight();
+            ChangeBetHighlight();
             LoadPayTable();
             LoadGameTitle();
             SetGameLogo();
@@ -177,7 +177,7 @@ namespace KingPokerWindowsPhone8
             ResetReds();
             System.Windows.Shapes.Rectangle r = (System.Windows.Shapes.Rectangle)FindName("CoinBox" + player.GetUnitsWagered());
             r.Fill = Red;
-            BetText.Text = "BET   " + player.GetUnitsWagered();
+            BetText.Text = "BET   " + (5*player.GetUnitsWagered());
         }
 
         private void ResetReds()
@@ -239,7 +239,6 @@ namespace KingPokerWindowsPhone8
             {
                 DrawCard(ShowHandsCounter, ShowCardsCounter);
                 ShowCardsCounter++;
-                //ONLY PLAY SOUND AND PAUSE IF WE ARE ACTUALLY DRAWING A CARD.
                 if ((!pokergame.IsCardHeld(ShowCardsCounter-1)))
                 {
                     PlayCardDeal();
