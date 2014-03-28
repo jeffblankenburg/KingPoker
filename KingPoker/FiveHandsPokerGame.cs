@@ -30,6 +30,7 @@ namespace KingPoker
                 PokerGames[i].Deck = new Deck(PokerGames[0].Deck);
                 PokerGames[i].Deck.Shuffle(r);
                 PokerGames[i].Hand = new Hand(PokerGames[0].Hand);
+                PokerGames[i].Hand.GameType = GameType;
             }
         }
 

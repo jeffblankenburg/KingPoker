@@ -222,5 +222,17 @@ namespace KingPokerWindowsPhone8
             PlayClick();
             NavigationService.Navigate(new Uri("/Game.xaml?game=" + GameType.AllAmericanPoker, UriKind.Relative));
         }
+
+        private void JacksOrBetter_5X_Tapped(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            PlayClick();
+            NavigationService.Navigate(new Uri("/FiveHandsGame.xaml?game=" + GameType.JacksOrBetter, UriKind.Relative));
+        }
+
+        private void BonusPokerDeluxe_5X_Tapped(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            PlayClick();
+            NavigationService.Navigate(new Uri("/FiveHandsGame.xaml?game=" + GameType.BonusPokerDeluxe, UriKind.Relative));
+        }
     }
 }

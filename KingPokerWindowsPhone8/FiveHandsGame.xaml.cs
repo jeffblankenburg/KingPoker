@@ -81,22 +81,6 @@ namespace KingPokerWindowsPhone8
             PayTableCoin4.ItemsSource = paytable;
             PayTableCoin5.ItemsSource = paytable;
         }
-        
-        
-        
-        
-        //Player player;
-        //FiveHandsPokerGame pokergame;
-        //GameType gametype;
-        //Hand HandStart;
-        //Hand HandEnd;
-        //bool IsHoldRound = false;
-        //bool IsShowingCards = false;
-        //bool IsDrawingCredits = false;
-        //bool ShouldPayUser = false;
-        //int handCounter = 0;
-        //int cardCounter = 0;
-        //int OldCredits;
 
         SolidColorBrush Blue = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xFF, 0x00, 0x00, 0x64));
         SolidColorBrush Red = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xFF, 0xB0, 0x00, 0x00));
@@ -136,30 +120,6 @@ namespace KingPokerWindowsPhone8
             BitmapImage imagesource = new BitmapImage(new Uri(imagepath, UriKind.Relative));
             GameLogo.Source = imagesource;
         }
-
-        //private void LoadPlayer()
-        //{
-        //    player = new Player();
-        //    if (App.settings.Contains("credits"))
-        //    {
-        //        player.SetCredits((int)App.settings["credits"]);
-        //    }
-        //    else player.SetCredits(10000);
-
-        //    //player.SetCredits(9);
-        //}
-
-        //private void LoadPayTable()
-        //{
-        //    var paytable = pokergame.GetPayTable();
-
-        //    PayTableNames.ItemsSource = paytable;
-        //    PayTableCoin1.ItemsSource = paytable;
-        //    PayTableCoin2.ItemsSource = paytable;
-        //    PayTableCoin3.ItemsSource = paytable;
-        //    PayTableCoin4.ItemsSource = paytable;
-        //    PayTableCoin5.ItemsSource = paytable;
-        //}
 
         private void ChangeBetHighlight()
         {

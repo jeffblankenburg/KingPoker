@@ -96,6 +96,18 @@ namespace KingPokerTests
         }
 
         [TestMethod]
+        public void JacksOrBetter_NotStraight()
+        {
+            GameSetup();
+            pg.SetCardSuitAndValue(0, new Suit { ID = 1, Name = "Hearts" }, new CardValue { Number = 5, Name = "Five" });
+            pg.SetCardSuitAndValue(1, new Suit { ID = 2, Name = "Diamonds" }, new CardValue { Number = 4, Name = "Four" });
+            pg.SetCardSuitAndValue(2, new Suit { ID = 3, Name = "Clubs" }, new CardValue { Number = 6, Name = "Six" });
+            pg.SetCardSuitAndValue(3, new Suit { ID = 4, Name = "Spades" }, new CardValue { Number = 8, Name = "Eight" });
+            pg.SetCardSuitAndValue(4, new Suit { ID = 3, Name = "Clubs" }, new CardValue { Number = 2, Name = "Two" });
+            Assert.AreEqual(HandOutcome.Nothing, pg.CheckHandForOutcome());
+        }
+
+        [TestMethod]
         public void JacksOrBetter_ThreeOfAKind()
         {
             GameSetup();
@@ -129,6 +141,19 @@ namespace KingPokerTests
             pg.SetCardSuitAndValue(3, new Suit { ID = 4, Name = "Spades" }, new CardValue { Number = 12, Name = "Queen" });
             pg.SetCardSuitAndValue(4, new Suit { ID = 3, Name = "Clubs" }, new CardValue { Number = 12, Name = "Queen" });
             Assert.AreEqual(HandOutcome.JacksOrBetter, pg.CheckHandForOutcome());
+        }
+
+        [TestMethod]
+        public void JacksOrBetter_WeirdWildIssue()
+        {
+            FiveHandsPokerGame fhpg = new FiveHandsPokerGame(gt);
+            fhpg.Deal();
+            fhpg.PokerGames[0].SetCardSuitAndValue(0, new Suit { ID = 1, Name = "Hearts" }, new CardValue { Number = 8, Name = "Eight" });
+            fhpg.PokerGames[0].SetCardSuitAndValue(1, new Suit { ID = 3, Name = "Clubs" }, new CardValue { Number = 2, Name = "Two" });
+            fhpg.PokerGames[0].SetCardSuitAndValue(2, new Suit { ID = 1, Name = "Hearts" }, new CardValue { Number = 3, Name = "Three" });
+            fhpg.PokerGames[0].SetCardSuitAndValue(3, new Suit { ID = 4, Name = "Spades" }, new CardValue { Number = 2, Name = "Two" });
+            fhpg.PokerGames[0].SetCardSuitAndValue(4, new Suit { ID = 4, Name = "Spades" }, new CardValue { Number = 8, Name = "Eight" });
+            Assert.AreEqual(HandOutcome.TwoPair, fhpg.PokerGames[0].CheckHandForOutcome());
         }
     }
 }

@@ -478,7 +478,9 @@ namespace KingPoker
 
         private bool IsJokerGame()
         {
-            if ((GameType == GameType.JokerPoker) || (GameType == GameType.DoubleJokerPoker) || (GameType == GameType.DeucesAndJokerPoker)) return true;
+            if ((GameType == GameType.JokerPoker)||
+                (GameType == GameType.DoubleJokerPoker) ||
+                (GameType == GameType.DeucesAndJokerPoker)) return true;
             return false;
         }
 
@@ -496,12 +498,12 @@ namespace KingPoker
                 if ((CountWildCards() == 1) && (WhichPair() >= 3)) return true;
                 if (CountWildCards() == 2) return true;
             }
-            if (IsDeucesWildGame())
+            else if (IsDeucesWildGame())
             { 
                 if ((CountDeuces() == 1) && (WhichPair() != 0) && (WhichPair() != 2)) return true;
                 if (CountDeuces() == 2) return true;
             }
-            if (IsJokerGame())
+            else if (IsJokerGame())
             {
                 if ((CountJokers() == 1) && (WhichPair() >= 2)) return true;
                 if (CountJokers() == 2) return true;
@@ -528,13 +530,13 @@ namespace KingPoker
                 if ((CountWildCards() == 2) && (WhichPair() != 0) && (WhichPair() != 2)) return true;
                 if (CountWildCards() == 3) return true;
             }
-            if (IsDeucesWildGame())
+            else if (IsDeucesWildGame())
             {
                 if ((CountDeuces() == 1) && (WhichThreeOfAKind() != 0) && (WhichThreeOfAKind() != 2)) return true;
                 if ((CountDeuces() == 2) && (WhichPair() != 0) && (WhichPair() != 2)) return true;
                 if (CountDeuces() == 3) return true;
             }
-            if (IsJokerGame())
+            else if (IsJokerGame())
             {
                 if ((CountJokers() == 1) && (WhichThreeOfAKind() != 0)) return true;
                 if ((CountJokers() == 2) && (WhichPair() != 0) && (WhichPair() != 1)) return true;
@@ -583,13 +585,13 @@ namespace KingPoker
                 if ((CountWildCards() == 3) && (WhichPair() != 0) && (WhichPair() != 2)) return true;
                 if (CountWildCards() == 4) return true;
             }
-            if (IsDeucesWildGame())
+            else if (IsDeucesWildGame())
             {
                 if ((CountDeuces() == 1) && (WhichFourOfAKind() != 0) && (WhichFourOfAKind() != 2)) return true;
                 if ((CountDeuces() == 2) && (WhichThreeOfAKind() != 0) && (WhichThreeOfAKind() != 2)) return true;
                 if ((CountDeuces() == 3) && (WhichPair() != 0) && (WhichPair() != 2)) return true;
             }
-            if (IsJokerGame())
+            else if (IsJokerGame())
             {
                 if ((CountJokers() == 1) && (WhichFourOfAKind() != 0)) return true;
                 if ((CountJokers() == 2) && (WhichThreeOfAKind() != 0)) return true;

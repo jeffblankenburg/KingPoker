@@ -247,6 +247,7 @@
     <Content Include="Assets\cards\BACK.png" />
     <Content Include="Assets\cards\HOLD.png" />
     <Content Include="Assets\gamekinglogo.png" />
+    <Content Include="Assets\gamelogo\5xHeader.png" />
     <Content Include="Assets\gamelogo\AcesAndEightsPoker.png" />
     <Content Include="Assets\gamelogo\AcesAndFacesPoker.png" />
     <Content Include="Assets\gamelogo\AllAmericanPoker.png" />
@@ -269,6 +270,7 @@
     <Content Include="Assets\gamelogo\TripleDoubleBonusPoker.png" />
     <Content Include="Assets\gamelogo\WhiteHotAces.png" />
     <Content Include="Assets\icons\lock.png" />
+    <Content Include="Assets\icons\lock_wide.png" />
     <Content Include="Assets\Large.png" />
     <Content Include="Assets\Medium.png" />
     <Content Include="Assets\numbers\0.png" />
@@ -304,7 +306,6 @@
     </Content>
     <Content Include="Assets\WindowsPhoneStoreIcon.png" />
     <Content Include="Assets\WindowsStoreIcon.png" />
-    <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
@@ -324,16 +325,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="MSAdvertising, Version=6.1">
-      <Name>Microsoft Advertising SDK for Windows Phone 8 %28XAML%29</Name>
-    </SDKReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="microsoft.advertising.mobile.ui, Version=6.2.960.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Maps, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="MSAdvertising, Version=6.1">
+      <Name>Microsoft Advertising SDK for Windows Phone 8 %28XAML%29</Name>
+    </SDKReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />

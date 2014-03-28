@@ -143,21 +143,5 @@ namespace KingPoker
         {
             return Hand.IsDeucesWildGame();
         }
-
-        //public Deck GetDeck()
-        //{
-        //    return Deck;
-        //}
-
-        //public void SetDeck(Deck d)
-        //{
-        //    Deck.Cards.Clear();
-        //    for (int i = 0; i < d.CountCardsInDeck(); i++)
-        //    {
-        //        //Deck.Cards.Add(d.Cards[i]);
-        //        //Deck.Cards.Add(new Card(new Suit{ ID = Int32.Parse(d.Cards[i].Suit.ID.ToString()), Name = d.Cards[i].Suit.Name.ToString()}, new CardValue{Number = Int32.Parse(d.Cards[i].CardValue.Number.ToString()), Name=d.Cards[i].CardValue.Name.ToString()}));
-        //    }
-        //    Deck.Shuffle();
-        //}
     }
 }

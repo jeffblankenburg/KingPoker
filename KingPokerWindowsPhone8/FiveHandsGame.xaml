@@ -329,7 +329,10 @@
             </Viewbox>
         </Grid>
         <Grid Grid.Row="5">
-            <TextBlock x:Name="GameName" Text="DEUCESWILDDOUBLEBONUS" FontFamily="Arial" FontWeight="ExtraBold" VerticalAlignment="Bottom" FontSize="10" Margin="12,0,0,5"  HorizontalAlignment="Left" />
+            <StackPanel VerticalAlignment="Bottom">
+                <TextBlock Text="FIVE TIMES" FontFamily="Arial" FontWeight="ExtraBold" FontSize="10" Margin="12,0,0,0"  HorizontalAlignment="Left" />
+                <TextBlock x:Name="GameName" Text="DEUCESWILDDOUBLEBONUS" FontFamily="Arial" FontWeight="ExtraBold" FontSize="10" Margin="12,0,0,5"  HorizontalAlignment="Left" />
+            </StackPanel>
             <Viewbox VerticalAlignment="Bottom" HorizontalAlignment="Right">
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <StackPanel x:Name="CreditsPanel" Orientation="Horizontal" FlowDirection="RightToLeft">
