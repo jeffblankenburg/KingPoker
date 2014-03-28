@@ -108,7 +108,7 @@ namespace KingPoker
                     payTable.Add(new PayTableItem { Title = "STRAIGHT....................................", Coin1 = 4, Coin2 = 8, Coin3 = 12, Coin4 = 16, Coin5 = 20, Outcome = HandOutcome.Straight });
                     payTable.Add(new PayTableItem { Title = "3 OF A KIND................................", Coin1 = 3, Coin2 = 6, Coin3 = 9, Coin4 = 12, Coin5 = 15, Outcome = HandOutcome.ThreeOfAKind });
                     payTable.Add(new PayTableItem { Title = "TWO PAIR....................................", Coin1 = 1, Coin2 = 2, Coin3 = 3, Coin4 = 4, Coin5 = 5, Outcome = HandOutcome.TwoPair });
-                    payTable.Add(new PayTableItem { Title = "PAIR OF ACES.......................", Coin1 = 1, Coin2 = 2, Coin3 = 3, Coin4 = 4, Coin5 = 5, Outcome = HandOutcome.PairOfAces });
+                    payTable.Add(new PayTableItem { Title = "PAIR OF ACES..............................", Coin1 = 1, Coin2 = 2, Coin3 = 3, Coin4 = 4, Coin5 = 5, Outcome = HandOutcome.PairOfAces });
                     break;
                 case GameType.WhiteHotAces:
                     payTable.Add(new PayTableItem { Title = "ROYAL FLUSH..............................", Coin1 = 250, Coin2 = 500, Coin3 = 750, Coin4 = 1000, Coin5 = 4000, Outcome = HandOutcome.RoyalFlush });

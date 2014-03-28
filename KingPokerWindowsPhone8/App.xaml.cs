@@ -10,6 +10,7 @@ using KingPokerWindowsPhone8.Resources;
 using System.IO.IsolatedStorage;
 using KingPoker;
 using System.Collections.Generic;
+using MockIAPLib;
 
 namespace KingPokerWindowsPhone8
 {
@@ -59,6 +60,44 @@ namespace KingPokerWindowsPhone8
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
+
+            SetupMockIAP();
+
+        }
+
+        private void SetupMockIAP()
+        {
+#if DEBUG
+            MockIAP.Init();
+
+            MockIAP.RunInMockMode(true);
+            MockIAP.SetListingInformation(1, "en-us", "A description", "1", "1 token");
+
+            // Add some more items manually.
+            ProductListing p = new ProductListing
+            {
+                Name = "No More Ads!",
+                ProductId = "NOADS",
+                ProductType = Windows.ApplicationModel.Store.ProductType.Durable,
+                Keywords = new string[] { "image" },
+                Description = "An image",
+                FormattedPrice = "1.99",
+                Tag = string.Empty
+            };
+            MockIAP.AddProductListing("NOADS", p);
+
+            p = new ProductListing
+            {
+                Name = "Game Pack #1",
+                ProductId = "GAMEPACK1",
+                ProductType = Windows.ApplicationModel.Store.ProductType.Durable,
+                Keywords = new string[] { "image" },
+                Description = "An image",
+                FormattedPrice = "4.99",
+                Tag = string.Empty
+            };
+            MockIAP.AddProductListing("GAMEPACK1", p);
+#endif
 
         }
 

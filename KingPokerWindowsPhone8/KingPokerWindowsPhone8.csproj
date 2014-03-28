@@ -247,6 +247,7 @@
     <Content Include="Assets\cards\BACK.png" />
     <Content Include="Assets\cards\HOLD.png" />
     <Content Include="Assets\gamekinglogo.png" />
+    <Content Include="Assets\gamelogo\1xHeader.png" />
     <Content Include="Assets\gamelogo\5xHeader.png" />
     <Content Include="Assets\gamelogo\AcesAndEightsPoker.png" />
     <Content Include="Assets\gamelogo\AcesAndFacesPoker.png" />
@@ -319,6 +320,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Desktop\Mock In-App Purchase Library\C#\MockIAPLib\MockIAPLib.csproj">
+      <Project>{015E3DFE-EB56-429F-95EF-BAB5D41B23BE}</Project>
+      <Name>MockIAPLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KingPoker\KingPoker.csproj">
       <Project>{36D81F2B-39D2-49B2-B619-3B87C3CAF3E3}</Project>
       <Name>KingPoker</Name>

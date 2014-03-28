@@ -44,6 +44,8 @@ namespace KingPokerWindowsPhone8
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
+            CreditPause.Completed -= CreditPause_Completed;
+            CardPause.Completed -= CardPause_Completed;
             App.settings["credits"] = player.GetCredits();
         }
 
@@ -111,7 +113,7 @@ namespace KingPokerWindowsPhone8
 
         private void LoadGameTitle()
         {
-            GameName.Text = gametype.ToString().ToUpper();
+            GameName.Text = gametype.ToString().ToUpper().Replace("_5X", "");
         }
 
         private void SetGameLogo()

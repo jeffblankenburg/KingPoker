@@ -49,6 +49,8 @@ namespace KingPokerWindowsPhone8
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
+            CreditPause.Completed -= CreditPause_Completed;
+            CardPause.Completed -= CardPause_Completed;
             App.settings["credits"] = player.GetCredits();
         }
 
