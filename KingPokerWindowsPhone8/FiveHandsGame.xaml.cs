@@ -27,6 +27,7 @@ namespace KingPokerWindowsPhone8
         bool IsDrawingCredits = false;
         int ShowCardsCounter = 0;
         int ShowHandsCounter = 0;
+        int OldCredits = 0;
 
         public FiveHandsGame()
         {
@@ -108,20 +109,8 @@ namespace KingPokerWindowsPhone8
 
         void CreditPause_Completed(object sender, object e)
         {
-            //UpdateCredits();
+            UpdateCredits();
         }
-
-        //private void GameSetup()
-        //{
-        //    if (pokergame == null) pokergame = new FiveHandsPokerGame(gametype);
-        //    LoadPlayer();
-        //    ChangeBetHighlight();
-        //    LoadPayTable();
-        //    LoadGameTitle();
-        //    SetGameLogo();
-        //    LoadHelpContent();
-        //    DrawCredits(player.GetCredits());
-        //}
 
         private void LoadHelpContent()
         {
@@ -178,6 +167,12 @@ namespace KingPokerWindowsPhone8
             System.Windows.Shapes.Rectangle r = (System.Windows.Shapes.Rectangle)FindName("CoinBox" + player.GetUnitsWagered());
             r.Fill = Red;
             BetText.Text = "BET   " + (5*player.GetUnitsWagered());
+
+            BetCircleText0.Text = player.GetUnitsWagered().ToString();
+            BetCircleText1.Text = player.GetUnitsWagered().ToString();
+            BetCircleText2.Text = player.GetUnitsWagered().ToString();
+            BetCircleText3.Text = player.GetUnitsWagered().ToString();
+            BetCircleText4.Text = player.GetUnitsWagered().ToString();
         }
 
         private void ResetReds()
@@ -257,6 +252,8 @@ namespace KingPokerWindowsPhone8
 
             if  (ShowHandsCounter == 5)
             {
+                HighlightPayTable(PayTableNames, (ItemsControl)FindName("PayTableCoin" + player.GetUnitsWagered()));
+                if (!IsHoldRound) UpdateCredits();
                 ShowHandsCounter = 0;
                 ShowCardsCounter = 0;
                 IsShowingCards = false;
@@ -269,105 +266,20 @@ namespace KingPokerWindowsPhone8
             string credits = pokergame.PokerGames[ShowHandsCounter].GetPayBasedOnHandOutCome(player.WageredUnits);
             if (outcome != "")
             {
+                PlayHoldAlert();
                 TextBlock t = (TextBlock)FindName("OutcomeText" + ShowHandsCounter);
                 TextBlock p = (TextBlock)FindName("PayoutText" + ShowHandsCounter);
                 Border b = (Border)FindName("Outcome" + ShowHandsCounter);
                 t.Text = outcome;
                 p.Text = credits;
                 b.Visibility = Visibility.Visible;
+                player.AwardCredits(pokergame.PokerGames[ShowHandsCounter].Hand);
             }
         }
 
-        //private void ShowCards(bool shouldPayFlag)
-        //{
-        //    ShouldPayUser = shouldPayFlag;
-        //    IsShowingCards = true;
+        
 
-        //    if (cardCounter <=4)
-        //    {
-        //        if (!pokergame.IsCardHeld(cardCounter))
-        //        {
-        //            DrawCard(handCounter, cardCounter);
-        //            cardCounter++;
-        //            PlayCardDeal();
-        //            CardPause.Begin();
-        //        }
-        //        else
-        //        {
-        //            cardCounter++;
-        //            ShowCards(ShouldPayUser);
-        //        }
-        //    }
-        //    else if (!ShouldPayUser)
-        //    {
-        //        handCounter = 5;
-        //        cardCounter = 0;
-        //    }
-        //    else
-        //    {
-        //        cardCounter = 0;
-        //        handCounter++;
-        //        ShowCards(ShouldPayUser);
-        //    }
-
-        //    if (handCounter == 5)
-        //    {
-        //        HighlightPayTable(PayTableNames, (ItemsControl)FindName("PayTableCoin" + player.GetUnitsWagered()), ShouldPayUser);
-        //        if ((!IsHoldRound) && player.GetCredits() == 0)
-        //        {
-        //            ResetBox.Visibility = Visibility.Visible;
-        //            player.SetCredits(10000);
-        //            DrawCredits(player.GetCredits());
-        //        }
-
-        //        if (ShouldPayUser) SaveHands();
-        //        IsShowingCards = false;
-        //    }
-        //}
-
-        //private void Deal()
-        //{
-        //    handCounter = 0;
-            
-        //    if (player.GetCreditsWagered() <= player.GetCredits())
-        //    {
-        //        if (!IsShowingCards)
-        //        {
-        //            if (!IsDrawingCredits)
-        //            {
-        //                StopPayTableAnimations();
-        //                ResetBox.Visibility = Visibility.Collapsed;
-
-        //                if (!IsHoldRound)
-        //                {
-        //                    ClearHolds();
-        //                    ResetCardBacks();
-        //                    ChargeCredits();
-        //                    //DisableShareButton();
-        //                    pokergame = new FiveHandsPokerGame(gametype);
-        //                    pokergame.Deal();
-        //                    //handCounter++;
-        //                    IsHoldRound = true;
-        //                    //HandStart = new Hand(pokergame.GetEntireHand(0), pokergame.GetEntireHoldStateOfHand(0));
-        //                }
-        //                else
-        //                {
-        //                    pokergame.Draw();
-        //                    ResetCardBacks();
-        //                    //ActivateShareButton();
-        //                    IsHoldRound = false;
-        //                    //HandEnd = new Hand(pokergame.GetEntireHand(0), pokergame.GetEntireHoldStateOfHand(0));
-        //                }
-        //                ShowCards(!IsHoldRound);
-        //            }
-        //        }
-        //    }
-        //    else if (player.CanIncreaseUnits(player.GetCreditsWagered()-1))
-        //    {
-        //        player.IncreaseUnitsWagered(player.GetCreditsWagered() - 1);
-        //        Deal();
-        //    }
-        //}
+        
 
         //private void SaveHands()
         //{
@@ -392,68 +304,58 @@ namespace KingPokerWindowsPhone8
             }
         }
 
-        //private void HighlightPayTable(DependencyObject target, DependencyObject target2, bool ShouldAwardWinnings)
-        //{
-        //    //TODO: This logic really shouldn't be here.  We need to have the "logic" tell the UI which items to highlight.
-            
-        //    var count = VisualTreeHelper.GetChildrenCount(target);
-        //    if (count == 0) return;
+        private void HighlightPayTable(DependencyObject target, DependencyObject target2)
+        {
+            //TODO: This logic really shouldn't be here.  We need to have the "logic" tell the UI which items to highlight.
 
-        //    for (int i = 0; i < count; i++)
-        //    {
-        //        var child = VisualTreeHelper.GetChild(target, i);
-        //        var child2 = VisualTreeHelper.GetChild(target2, i);
+            var count = VisualTreeHelper.GetChildrenCount(target);
+            if (count == 0) return;
 
-        //        if (child is TextBlock)
-        //        {
-        //            TextBlock targetItem = (TextBlock)child;
-        //            TextBlock targetItem2 = (TextBlock)child2;
-        //            HandOutcome current = ((PayTableItem)targetItem.DataContext).Outcome;
-        //            HandOutcome outcome = pokergame.CheckHandForOutcome(0);
-        //            if (current == outcome)
-        //            {
-        //                Storyboard.SetTarget(PayTableTitleBlink, targetItem);
-        //                Storyboard.SetTarget(PayTableNumberBlink, targetItem2);
-        //                PayTableTitleBlink.Begin();
-        //                PayTableNumberBlink.Begin();
+            for (int i = 0; i < count; i++)
+            {
+                var child = VisualTreeHelper.GetChild(target, i);
+                var child2 = VisualTreeHelper.GetChild(target2, i);
 
-        //                if (ShouldAwardWinnings)
-        //                {
-        //                    AwardWinnings(Int32.Parse(targetItem2.Text));
-        //                    //RecordHand(outcome);
-        //                }
-        //                else PlayHoldAlert();
-        //                return;
-        //            }
-        //        }
-        //        else HighlightPayTable(child, child2, ShouldPayUser);
+                if (child is TextBlock)
+                {
+                    TextBlock targetItem = (TextBlock)child;
+                    TextBlock targetItem2 = (TextBlock)child2;
+                    HandOutcome current = ((PayTableItem)targetItem.DataContext).Outcome;
+                    HandOutcome outcome = pokergame.CheckHandForOutcome(0);
+                    if (current == outcome)
+                    {
+                        if (IsHoldRound)
+                        {
+                            PlayHoldAlert();
+                            Storyboard.SetTarget(PayTableTitleBlink, targetItem);
+                            Storyboard.SetTarget(PayTableNumberBlink, targetItem2);
+                            PayTableTitleBlink.Begin();
+                            PayTableNumberBlink.Begin();
+                        }
+                        else StopPayTableAnimations();
+                        return;
+                    }
+                }
+                else HighlightPayTable(child, child2);
 
-        //    }
-        //}
+            }
+        }
 
-        //private void AwardWinnings(int award)
-        //{
-        //    //int credits = player.GetCredits();
-        //    //OldCredits = credits;
-        //    //player.AwardCredits(award);
-        //    //UpdateCredits();
-        //}
-
-        //private void UpdateCredits()
-        //{
-        //    IsDrawingCredits = true;
-        //    if (OldCredits < player.GetCredits())
-        //    {
-        //        OldCredits++;
-        //        DrawCredits(OldCredits);
-        //        PlayOneBet();
-        //        CreditPause.Begin();
-        //    }
-        //    else
-        //    {
-        //        IsDrawingCredits = false;
-        //    }
-        //}
+        private void UpdateCredits()
+        {
+            IsDrawingCredits = true;
+            if (OldCredits < player.GetCredits())
+            {
+                OldCredits++;
+                DrawCredits(OldCredits);
+                PlayOneBet();
+                CreditPause.Begin();
+            }
+            else
+            {
+                IsDrawingCredits = false;
+            }
+        }
 
         private void ChargeCredits()
         {
@@ -466,8 +368,9 @@ namespace KingPokerWindowsPhone8
             }
             else
             {
-                player.RemoveWageredCredits();
-                DrawCredits(player.GetCredits());
+                player.RemoveWageredCredits(5);
+                OldCredits = player.GetCredits();
+                DrawCredits(OldCredits);
             }
         }
 
@@ -611,35 +514,35 @@ namespace KingPokerWindowsPhone8
 
         private void BetOne_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //IncreaseBet(1);
+            IncreaseBet(1);
         }
 
         private void BetMax_Tapped(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //IncreaseBet(5);
+            IncreaseBet(5);
         }
 
-        //private void IncreaseBet(int amount)
-        //{
-        //    if (!IsHoldRound && !IsShowingCards && !IsDrawingCredits)
-        //    {
-        //        if (player.CanIncreaseUnits(amount))
-        //        {
-        //            player.IncreaseUnitsWagered(amount);
-        //            PlayOneBet();
-        //            if ((player.GetUnitsWagered() == 5) || (player.GetUnitsWagered() == player.GetCredits()))
-        //            {
-        //                Deal();
-        //            }
-        //        }
-        //        else
-        //        {
-        //            amount--;
-        //            IncreaseBet(amount);
-        //        }
-        //        ChangeBetHighlight();
-        //    }
-        //}
+        private void IncreaseBet(int amount)
+        {
+            if (!IsHoldRound && !IsShowingCards && !IsDrawingCredits)
+            {
+                if (player.CanIncreaseUnits(amount, 5))
+                {
+                    player.IncreaseUnitsWagered(amount);
+                    if ((player.GetUnitsWagered() == 5) || (player.GetUnitsWagered()*5 == player.GetCredits()))
+                    {
+                        Deal();
+                    }
+                    else PlayOneBet();
+                }
+                else
+                {
+                    amount--;
+                    IncreaseBet(amount);
+                }
+                ChangeBetHighlight();
+            }
+        }
 
         private void Deal_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {

@@ -28,7 +28,8 @@ namespace KingPoker
         AcesAndEightsPoker,
         DoubleJokerPoker,
         DeucesAndJokerPoker,
-        AllAmericanPoker
+        AllAmericanPoker,
+        DeucesWild_5X
     }
 
 }

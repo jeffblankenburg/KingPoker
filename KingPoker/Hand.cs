@@ -78,6 +78,7 @@ namespace KingPoker
             switch (GameType)
             {
                 case GameType.DeucesWild:
+                case GameType.DeucesWild_5X:
                     if (IsRoyalFlush()) return HandOutcome.RoyalFlushNoDeuces;
                     if (IsFourDeuces()) return HandOutcome.FourDeuces;
                     if (IsRoyalFlushWithWild()) return HandOutcome.RoyalFlushWithDeuces;
@@ -510,7 +511,11 @@ namespace KingPoker
 
         public bool IsDeucesWildGame()
         {
-            if ((GameType == GameType.DeucesWild) || (GameType == GameType.DoubleBonusDeucesWild) || (GameType == GameType.DeucesWildBonusPoker) || (GameType == GameType.DeucesAndJokerPoker)) return true;
+            if ((GameType == GameType.DeucesWild) ||
+                (GameType == GameType.DoubleBonusDeucesWild) ||
+                (GameType == GameType.DeucesWildBonusPoker) ||
+                (GameType == GameType.DeucesWild_5X) ||
+                (GameType == GameType.DeucesAndJokerPoker)) return true;
             return false;
         }
 

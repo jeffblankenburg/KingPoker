@@ -12,7 +12,7 @@ namespace KingPoker
         private int Credits = 10000;
         private int BetUnit = 1;
 
-        public bool CanIncreaseUnits(int Units = 1)
+        public bool CanIncreaseUnits(int Units = 1, int multiplier = 1)
         {
             int tempUnits;
 
@@ -24,7 +24,7 @@ namespace KingPoker
             }
 
             if (tempUnits > 5) return false;
-            if (tempUnits > Credits) return false;
+            if (tempUnits*multiplier > Credits) return false;
 
             return true;
         }
@@ -80,9 +80,9 @@ namespace KingPoker
             Credits += award;
         }
 
-        public void RemoveWageredCredits()
+        public void RemoveWageredCredits(int handcount = 1)
         {
-            Credits -= GetCreditsWagered();
+            Credits -= GetCreditsWagered()*handcount;
         }
 
         public int GetCredits()

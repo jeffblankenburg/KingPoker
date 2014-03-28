@@ -145,8 +145,8 @@
                 <TextBlock Text="Never ask me again." VerticalAlignment="Center" />
             </StackPanel>
         </Grid>
-        <!--<UI:AdControl Grid.Row="2" Height="80" Width="480" AdUnitId="10064434" ApplicationId="a9715b4b-5605-4435-8277-a77762734368" />-->
-        <UI:AdControl Grid.Row="2" Height="80" Width="480" AdUnitId="Image480_80" ApplicationId="test_client" />
+        <UI:AdControl Grid.Row="2" Height="80" Width="480" AdUnitId="10064434" ApplicationId="a9715b4b-5605-4435-8277-a77762734368" />
+        <!--<UI:AdControl Grid.Row="2" Height="80" Width="480" AdUnitId="Image480_80" ApplicationId="test_client" />-->
     </Grid>
 
 </phone:PhoneApplicationPage>

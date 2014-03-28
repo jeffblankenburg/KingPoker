@@ -250,8 +250,8 @@
         </Grid>
         <Grid Grid.Row="7">
             <Viewbox>
-                <!--<UI:AdControl Height="80" Width="480" AdUnitId="10064434" ApplicationId="a9715b4b-5605-4435-8277-a77762734368" />-->
-                <UI:AdControl Height="80" Width="480" AdUnitId="Image480_80" ApplicationId="test_client" />
+                <UI:AdControl Height="80" Width="480" AdUnitId="10064434" ApplicationId="a9715b4b-5605-4435-8277-a77762734368" />
+                <!--<UI:AdControl Height="80" Width="480" AdUnitId="Image480_80" ApplicationId="test_client" />-->
             </Viewbox>
         </Grid>
         <Grid x:Name="HelpBox" Background="#00019F" Grid.RowSpan="7" Visibility="Collapsed">

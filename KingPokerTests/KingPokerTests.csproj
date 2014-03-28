@@ -75,6 +75,7 @@
     <Compile Include="DeucesAndJokerPoker_Tests.cs" />
     <Compile Include="AllAmericanPoker_Tests.cs" />
     <Compile Include="FiveHandsPokerGame_Tests.cs" />
+    <Compile Include="DeucesWild_5X_Tests.cs" />
     <Compile Include="WhiteHotAces_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
