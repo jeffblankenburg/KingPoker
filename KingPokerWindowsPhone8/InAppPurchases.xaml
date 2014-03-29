@@ -50,7 +50,7 @@
                 </Grid.ColumnDefinitions>
                 <Image x:Name="GameIcon" Grid.RowSpan="3" Source="Assets/products/5XDEUCESWILD.png" VerticalAlignment="Top"/>
                 <TextBlock x:Name="GameDescription" Grid.Row="0" Grid.Column="2" Text="Unlocks the Five Play Super Double Double Bonus Poker game variation." TextWrapping="Wrap"/>
-                <Button x:Name="GamePrice" Grid.Row="1" Grid.Column="2" Content="Purchase for $0.99" FontSize="22" HorizontalAlignment="Right" Margin="-6" Width="270" />
+                <Button x:Name="GamePrice" Grid.Row="1" Grid.Column="2" Content="Purchase for $0.99" FontSize="22" HorizontalAlignment="Right" Margin="-6" Width="270" Click="Game_Click" />
             </Grid>
             <Rectangle Grid.Row="3" Fill="{StaticResource PhoneForegroundBrush}" />
             <TextBlock x:Name="GroupTitle" Grid.Row="4" VerticalAlignment="Bottom" Margin="0,0,0,20" Text="5X GAME PACK - 18 GAMES!" FontSize="24" FontWeight="Bold" />
@@ -66,7 +66,7 @@
                 </Grid.ColumnDefinitions>
                 <Image x:Name="GroupIcon" Grid.RowSpan="3" Source="Assets/products/5XGAMEPACK.png" VerticalAlignment="Top"/>
                 <TextBlock x:Name="GroupDescription" Grid.Row="0" Grid.Column="2" Text="Unlocks six new video poker variations, including Deuces and Joker Poker, and Aces and Eights." TextWrapping="Wrap"/>
-                <Button x:Name="GroupPrice" Grid.Row="1" Grid.Column="2" Content="Purchase for $4.99" FontSize="22" HorizontalAlignment="Right" Margin="-6" Width="270" />
+                <Button x:Name="GroupPrice" Grid.Row="1" Grid.Column="2" Content="Purchase for $4.99" FontSize="22" HorizontalAlignment="Right" Margin="-6" Width="270" Click="Group_Click"/>
             </Grid>
         </Grid>
     </Grid>

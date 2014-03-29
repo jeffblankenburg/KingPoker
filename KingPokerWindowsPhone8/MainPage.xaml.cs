@@ -44,17 +44,27 @@ namespace KingPokerWindowsPhone8
             if (App.settings.Contains("IAP_DOUBLEJOKERPOKER")) DoubleJokerPoker_Lock.Visibility = Visibility.Collapsed;
             if (App.settings.Contains("IAP_SUPERDOUBLEDOUBLEBONUSPOKER")) SuperDoubleDoubleBonusPoker_Lock.Visibility = Visibility.Collapsed;
             if (App.settings.Contains("IAP_TRIPLEDOUBLEBONUSPOKER")) TripleDoubleBonusPoker_Lock.Visibility = Visibility.Collapsed;
-            
-            
-            if (App.settings.Contains("IAP_GAMEPACK1"))
-            {
-                AcesAndEightsPoker_Lock.Visibility = Visibility.Collapsed;
-                AllAmericanPoker_Lock.Visibility = Visibility.Collapsed;
-                DeucesAndJokerPoker_Lock.Visibility = Visibility.Collapsed;
-                DoubleJokerPoker_Lock.Visibility = Visibility.Collapsed;
-                SuperDoubleDoubleBonusPoker_Lock.Visibility = Visibility.Collapsed;
-                TripleDoubleBonusPoker_Lock.Visibility = Visibility.Collapsed;
-            }
+
+            if (App.settings.Contains("IAP_5XACESANDEIGHTSPOKER")) AcesAndEightsPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XACESANDFACESPOKER")) AcesAndFacesPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XALLAMERICANPOKER")) AllAmericanPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XBLACKJACKBONUSPOKER")) BlackJackBonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XBONUSPOKER")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XBONUSPOKERDELUXE")) BonusPokerDeluxe_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XDEUCESANDJOKERPOKER")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XDEUCESWILD")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XDEUCESWILDBONUSPOKER")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XDOUBLEBONUSDEUCESWILD")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XDOUBLEBONUSPOKER")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XDOUBLEDOUBLEBONUSPOKER")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XDOUBLEJOKERPOKER")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XJOKERPOKER")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XROYALACESBONUSPOKER")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XSUPERACESBONUSPOKER")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XSUPERDOUBLEDOUBLEBONUSPOKER")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XTRIPLEBONUSPOKERPLUS")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XTRIPLEDOUBLEBONUSPOKER")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XWHITEHOTACES")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
         }
 
         private void ReviewCheck()
@@ -355,6 +365,12 @@ namespace KingPokerWindowsPhone8
             NavigationService.Navigate(new Uri("/FiveHandsGame.xaml?game=" + GameType.AcesAndEightsPoker, UriKind.Relative));
         }
 
+        private void AcesAndFacesPoker_5X_Tapped(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            PlayClick();
+            NavigationService.Navigate(new Uri("/FiveHandsGame.xaml?game=" + GameType.AcesAndFacesPoker, UriKind.Relative));
+        }
+
         private void DoubleJokerPoker_5X_Tapped(object sender, System.Windows.Input.GestureEventArgs e)
         {
             PlayClick();
@@ -447,9 +463,9 @@ namespace KingPokerWindowsPhone8
             NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XBONUSPOKER", UriKind.Relative));
         }
 
-        private void AcesAndFaces_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
+        private void AcesAndFacesPoker_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XACESANDFACES", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XACESANDFACESPOKER", UriKind.Relative));
         }
 
         private void DoubleBonusDeucesWild_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
@@ -460,6 +476,51 @@ namespace KingPokerWindowsPhone8
         private void DeucesWildBonusPoker_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
         {
             NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XDEUCESWILDBONUSPOKER", UriKind.Relative));
+        }
+
+        private void JokerPoker_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XJOKERPOKER", UriKind.Relative));
+        }
+
+        private void BlackJackBonusPoker_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XBLACKJACKBONUSPOKER", UriKind.Relative));
+        }
+
+        private void DoubleDoubleBonusPoker_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XDOUBLEDOUBLEBONUSPOKER", UriKind.Relative));
+        }
+
+        private void SuperDoubleDoubleBonusPoker_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XSUPERDOUBLEDOUBLEBONUSPOKER", UriKind.Relative));
+        }
+
+        private void TripleDoubleBonusPoker_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XTRIPLEDOUBLEBONUSPOKER", UriKind.Relative));
+        }
+
+        private void AcesAndEightsPoker_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XACESANDEIGHTSPOKER", UriKind.Relative));
+        }
+
+        private void DoubleJokerPoker_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XDOUBLEJOKERPOKER", UriKind.Relative));
+        }
+
+        private void DeucesAndJokerPoker_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XDEUCESANDJOKERPOKER", UriKind.Relative));
+        }
+
+        private void AllAmericanPoker_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XALLAMERICANPOKER", UriKind.Relative));
         }
     }
 }

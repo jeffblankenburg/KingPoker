@@ -151,28 +151,28 @@
                     </Grid.RowDefinitions>
                     <Image Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="5" Source="Assets/gamelogo/5xHeader.png" />
                     <Image Grid.Column="1" Grid.Row="2" Source="Assets/gamelogo/DeucesWild.png" Tap="DeucesWild_5X_Tapped" />
-                    <Image Grid.Column="1" Grid.Row="2" Source="Assets/icons/lock.png" Tap="DeucesWild_5X_Unlock" />
+                    <Image Grid.Column="1" Grid.Row="2" x:Name="DeucesWild_5X_Lock" Source="Assets/icons/lock.png" Tap="DeucesWild_5X_Unlock" />
                     <Image Grid.Column="3" Grid.Row="2" Source="Assets/gamelogo/JacksOrBetter.png" Tap="JacksOrBetter_5X_Tapped" />
                     <Image Grid.Column="5" Grid.Row="2" Source="Assets/gamelogo/BonusPokerDeluxe.png" Tap="BonusPokerDeluxe_5X_Tapped" />
-                    <Image Grid.Column="5" Grid.Row="2" Source="Assets/icons/lock.png" Tap="BonusPokerDeluxe_5X_Unlock" />
+                    <Image Grid.Column="5" Grid.Row="2" x:Name="BonusPokerDeluxe_5X_Lock" Source="Assets/icons/lock.png" Tap="BonusPokerDeluxe_5X_Unlock" />
                     <Image Grid.Column="1" Grid.Row="4" Source="Assets/gamelogo/DoubleBonusPoker.png" Tap="DoubleBonusPoker_5X_Tapped" />
-                    <Image Grid.Column="1" Grid.Row="4" Source="Assets/icons/lock.png" Tap="DoubleBonusPoker_5X_Unlock" />
+                    <Image Grid.Column="1" Grid.Row="4" x:Name="DoubleBonusPoker_5X_Lock" Source="Assets/icons/lock.png" Tap="DoubleBonusPoker_5X_Unlock" />
                     <Image Grid.Column="3" Grid.Row="4" Source="Assets/gamelogo/RoyalAcesBonusPoker.png" Tap="RoyalAcesBonusPoker_5X_Tapped" />
-                    <Image Grid.Column="3" Grid.Row="4" Source="Assets/icons/lock.png" Tap="RoyalAcesBonusPoker_5X_Unlock" />
+                    <Image Grid.Column="3" Grid.Row="4" x:Name="RoyalAcesBonusPoker_5X_Lock" Source="Assets/icons/lock.png" Tap="RoyalAcesBonusPoker_5X_Unlock" />
                     <Image Grid.Column="5" Grid.Row="4" Source="Assets/gamelogo/TripleBonusPokerPlus.png" Tap="TripleBonusPokerPlus_5X_Tapped" />
-                    <Image Grid.Column="5" Grid.Row="4" Source="Assets/icons/lock.png" Tap="TripleBonusPokerPlus_5X_Unlock" />
+                    <Image Grid.Column="5" Grid.Row="4" x:Name="TripleBonusPokerPlus_5X_Lock" Source="Assets/icons/lock.png" Tap="TripleBonusPokerPlus_5X_Unlock" />
                     <Image Grid.Column="1" Grid.Row="6" Source="Assets/gamelogo/WhiteHotAces.png" Tap="WhiteHotAces_5X_Tapped" />
-                    <Image Grid.Column="1" Grid.Row="6" Source="Assets/icons/lock.png" Tap="WhiteHotAces_5X_Unlock" />
+                    <Image Grid.Column="1" Grid.Row="6" x:Name="WhiteHotAces_5X_Lock" Source="Assets/icons/lock.png" Tap="WhiteHotAces_5X_Unlock" />
                     <Image Grid.Column="3" Grid.Row="6" Source="Assets/gamelogo/SuperAcesBonusPoker.png" Tap="SuperAcesBonusPoker_5X_Tapped" />
-                    <Image Grid.Column="3" Grid.Row="6" Source="Assets/icons/lock.png" Tap="SuperAcesBonusPoker_5X_Unlock" />
+                    <Image Grid.Column="3" Grid.Row="6" x:Name="SuperAcesBonusPoker_5X_Lock" Source="Assets/icons/lock.png" Tap="SuperAcesBonusPoker_5X_Unlock" />
                     <Image Grid.Column="5" Grid.Row="6" Source="Assets/gamelogo/BonusPoker.png" Tap="BonusPoker_5X_Tapped" />
-                    <Image Grid.Column="5" Grid.Row="6" Source="Assets/icons/lock.png" Tap="BonusPoker_5X_Unlock" />
-                    <Image Grid.Column="1" Grid.Row="8" Source="Assets/gamelogo/AcesAndFacesPoker.png" Tap="AcesAndFaces_5X_Tapped" />
-                    <Image Grid.Column="1" Grid.Row="8" Source="Assets/icons/lock.png" Tap="AcesAndFaces_5X_Unlock" />
+                    <Image Grid.Column="5" Grid.Row="6" x:Name="BonusPoker_5X_Lock" Source="Assets/icons/lock.png" Tap="BonusPoker_5X_Unlock" />
+                    <Image Grid.Column="1" Grid.Row="8" Source="Assets/gamelogo/AcesAndFacesPoker.png" Tap="AcesAndFacesPoker_5X_Tapped" />
+                    <Image Grid.Column="1" Grid.Row="8" x:Name="AcesAndFacesPoker_5X_Lock" Source="Assets/icons/lock.png" Tap="AcesAndFacesPoker_5X_Unlock" />
                     <Image Grid.Column="3" Grid.Row="8" Source="Assets/gamelogo/DoubleBonusDeucesWild.png" Tap="DoubleBonusDeucesWild_5X_Tapped" />
-                    <Image Grid.Column="3" Grid.Row="8" Source="Assets/icons/lock.png" Tap="DoubleBonusDeucesWild_5X_Unlock" />
+                    <Image Grid.Column="3" Grid.Row="8" x:Name="DoubleBonusDeucesWild_5X_Lock" Source="Assets/icons/lock.png" Tap="DoubleBonusDeucesWild_5X_Unlock" />
                     <Image Grid.Column="5" Grid.Row="8" Source="Assets/gamelogo/DeucesWildBonusPoker.png" Tap="DeucesWildBonusPoker_5X_Tapped" />
-                    <Image Grid.Column="5" Grid.Row="8" Source="Assets/icons/lock.png" Tap="DeucesWildBonusPoker_5X_Unlock" />
+                    <Image Grid.Column="5" Grid.Row="8" x:Name="DeucesWildBonusPoker_5X_Lock" Source="Assets/icons/lock.png" Tap="DeucesWildBonusPoker_5X_Unlock" />
                 </Grid>
             </phone:PanoramaItem>
             <phone:PanoramaItem>
@@ -200,14 +200,23 @@
                     </Grid.RowDefinitions>
                     <Image Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="5" Source="Assets/gamelogo/5xHeader.png" />
                     <Image Grid.Column="1" Grid.Row="2" Source="Assets/gamelogo/JokerPoker.png" Tap="JokerPoker_5X_Tapped"/>
+                    <Image Grid.Column="1" Grid.Row="2" x:Name="JokerPoker_5X_Lock" Source="Assets/icons/lock.png" Tap="JokerPoker_5X_Unlock"/>
                     <Image Grid.Column="3" Grid.Row="2" Source="Assets/gamelogo/BlackJackBonusPoker.png" Tap="BlackJackBonusPoker_5X_Tapped"/>
+                    <Image Grid.Column="3" Grid.Row="2" x:Name="BlackJackBonusPoker_5X_Lock" Source="Assets/icons/lock.png" Tap="BlackJackBonusPoker_5X_Unlock"/>
                     <Image Grid.Column="5" Grid.Row="2" Source="Assets/gamelogo/DoubleDoubleBonusPoker.png" Tap="DoubleDoubleBonusPoker_5X_Tapped"/>
+                    <Image Grid.Column="5" Grid.Row="2" x:Name="DoubleDoubleBonusPoker_5X_Lock" Source="Assets/icons/lock.png" Tap="DoubleDoubleBonusPoker_5X_Unlock"/>
                     <Image Grid.Column="1" Grid.Row="4" Source="Assets/gamelogo/SuperDoubleDoubleBonusPoker.png" Tap="SuperDoubleDoubleBonusPoker_5X_Tapped" />
+                    <Image Grid.Column="1" Grid.Row="4" x:Name="SuperDoubleDoubleBonusPoker_5X_Lock" Source="Assets/icons/lock.png" Tap="SuperDoubleDoubleBonusPoker_5X_Unlock" />
                     <Image Grid.Column="3" Grid.Row="4" Source="Assets/gamelogo/TripleDoubleBonusPoker.png" Tap="TripleDoubleBonusPoker_5X_Tapped" />
+                    <Image Grid.Column="3" Grid.Row="4" x:Name="TripleDoubleBonusPoker_5X_Lock" Source="Assets/icons/lock.png" Tap="TripleDoubleBonusPoker_5X_Unlock" />
                     <Image Grid.Column="5" Grid.Row="4" Source="Assets/gamelogo/AcesAndEightsPoker.png" Tap="AcesAndEightsPoker_5X_Tapped" />
+                    <Image Grid.Column="5" Grid.Row="4" x:Name="AcesAndEightsPoker_5X_Lock" Source="Assets/icons/lock.png" Tap="AcesAndEightsPoker_5X_Unlock" />
                     <Image Grid.Column="1" Grid.Row="6" Source="Assets/gamelogo/DoubleJokerPoker.png" Tap="DoubleJokerPoker_5X_Tapped" />
+                    <Image Grid.Column="1" Grid.Row="6" x:Name="DoubleJokerPoker_5X_Lock" Source="Assets/icons/lock.png" Tap="DoubleJokerPoker_5X_Unlock" />
                     <Image Grid.Column="3" Grid.Row="6" Source="Assets/gamelogo/DeucesAndJokerPoker.png" Tap="DeucesAndJokerPoker_5X_Tapped" />
+                    <Image Grid.Column="3" Grid.Row="6" x:Name="DeucesAndJokerPoker_5X_Lock" Source="Assets/icons/lock.png" Tap="DeucesAndJokerPoker_5X_Unlock" />
                     <Image Grid.Column="5" Grid.Row="6" Source="Assets/gamelogo/AllAmericanPoker.png" Tap="AllAmericanPoker_5X_Tapped" />
+                    <Image Grid.Column="5" Grid.Row="6" x:Name="AllAmericanPoker_5X_Lock" Source="Assets/icons/lock.png" Tap="AllAmericanPoker_5X_Unlock" />
                 </Grid>
             </phone:PanoramaItem>
         </phone:Panorama>

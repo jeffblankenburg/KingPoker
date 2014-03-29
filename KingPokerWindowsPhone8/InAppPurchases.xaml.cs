@@ -200,12 +200,43 @@ namespace KingPokerWindowsPhone8
             }
             else if (s == "5XGAMEPACK")
             {
-
+                App.settings["IAP_5XACESANDEIGHTSPOKER"] = true;
+                App.settings["IAP_5XACESANDFACESPOKER"] = true;
+                App.settings["IAP_5XALLAMERICANPOKER"] = true;
+                App.settings["IAP_5XBLACKJACKBONUSPOKER"] = true;
+                App.settings["IAP_5XBONUSPOKER"] = true;
+                App.settings["IAP_5XBONUSPOKERDELUXE"] = true;
+                App.settings["IAP_5XDEUCESANDJOKERPOKER"] = true;
+                App.settings["IAP_5XDEUCESWILD"] = true;
+                App.settings["IAP_5XDEUCESWILDBONUSPOKER"] = true;
+                App.settings["IAP_5XDOUBLEBONUSDEUCESWILD"] = true;
+                App.settings["IAP_5XDOUBLEBONUSPOKER"] = true;
+                App.settings["IAP_5XDOUBLEDOUBLEBONUSPOKER"] = true;
+                App.settings["IAP_5XDOUBLEJOKERPOKER"] = true;
+                App.settings["IAP_5XJOKERPOKER"] = true;
+                App.settings["IAP_5XROYALACESBONUSPOKER"] = true;
+                App.settings["IAP_5XSUPERACESBONUSPOKER"] = true;
+                App.settings["IAP_5XSUPERDOUBLEDOUBLEBONUSPOKER"] = true;
+                App.settings["IAP_5XTRIPLEBONUSPOKERPLUS"] = true;
+                App.settings["IAP_5XTRIPLEDOUBLEBONUSPOKER"] = true;
+                App.settings["IAP_5XWHITEHOTACES"] = true;
             }
             else
             {
                 App.settings["IAP_" + s] = true;
             }
+
+            NavigationService.GoBack();
+        }
+
+        private void Game_Click(object sender, RoutedEventArgs e)
+        {
+            OfferProduct(product);
+        }
+
+        private void Group_Click(object sender, RoutedEventArgs e)
+        {
+            OfferProduct(group);
         }
     }
 }

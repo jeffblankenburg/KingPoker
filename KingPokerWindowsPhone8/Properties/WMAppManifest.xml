@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{cf12ee7a-8d70-44a5-8d11-e371d7c64d5c}" Title="King Poker" RuntimeType="Silverlight" Version="2.0.0.3" Genre="apps.normal" Author="KingPokerWindowsPhone8 author" Description="Sample description" Publisher="KingPokerWindowsPhone8" PublisherID="{048cc21e-6236-4847-a993-b8a510c29b32}">
+  <App xmlns="" ProductID="{cf12ee7a-8d70-44a5-8d11-e371d7c64d5c}" Title="King Poker" RuntimeType="Silverlight" Version="2.0.0.4" Genre="apps.normal" Author="KingPokerWindowsPhone8 author" Description="Sample description" Publisher="KingPokerWindowsPhone8" PublisherID="{048cc21e-6236-4847-a993-b8a510c29b32}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
