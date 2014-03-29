@@ -25,6 +25,7 @@
     <ValidateXaml>true</ValidateXaml>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <ExpressionBlendVersion>12.0.41002.1</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -160,6 +161,9 @@
   <ItemGroup>
     <Content Include="Assets\AlignmentGrid.png" />
     <Content Include="Assets\AppBar\225-LineChart.png" />
+    <Content Include="Assets\AppBar\basecircle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\AppBar\favs.png" />
     <Content Include="Assets\AppBar\history.png" />
     <Content Include="Assets\AppBar\like.png" />
@@ -167,6 +171,8 @@
     <Content Include="Assets\AppBar\LogOut.png" />
     <Content Include="Assets\AppBar\questionmark.png" />
     <Content Include="Assets\AppBar\share.png" />
+    <Content Include="Assets\AppBar\volume_off.png" />
+    <Content Include="Assets\AppBar\volume_on.png" />
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

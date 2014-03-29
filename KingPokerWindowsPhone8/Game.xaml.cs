@@ -68,6 +68,7 @@ namespace KingPokerWindowsPhone8
         {
             if (pokergame == null) pokergame = new PokerGame(gametype);
             LoadPlayer();
+            UpdateMuteStatus();
             ChangeBetHighlight();
             LoadPayTable();
             LoadHelpContent();
@@ -520,7 +521,7 @@ namespace KingPokerWindowsPhone8
 
         private void PlayOneBet()
         {
-            if (!App.IsMuted)
+            if (!(bool)App.settings["ismuted"])
             {
                 var stream = TitleContainer.OpenStream("Assets/audio/onebet.wav");
                 SoundEffect effect = SoundEffect.FromStream(stream);
@@ -531,7 +532,7 @@ namespace KingPokerWindowsPhone8
 
         private void PlayCardDeal()
         {
-            if (!App.IsMuted)
+            if (!(bool)App.settings["ismuted"])
             {
                 var stream = TitleContainer.OpenStream("Assets/audio/carddeal.wav");
                 SoundEffect effect = SoundEffect.FromStream(stream);
@@ -542,7 +543,7 @@ namespace KingPokerWindowsPhone8
 
         private void PlayHoldAlert()
         {
-            if (!App.IsMuted)
+            if (!(bool)App.settings["ismuted"])
             {
                 var stream = TitleContainer.OpenStream("Assets/audio/holdalert.wav");
                 SoundEffect effect = SoundEffect.FromStream(stream);
@@ -553,7 +554,24 @@ namespace KingPokerWindowsPhone8
 
         private void ChangeMuteStatus()
         {
-            App.IsMuted = !App.IsMuted;
+            App.settings["ismuted"] = !(bool)App.settings["ismuted"];
+            UpdateMuteStatus();
+        }
+
+        private void UpdateMuteStatus()
+        {
+            ApplicationBarIconButton mutebutton = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
+
+            if (!(bool)App.settings["ismuted"])
+            {
+                mutebutton.Text = "unmute";
+                mutebutton.IconUri = new Uri("/Assets/AppBar/volume_off.png", UriKind.Relative);
+            }
+            else
+            {
+                mutebutton.Text = "mute";
+                mutebutton.IconUri = new Uri("/Assets/AppBar/volume_on.png", UriKind.Relative);
+            }
         }
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
@@ -569,6 +587,11 @@ namespace KingPokerWindowsPhone8
         private void History_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/HandHistory.xaml", UriKind.Relative));
+        }
+
+        private void Mute_Click(object sender, EventArgs e)
+        {
+            ChangeMuteStatus();
         }
     }
 }

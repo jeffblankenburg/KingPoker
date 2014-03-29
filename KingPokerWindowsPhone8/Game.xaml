@@ -81,6 +81,7 @@
 
     <Grid x:Name="LayoutRoot" Background="#00019F">
         <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
             <RowDefinition Height="180" />
             <RowDefinition Height="200" />
             <RowDefinition Height="150" />
@@ -88,14 +89,20 @@
             <RowDefinition Height="40" />
             <RowDefinition Height="30" />
             <RowDefinition Height="10" />
-            <RowDefinition Height="80" />
+            
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="1">
+            <Viewbox>
+                <UI:AdControl Height="80" Width="480" AdUnitId="10064434" ApplicationId="a9715b4b-5605-4435-8277-a77762734368" />
+                <!--<UI:AdControl Height="80" Width="480" AdUnitId="Image480_80" ApplicationId="test_client" />-->
+            </Viewbox>
+        </Grid>
+        <Grid Grid.Row="1">
             <Image Source="Assets/pattern480_800.png" Stretch="UniformToFill" />
             <Image x:Name="Logo" Source="Assets/gamekinglogo.png" Margin="10"/>
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*" />
@@ -167,7 +174,7 @@
                 </ItemsControl>
             </Viewbox>
         </Grid>
-        <Grid x:Name="CardGrid" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,1,0,0">
+        <Grid x:Name="CardGrid" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,1,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -206,12 +213,12 @@
                 </Grid>
             </Border>
         </Grid>
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="4">
             <Viewbox Margin="7">
                 <TextBlock x:Name="BetText" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" FontWeight="Bold" Text="BET   1" FontFamily="Arial Black" FontSize="30" TextAlignment="Center" Foreground="White"/>
             </Viewbox>
         </Grid>
-        <Grid Grid.Row="4">
+        <Grid Grid.Row="5">
             <TextBlock x:Name="GameName" Text="DEUCESWILDDOUBLEBONUS" FontFamily="Arial" FontWeight="ExtraBold" VerticalAlignment="Bottom" FontSize="10" Margin="12,0,0,5"  HorizontalAlignment="Left" />
             <Viewbox VerticalAlignment="Bottom" HorizontalAlignment="Right">
                 <StackPanel Orientation="Horizontal" Margin="5">
@@ -226,7 +233,7 @@
                 </StackPanel>
             </Viewbox>
         </Grid>
-        <Grid x:Name="ButtonsGrid" Grid.Row="5">
+        <Grid x:Name="ButtonsGrid" Grid.Row="6">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -248,12 +255,7 @@
                 <Image x:Name="DealButton" Source="Assets/buttons/DEAL.png" MouseLeftButtonDown="Deal_Click"/>
             </StackPanel>
         </Grid>
-        <Grid Grid.Row="7">
-            <Viewbox>
-                <UI:AdControl Height="80" Width="480" AdUnitId="10064434" ApplicationId="a9715b4b-5605-4435-8277-a77762734368" />
-                <!--<UI:AdControl Height="80" Width="480" AdUnitId="Image480_80" ApplicationId="test_client" />-->
-            </Viewbox>
-        </Grid>
+        
         <Grid x:Name="HelpBox" Background="#00019F" Grid.RowSpan="7" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="35" />
@@ -277,8 +279,8 @@
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <!--<shell:ApplicationBarIconButton IconUri="/Assets/AppBar/LogIn.png" Text="login" Click="Login_Click"/>
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/225-LineChart.png" Text="stats" Click="Stats_Click"/>-->
+            <!--<shell:ApplicationBarIconButton IconUri="/Assets/AppBar/LogIn.png" Text="login" Click="Login_Click"/>-->
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/volume_on.png" Text="mute" Click="Mute_Click"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/questionmark.png" Text="about" Click="About_Click"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/history.png" Text="history" Click="History_Click"/>
         </shell:ApplicationBar>

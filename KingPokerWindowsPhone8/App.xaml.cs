@@ -22,7 +22,6 @@ namespace KingPokerWindowsPhone8
         /// <returns>The root frame of the Phone Application.</returns>
         public static PhoneApplicationFrame RootFrame { get; private set; }
         public static IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
-        public static bool IsMuted = false;
 
         /// <summary>
         /// Constructor for the Application object.
@@ -40,6 +39,11 @@ namespace KingPokerWindowsPhone8
 
             // Language display initialization
             InitializeLanguage();
+
+            if (!settings.Contains("ismuted"))
+            {
+                settings["ismuted"] = false;
+            }
 
             // Show graphics profiling information while debugging.
             if (Debugger.IsAttached)
