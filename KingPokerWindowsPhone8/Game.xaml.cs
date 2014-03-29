@@ -332,6 +332,7 @@ namespace KingPokerWindowsPhone8
                 int credits = player.GetCredits();
                 OldCredits = credits;
                 player.AwardCredits(pokergame.GetEntireHand());
+                RecordHand(pokergame.CheckHandForOutcome());
                 UpdateCredits();
             }
         }
@@ -363,6 +364,7 @@ namespace KingPokerWindowsPhone8
             }
             else
             {
+                App.settings["totalcreditsplayed"] = (int)App.settings["totalcreditsplayed"] + bet;
                 player.RemoveWageredCredits();
                 DrawCredits(player.GetCredits());
                 pokergame.Deal();
@@ -592,6 +594,15 @@ namespace KingPokerWindowsPhone8
         private void Mute_Click(object sender, EventArgs e)
         {
             ChangeMuteStatus();
+        }
+
+        private void RecordHand(HandOutcome outcome)
+        {
+
+            if (App.settings.Contains("COUNT_" + gametype + "_" + outcome))
+                App.settings["COUNT_" + gametype + "_" + outcome] = (int)App.settings["COUNT_" + gametype + "_" + outcome] + 1;
+            else
+                App.settings["COUNT_" + gametype + "_" + outcome] = 1;
         }
     }
 }

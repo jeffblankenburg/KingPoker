@@ -45,6 +45,11 @@ namespace KingPokerWindowsPhone8
                 settings["ismuted"] = false;
             }
 
+            if (!settings.Contains("totalcreditsplayed"))
+            {
+                App.settings["totalcreditsplayed"] = 0;
+            }
+
             // Show graphics profiling information while debugging.
             if (Debugger.IsAttached)
             {

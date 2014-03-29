@@ -237,6 +237,7 @@ namespace KingPokerWindowsPhone8
                 p.Text = credits;
                 b.Visibility = Visibility.Visible;
                 player.AwardCredits(pokergame.PokerGames[ShowHandsCounter].Hand);
+                RecordHand(pokergame.PokerGames[ShowHandsCounter].CheckHandForOutcome());
             }
         }
 
@@ -606,6 +607,14 @@ namespace KingPokerWindowsPhone8
         private void Mute_Click(object sender, EventArgs e)
         {
             ChangeMuteStatus();
+        }
+
+        private void RecordHand(HandOutcome outcome)
+        {
+            if (App.settings.Contains("COUNT_" + gametype + "_5X_" + outcome))
+                App.settings["COUNT_" + gametype + "_5X_" + outcome] = (int)App.settings["COUNT_" + gametype + "_5X_" + outcome] + 1;
+            else
+                App.settings["COUNT_" + gametype + "_5X_" + outcome] = 1;
         }
     }
 }
