@@ -117,6 +117,7 @@
                     <Image Grid.Column="1" Grid.Row="6" Source="Assets/gamelogo/DoubleJokerPoker.png" Tap="DoubleJokerPoker_Tapped" />
                     <Image Grid.Column="3" Grid.Row="6" Source="Assets/gamelogo/DeucesAndJokerPoker.png" Tap="DeucesAndJokerPoker_Tapped" />
                     <Image Grid.Column="5" Grid.Row="6" Source="Assets/gamelogo/AllAmericanPoker.png" Tap="AllAmericanPoker_Tapped" />
+                    <Image Grid.Column="1" Grid.Row="4" Source="Assets/icons/6gamelock.png" Grid.ColumnSpan="5" Grid.RowSpan="3" Tap="GamePack1_Unlock_Tapped"/>
                 </Grid>
             </phone:PanoramaItem>
             <phone:PanoramaItem>
@@ -143,8 +144,9 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Image Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="5" Source="Assets/gamelogo/5xHeader.png" />
-                    <Image Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="5" Source="Assets/icons/lock_wide.png" />
+                    <Image Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="5" Source="Assets/icons/lock_wide.png" Tap="FivePlay_Unlock_Tap" />
                     <Image Grid.Column="1" Grid.Row="2" Source="Assets/gamelogo/DeucesWild.png" Tap="DeucesWild_5X_Tapped" />
+                    <Image Grid.Column="1" Grid.Row="2" Source="Assets/icons/lock.png" Tap="DeucesWild_5X_Unlock" />
                     <Image Grid.Column="3" Grid.Row="2" Source="Assets/gamelogo/JacksOrBetter.png" Tap="JacksOrBetter_5X_Tapped" />
                     <Image Grid.Column="5" Grid.Row="2" Source="Assets/gamelogo/BonusPokerDeluxe.png" Tap="BonusPokerDeluxe_5X_Tapped" />
                     <Image Grid.Column="1" Grid.Row="4" Source="Assets/gamelogo/DoubleBonusPoker.png" Tap="DoubleBonusPoker_5X_Tapped" />

@@ -243,70 +243,6 @@ namespace KingPokerWindowsPhone8
             NavigationService.Navigate(new Uri("/FiveHandsGame.xaml?game=" + GameType.BonusPokerDeluxe, UriKind.Relative));
         }
 
-        private void GamePack1_Unlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            OfferProduct("GAMEPACK1");
-        }
-
-        private async void OfferProduct(string s)
-        {
-
-            try
-            {
-                await CurrentApp.RequestProductPurchaseAsync(s, false);
-                CompleteFulfillment(s);
-            }
-            catch (Exception ex)
-            {
-
-            }
-
-//            StringBuilder sb = new StringBuilder();
-//#if DEBUG
-//            var listing = await MockIAPLib.CurrentApp.LoadListingInformationAsync();
-//#else
-//            var listing = await CurrentApp.LoadListingInformationAsync();
-//#endif
-//            foreach (var product in listing.ProductListings)
-//            {
-//                sb.AppendLine(string.Format("{0}, {1}, {2},{3}, {4}",
-//                    product.Key,
-//                    product.Value.Name,
-//                    product.Value.FormattedPrice,
-//                    product.Value.ProductType,
-//                    product.Value.Description));
-//            }
-
-//            MessageBox.Show(sb.ToString(), "List all products", MessageBoxButton.OK);
-
-//#if DEBUG
-//            MockIAPLib.ListingInformation listings = await MockIAPLib.CurrentApp.LoadListingInformationByProductIdsAsync(new string[] { s });
-//#else
-//            ListingInformation listings = await CurrentApp.LoadListingInformationByProductIdsAsync(new string[] { s });
-//#endif
-//            try
-//            {
-
-
-//#if DEBUG
-//                await MockIAPLib.CurrentApp.RequestProductPurchaseAsync(listings.ProductListings.ToList()[0].Value.ProductId, false);
-//#else
-//                await CurrentApp.RequestProductPurchaseAsync(listings.ProductListings.ToList()[0].Value.ProductId, false);
-//#endif
-//                CompleteFulfillment();
-//            }
-//            catch (Exception ex)
-//            {
-
-//            }
-            
-        }
-
-        private void CompleteFulfillment(string s)
-        {
-            App.settings[s] = true;
-        }
-
         private void DoubleBonusPoker_5X_Tapped(object sender, System.Windows.Input.GestureEventArgs e)
         {
             PlayClick();
@@ -413,6 +349,85 @@ namespace KingPokerWindowsPhone8
         {
             PlayClick();
             NavigationService.Navigate(new Uri("/FiveHandsGame.xaml?game=" + GameType.AllAmericanPoker, UriKind.Relative));
+        }
+
+        private void GamePack1_Unlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            OfferProduct("GAMEPACK1");
+        }
+
+        private async void OfferProduct(string s)
+        {
+
+            try
+            {
+                await CurrentApp.RequestProductPurchaseAsync(s, false);
+                CompleteFulfillment(s);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            //            StringBuilder sb = new StringBuilder();
+            //#if DEBUG
+            //            var listing = await MockIAPLib.CurrentApp.LoadListingInformationAsync();
+            //#else
+            //            var listing = await CurrentApp.LoadListingInformationAsync();
+            //#endif
+            //            foreach (var product in listing.ProductListings)
+            //            {
+            //                sb.AppendLine(string.Format("{0}, {1}, {2},{3}, {4}",
+            //                    product.Key,
+            //                    product.Value.Name,
+            //                    product.Value.FormattedPrice,
+            //                    product.Value.ProductType,
+            //                    product.Value.Description));
+            //            }
+
+            //            MessageBox.Show(sb.ToString(), "List all products", MessageBoxButton.OK);
+
+            //#if DEBUG
+            //            MockIAPLib.ListingInformation listings = await MockIAPLib.CurrentApp.LoadListingInformationByProductIdsAsync(new string[] { s });
+            //#else
+            //            ListingInformation listings = await CurrentApp.LoadListingInformationByProductIdsAsync(new string[] { s });
+            //#endif
+            //            try
+            //            {
+
+
+            //#if DEBUG
+            //                await MockIAPLib.CurrentApp.RequestProductPurchaseAsync(listings.ProductListings.ToList()[0].Value.ProductId, false);
+            //#else
+            //                await CurrentApp.RequestProductPurchaseAsync(listings.ProductListings.ToList()[0].Value.ProductId, false);
+            //#endif
+            //                CompleteFulfillment();
+            //            }
+            //            catch (Exception ex)
+            //            {
+
+            //            }
+
+        }
+
+        private void CompleteFulfillment(string s)
+        {
+            App.settings["IAP_" + s] = true;
+        }
+
+        private void FivePlay_Unlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            OfferProduct("5XGAMEPACK");
+        }
+
+        private void GamePack1_Unlock_Tapped(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            OfferProduct("GAMEPACK1");
+        }
+
+        private void DeucesWild_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            OfferProduct("5XDEUCESWILD");
         }
     }
 }
