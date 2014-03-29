@@ -32,7 +32,29 @@ namespace KingPokerWindowsPhone8
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            UpdateLocks();
             ReviewCheck();
+        }
+
+        private void UpdateLocks()
+        {
+            if (App.settings.Contains("IAP_ACESANDEIGHTSPOKER")) AcesAndEightsPoker_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_ALLAMERICANPOKER")) AllAmericanPoker_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_DEUCESANDJOKERPOKER")) DeucesAndJokerPoker_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_DOUBLEJOKERPOKER")) DoubleJokerPoker_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_SUPERDOUBLEDOUBLEBONUSPOKER")) SuperDoubleDoubleBonusPoker_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_TRIPLEDOUBLEBONUSPOKER")) TripleDoubleBonusPoker_Lock.Visibility = Visibility.Collapsed;
+            
+            
+            if (App.settings.Contains("IAP_GAMEPACK1"))
+            {
+                AcesAndEightsPoker_Lock.Visibility = Visibility.Collapsed;
+                AllAmericanPoker_Lock.Visibility = Visibility.Collapsed;
+                DeucesAndJokerPoker_Lock.Visibility = Visibility.Collapsed;
+                DoubleJokerPoker_Lock.Visibility = Visibility.Collapsed;
+                SuperDoubleDoubleBonusPoker_Lock.Visibility = Visibility.Collapsed;
+                TripleDoubleBonusPoker_Lock.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void ReviewCheck()
@@ -351,83 +373,93 @@ namespace KingPokerWindowsPhone8
             NavigationService.Navigate(new Uri("/FiveHandsGame.xaml?game=" + GameType.AllAmericanPoker, UriKind.Relative));
         }
 
-        private void GamePack1_Unlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+//GAMEPACK #1
+
+        private void SuperDoubleDoubleBonusPoker_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            OfferProduct("GAMEPACK1");
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=GAMEPACK1&game=&product=SUPERDOUBLEDOUBLEBONUSPOKER", UriKind.Relative));
         }
 
-        private async void OfferProduct(string s)
+        private void TripleDoubleBonusPoker_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
         {
-
-            try
-            {
-                await CurrentApp.RequestProductPurchaseAsync(s, false);
-                CompleteFulfillment(s);
-            }
-            catch (Exception ex)
-            {
-
-            }
-
-            //            StringBuilder sb = new StringBuilder();
-            //#if DEBUG
-            //            var listing = await MockIAPLib.CurrentApp.LoadListingInformationAsync();
-            //#else
-            //            var listing = await CurrentApp.LoadListingInformationAsync();
-            //#endif
-            //            foreach (var product in listing.ProductListings)
-            //            {
-            //                sb.AppendLine(string.Format("{0}, {1}, {2},{3}, {4}",
-            //                    product.Key,
-            //                    product.Value.Name,
-            //                    product.Value.FormattedPrice,
-            //                    product.Value.ProductType,
-            //                    product.Value.Description));
-            //            }
-
-            //            MessageBox.Show(sb.ToString(), "List all products", MessageBoxButton.OK);
-
-            //#if DEBUG
-            //            MockIAPLib.ListingInformation listings = await MockIAPLib.CurrentApp.LoadListingInformationByProductIdsAsync(new string[] { s });
-            //#else
-            //            ListingInformation listings = await CurrentApp.LoadListingInformationByProductIdsAsync(new string[] { s });
-            //#endif
-            //            try
-            //            {
-
-
-            //#if DEBUG
-            //                await MockIAPLib.CurrentApp.RequestProductPurchaseAsync(listings.ProductListings.ToList()[0].Value.ProductId, false);
-            //#else
-            //                await CurrentApp.RequestProductPurchaseAsync(listings.ProductListings.ToList()[0].Value.ProductId, false);
-            //#endif
-            //                CompleteFulfillment();
-            //            }
-            //            catch (Exception ex)
-            //            {
-
-            //            }
-
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=GAMEPACK1&product=TRIPLEDOUBLEBONUSPOKER", UriKind.Relative));
         }
 
-        private void CompleteFulfillment(string s)
+        private void AcesAndEightsPoker_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            App.settings["IAP_" + s] = true;
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=GAMEPACK1&product=ACESANDEIGHTSPOKER", UriKind.Relative));
         }
 
-        private void FivePlay_Unlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void DoubleJokerPoker_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            OfferProduct("5XGAMEPACK");
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=GAMEPACK1&product=DOUBLEJOKERPOKER", UriKind.Relative));
         }
 
-        private void GamePack1_Unlock_Tapped(object sender, System.Windows.Input.GestureEventArgs e)
+        private void DeucesAndJokerPoker_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            OfferProduct("GAMEPACK1");
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=GAMEPACK1&product=5XDEUCESANDJOKERPOKER", UriKind.Relative));
         }
+
+        private void AllAmericanPoker_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=GAMEPACK1&product=ALLAMERICANPOKER", UriKind.Relative));
+        }
+
+//5X GAME PACK
 
         private void DeucesWild_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            OfferProduct("5XDEUCESWILD");
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XDEUCESWILD", UriKind.Relative));
+        }
+
+        private void BonusPokerDeluxe_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XBONUSPOKERDELUXE", UriKind.Relative));
+        }
+
+        private void DoubleBonusPoker_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XDOUBLEBONUSPOKER", UriKind.Relative));
+        }
+
+        private void RoyalAcesBonusPoker_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XROYALACESBONUSPOKER", UriKind.Relative));
+        }
+
+        private void TripleBonusPokerPlus_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XTRIPLEBONUSPOKERPLUS", UriKind.Relative));
+        }
+
+        private void WhiteHotAces_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XWHITEHOTACES", UriKind.Relative));
+        }
+
+        private void SuperAcesBonusPoker_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XSUPERACESBONUSPOKER", UriKind.Relative));
+        }
+
+        private void BonusPoker_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XBONUSPOKER", UriKind.Relative));
+        }
+
+        private void AcesAndFaces_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XACESANDFACES", UriKind.Relative));
+        }
+
+        private void DoubleBonusDeucesWild_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XDOUBLEBONUSDEUCESWILD", UriKind.Relative));
+        }
+
+        private void DeucesWildBonusPoker_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XDEUCESWILDBONUSPOKER", UriKind.Relative));
         }
     }
 }

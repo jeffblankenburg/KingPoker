@@ -114,6 +114,9 @@
     <Compile Include="HandHistory.xaml.cs">
       <DependentUpon>HandHistory.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InAppPurchases.xaml.cs">
+      <DependentUpon>InAppPurchases.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -146,6 +149,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="InAppPurchases.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -159,6 +166,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\300x300.png" />
     <Content Include="Assets\AlignmentGrid.png" />
     <Content Include="Assets\AppBar\225-LineChart.png" />
     <Content Include="Assets\AppBar\basecircle.png">
@@ -294,10 +302,35 @@
     <Content Include="Assets\numbers\CREDITS.png" />
     <Content Include="Assets\numbers\WIN.png" />
     <Content Include="Assets\pattern480_800.png" />
+    <Content Include="Assets\products\5XACESANDEIGHTSPOKER.png" />
+    <Content Include="Assets\products\5XACESANDFACESPOKER.png" />
+    <Content Include="Assets\products\5XALLAMERICANPOKER.png" />
+    <Content Include="Assets\products\5XBLACKJACKBONUSPOKER.png" />
+    <Content Include="Assets\products\5XBONUSPOKER.png" />
+    <Content Include="Assets\products\5XBONUSPOKERDELUXE.png" />
+    <Content Include="Assets\products\5XDEUCESANDJOKERPOKER.png" />
     <Content Include="Assets\products\5XDEUCESWILD.png" />
+    <Content Include="Assets\products\5XDEUCESWILDBONUSPOKER.png" />
+    <Content Include="Assets\products\5XDOUBLEBONUSDEUCESWILD.png" />
+    <Content Include="Assets\products\5XDOUBLEBONUSPOKER.png" />
+    <Content Include="Assets\products\5XDOUBLEDOUBLEBONUSPOKER.png" />
+    <Content Include="Assets\products\5XDOUBLEJOKERPOKER.png" />
     <Content Include="Assets\products\5XGAMEPACK.png" />
+    <Content Include="Assets\products\5XJOKERPOKER.png" />
+    <Content Include="Assets\products\5XROYALACESBONUSPOKER.png" />
+    <Content Include="Assets\products\5XSUPERACESBONUSPOKER.png" />
+    <Content Include="Assets\products\5XSUPERDOUBLEDOUBLEBONUSPOKER.png" />
+    <Content Include="Assets\products\5XTRIPLEBONUSPOKERPLUS.png" />
+    <Content Include="Assets\products\5XTRIPLEDOUBLEBONUSPOKER.png" />
+    <Content Include="Assets\products\5XWHITEHOTACES.png" />
+    <Content Include="Assets\products\ACESANDEIGHTSPOKER.png" />
+    <Content Include="Assets\products\ALLAMERICANPOKER.png" />
+    <Content Include="Assets\products\DEUCESANDJOKERPOKER.png" />
+    <Content Include="Assets\products\DOUBLEJOKERPOKER.png" />
     <Content Include="Assets\products\GAMEPACK1.png" />
     <Content Include="Assets\products\NOADS.png" />
+    <Content Include="Assets\products\SUPERDOUBLEDOUBLEBONUSPOKER.png" />
+    <Content Include="Assets\products\TRIPLEDOUBLEBONUSPOKER.png" />
     <Content Include="Assets\Small.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

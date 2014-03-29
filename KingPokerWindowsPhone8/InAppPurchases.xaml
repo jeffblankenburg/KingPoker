@@ -1,0 +1,74 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="KingPokerWindowsPhone8.InAppPurchases"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28" Orientation="Horizontal">
+            <Image Source="Assets/300x300.png" Width="24" />
+            <TextBlock Text="KING POKER STORE" Style="{StaticResource PhoneTextNormalStyle}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="175" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="75" />
+                <RowDefinition Height="175" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="GameTitle" Grid.Row="0" VerticalAlignment="Bottom" Margin="0,0,0,20" Text="5X Super Double Double Bonus Poker" FontSize="24" FontWeight="Bold" />
+            <Grid Grid.Row="1" HorizontalAlignment="Left">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="115" />
+                    <RowDefinition Height="60" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="175" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image x:Name="GameIcon" Grid.RowSpan="3" Source="Assets/products/5XDEUCESWILD.png" VerticalAlignment="Top"/>
+                <TextBlock x:Name="GameDescription" Grid.Row="0" Grid.Column="2" Text="Unlocks the Five Play Super Double Double Bonus Poker game variation." TextWrapping="Wrap"/>
+                <Button x:Name="GamePrice" Grid.Row="1" Grid.Column="2" Content="Purchase for $0.99" FontSize="22" HorizontalAlignment="Right" Margin="-6" Width="270" />
+            </Grid>
+            <Rectangle Grid.Row="3" Fill="{StaticResource PhoneForegroundBrush}" />
+            <TextBlock x:Name="GroupTitle" Grid.Row="4" VerticalAlignment="Bottom" Margin="0,0,0,20" Text="5X GAME PACK - 18 GAMES!" FontSize="24" FontWeight="Bold" />
+            <Grid Grid.Row="5" HorizontalAlignment="Left">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="115" />
+                    <RowDefinition Height="60" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="175" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image x:Name="GroupIcon" Grid.RowSpan="3" Source="Assets/products/5XGAMEPACK.png" VerticalAlignment="Top"/>
+                <TextBlock x:Name="GroupDescription" Grid.Row="0" Grid.Column="2" Text="Unlocks six new video poker variations, including Deuces and Joker Poker, and Aces and Eights." TextWrapping="Wrap"/>
+                <Button x:Name="GroupPrice" Grid.Row="1" Grid.Column="2" Content="Purchase for $4.99" FontSize="22" HorizontalAlignment="Right" Margin="-6" Width="270" />
+            </Grid>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>
