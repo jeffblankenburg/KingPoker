@@ -158,7 +158,7 @@
                     </ItemsControl>
                 </ScrollViewer>
             </Grid>
-            <UI:AdControl Grid.Row="3" Height="80" Width="480" AdUnitId="10064434" ApplicationId="a9715b4b-5605-4435-8277-a77762734368" />
+            <UI:AdControl x:Name="AdBox" Grid.Row="3" Height="80" Width="480" AdUnitId="10064434" ApplicationId="a9715b4b-5605-4435-8277-a77762734368" />
         </Grid>
         <ProgressBar x:Name="StatusBar" IsEnabled="True" IsIndeterminate="True" Foreground="Red" VerticalAlignment="Center" Height="10" />
     </Grid>

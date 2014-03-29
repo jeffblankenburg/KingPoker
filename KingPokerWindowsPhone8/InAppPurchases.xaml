@@ -52,9 +52,9 @@
                 <TextBlock x:Name="GameDescription" Grid.Row="0" Grid.Column="2" Text="Unlocks the Five Play Super Double Double Bonus Poker game variation." TextWrapping="Wrap"/>
                 <Button x:Name="GamePrice" Grid.Row="1" Grid.Column="2" Content="Purchase for $0.99" FontSize="22" HorizontalAlignment="Right" Margin="-6" Width="270" Click="Game_Click" />
             </Grid>
-            <Rectangle Grid.Row="3" Fill="{StaticResource PhoneForegroundBrush}" />
+            <Rectangle x:Name="Divider" Grid.Row="3" Fill="{StaticResource PhoneForegroundBrush}" />
             <TextBlock x:Name="GroupTitle" Grid.Row="4" VerticalAlignment="Bottom" Margin="0,0,0,20" Text="5X GAME PACK - 18 GAMES!" FontSize="24" FontWeight="Bold" />
-            <Grid Grid.Row="5" HorizontalAlignment="Left">
+            <Grid x:Name="GroupBox" Grid.Row="5" HorizontalAlignment="Left">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="115" />
                     <RowDefinition Height="60" />

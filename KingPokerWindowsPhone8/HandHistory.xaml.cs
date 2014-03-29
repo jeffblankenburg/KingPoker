@@ -26,6 +26,11 @@ namespace KingPokerWindowsPhone8
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (App.settings.Contains("IAP_NOADS"))
+            {
+                AdBox.Visibility = Visibility.Collapsed;
+            }
+            
             List<BothHands> history = App.settings["handhistory"] as List<BothHands>;
             StatsList.ItemsSource = (from p in history
                                     orderby p.TimeStamp descending

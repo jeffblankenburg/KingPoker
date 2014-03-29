@@ -65,6 +65,12 @@ namespace KingPokerWindowsPhone8
             if (App.settings.Contains("IAP_5XTRIPLEBONUSPOKERPLUS")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
             if (App.settings.Contains("IAP_5XTRIPLEDOUBLEBONUSPOKER")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
             if (App.settings.Contains("IAP_5XWHITEHOTACES")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+
+            if (App.settings.Contains("IAP_NOADS"))
+            {
+                Ad_Lock.Visibility = Visibility.Collapsed;
+                AdBox.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void ReviewCheck()
@@ -194,6 +200,7 @@ namespace KingPokerWindowsPhone8
         private void Rating_Click(object sender, RoutedEventArgs e)
         {
             CloseRatingsBox();
+            App.settings["launchcount"] = 205;
             MarketplaceReviewTask mrt = new MarketplaceReviewTask();
             mrt.Show();
         }
@@ -521,6 +528,11 @@ namespace KingPokerWindowsPhone8
         private void AllAmericanPoker_5X_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
         {
             NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XALLAMERICANPOKER", UriKind.Relative));
+        }
+
+        private void Ad_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?product=NOADS", UriKind.Relative));
         }
     }
 }

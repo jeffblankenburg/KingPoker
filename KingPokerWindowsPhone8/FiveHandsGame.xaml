@@ -73,7 +73,19 @@
         <Storyboard x:Name="CardPause">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="CreditImage">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.10" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.12" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="StatsPause">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="CreditImage">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.05" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="StatsPause5Seconds">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="CreditImage">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:5" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <!--<local:HelpItemToFontWeightConverter x:Key="HelpItemToFontWeightConverter" />-->
@@ -94,9 +106,13 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Viewbox>
-                <UI:AdControl Height="80" Width="480" AdUnitId="10064434" ApplicationId="a9715b4b-5605-4435-8277-a77762734368" />
+                <UI:AdControl x:Name="AdBox" Height="80" Width="480" AdUnitId="10064434" ApplicationId="a9715b4b-5605-4435-8277-a77762734368" />
                 <!--<UI:AdControl Height="80" Width="480" AdUnitId="Image480_80" ApplicationId="test_client" />-->
             </Viewbox>
+            <Canvas Margin="20" Width="1000">
+                <TextBlock x:Name="StatsText1" Canvas.Left="0" Text="FOUR OF A KIND: 23" Foreground="#FCD800" FontSize="28" FontWeight="Bold" />
+                <TextBlock x:Name="StatsText2" Canvas.Left="500" Text="ROYAL FLUSH: 1" Foreground="#FCD800" FontSize="28" FontWeight="Bold" />
+            </Canvas>
         </Grid>
         <!--<Grid Grid.Row="0">
             <Image Source="Assets/pattern480_800.png" Stretch="UniformToFill" />

@@ -28,6 +28,7 @@ namespace KingPokerWindowsPhone8
         int ShowCardsCounter = 0;
         int ShowHandsCounter = 0;
         int OldCredits = 0;
+        int payTableCounter = 0;
 
         public FiveHandsGame()
         {
@@ -39,6 +40,8 @@ namespace KingPokerWindowsPhone8
             gametype = (GameType)Enum.Parse(typeof(GameType), NavigationContext.QueryString["game"].ToString());
             CreditPause.Completed += CreditPause_Completed;
             CardPause.Completed += CardPause_Completed;
+            StatsPause.Completed += StatsPause_Completed;
+            StatsPause5Seconds.Completed += StatsPause5Seconds_Completed;
             GameSetup();
         }
 
@@ -46,6 +49,8 @@ namespace KingPokerWindowsPhone8
         {
             CreditPause.Completed -= CreditPause_Completed;
             CardPause.Completed -= CardPause_Completed;
+            StatsPause.Completed -= StatsPause_Completed;
+            StatsPause5Seconds.Completed -= StatsPause5Seconds_Completed;
             App.settings["credits"] = player.GetCredits();
         }
 
@@ -53,6 +58,7 @@ namespace KingPokerWindowsPhone8
         {
             if (pokergame == null) pokergame = new FiveHandsPokerGame(gametype);
             LoadPlayer();
+            CheckAdBox();
             UpdateMuteStatus();
             ChangeBetHighlight();
             LoadPayTable();
@@ -60,6 +66,64 @@ namespace KingPokerWindowsPhone8
             SetGameLogo();
             LoadHelpContent();
             DrawCredits(player.GetCredits());
+        }
+
+        private void CheckAdBox()
+        {
+            if (App.settings.Contains("IAP_NOADS"))
+            {
+                StatsText1.Text = "YOUR STATISTICS";
+                StatsText2.Text = gametype.ToString().ToUpper();
+                AdBox.Visibility = Visibility.Collapsed;
+                StatsPause5Seconds.Begin();
+            }
+        }
+
+        private void StatsAnimation()
+        {
+            var x1 = Canvas.GetLeft(StatsText1);
+            var x2 = Canvas.GetLeft(StatsText2);
+
+            x1 -= 25;
+            x2 -= 25;
+
+            Canvas.SetLeft(StatsText1, x1);
+            Canvas.SetLeft(StatsText2, x2);
+
+            if (x1 == 0)
+            {
+                Canvas.SetLeft(StatsText2, 500);
+                LoadNextStatistic(StatsText2);
+                StatsPause5Seconds.Begin();
+            }
+            else if (x2 == 0)
+            {
+                Canvas.SetLeft(StatsText1, 500);
+                LoadNextStatistic(StatsText1);
+                StatsPause5Seconds.Begin();
+            }
+            else
+            {
+                StatsPause.Begin();
+            }
+        }
+
+        private void LoadNextStatistic(TextBlock tb)
+        {
+            if (App.settings.Contains("COUNT_" + gametype.ToString() + "_" + pokergame.GetPayTable()[payTableCounter].Outcome.ToString()))
+            {
+                tb.Text = pokergame.GetPayTable()[payTableCounter].Title.Replace(".", "") + " : " + ((int)App.settings["COUNT_" + gametype.ToString() + "_" + pokergame.GetPayTable()[payTableCounter].Outcome]).ToString();
+            }
+            else
+            {
+                tb.Text = pokergame.GetPayTable()[payTableCounter].Title.Replace(".", "") + " : 0";
+            }
+
+            payTableCounter++;
+            if (payTableCounter >= pokergame.GetPayTable().Count())
+            {
+                payTableCounter = 0;
+            }
         }
 
         private void LoadPlayer()
@@ -97,6 +161,16 @@ namespace KingPokerWindowsPhone8
         void CreditPause_Completed(object sender, object e)
         {
             UpdateCredits();
+        }
+
+        void StatsPause_Completed(object sender, EventArgs e)
+        {
+            StatsAnimation();
+        }
+
+        void StatsPause5Seconds_Completed(object sender, EventArgs e)
+        {
+            StatsAnimation();
         }
 
         private void LoadHelpContent()
@@ -240,20 +314,6 @@ namespace KingPokerWindowsPhone8
                 RecordHand(pokergame.PokerGames[ShowHandsCounter].CheckHandForOutcome());
             }
         }
-
-        
-
-        
-
-        //private void SaveHands()
-        //{
-        //    List<BothHands> handhistory = (List<BothHands>)App.settings["handhistory"];
-        //    BothHands bothhands = new BothHands { OpeningHand = HandStart, ClosingHand = HandEnd, GameType = gametype, Outcome = HandEnd.CheckForOutcome(), CreditCount = player.GetCredits(), IsSnapped = false, IsOnline = false };
-        //    handhistory.Add(bothhands);
-        //    App.settings["handhistory"] = handhistory;
-        //}
-
-        
 
         private void DrawCredits(int credits)
         {

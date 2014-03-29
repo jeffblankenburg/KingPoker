@@ -25,8 +25,8 @@ namespace KingPokerWindowsPhone8
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            group = NavigationContext.QueryString["group"].ToString();
-            product = NavigationContext.QueryString["product"].ToString();
+            if (NavigationContext.QueryString.ContainsKey("group")) group = NavigationContext.QueryString["group"].ToString();
+            if (NavigationContext.QueryString.ContainsKey("product")) product = NavigationContext.QueryString["product"].ToString();
             BuildStore();
         }
 
@@ -38,7 +38,7 @@ namespace KingPokerWindowsPhone8
 
                     GroupIcon.Source = new BitmapImage(new Uri("/Assets/products/GAMEPACK1.png", UriKind.Relative));
                     GroupTitle.Text = "GAME PACK 1 - SIX NEW GAMES!";
-                    GroupPrice.Content = "Purchase for $1.99";
+                    GroupPrice.Content = "Purchase for $2.99";
                     GroupDescription.Text = "Unlocks six new video poker variations, including Deuces and Joker Poker, and Aces and Eights.";
 
                     GameIcon.Source = new BitmapImage(new Uri("/Assets/products/" + product + ".png", UriKind.Relative));
@@ -169,6 +169,20 @@ namespace KingPokerWindowsPhone8
                     break;
                 default:
 
+                    Divider.Visibility = Visibility.Collapsed;
+                    GroupTitle.Visibility = Visibility.Collapsed;
+                    GroupBox.Visibility = Visibility.Collapsed;
+
+
+                    switch(product)
+                    {
+                        case "NOADS":
+                            GameTitle.Text = "No Ads (But Add Stats!)";
+                            GameDescription.Text = "This will turn off all advertising in the game, and replace that space with statistics from your play.";
+                            GameIcon.Source = new BitmapImage(new Uri("/Assets/products/NOADS.png", UriKind.Relative));
+                            GamePrice.Content = "Purchase for $1.99";
+                            break;
+                    }
                     break;
             }
         }

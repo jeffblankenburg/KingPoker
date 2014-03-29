@@ -44,7 +44,7 @@
         </Grid.RowDefinitions>
         <Image Source="Assets/pattern480_800.png" Stretch="UniformToFill" />
         <Image x:Name="Logo" Height="160" Source="Assets/gamekinglogo.png" Width="399"/>
-        <Rectangle Fill="#00019f" Grid.Row="1" />
+        <Rectangle Fill="#00019F" Grid.Row="1" />
         <phone:Panorama Grid.Row="1">
             <phone:PanoramaItem>
                 <Grid>
@@ -123,7 +123,7 @@
                     <Image Grid.Column="3" Grid.Row="6" x:Name="DeucesAndJokerPoker_Lock" Source="Assets/icons/lock.png" Tap="DeucesAndJokerPoker_Unlock" />
                     <Image Grid.Column="5" Grid.Row="6" Source="Assets/gamelogo/AllAmericanPoker.png" Tap="AllAmericanPoker_Tapped" />
                     <Image Grid.Column="5" Grid.Row="6" x:Name="AllAmericanPoker_Lock" Source="Assets/icons/lock.png" Tap="AllAmericanPoker_Unlock" />
-                    
+                    <Image Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="5" x:Name="Ad_Lock" Source="Assets/icons/noads.png" Tap="Ad_Unlock" />
                 </Grid>
             </phone:PanoramaItem>
             <phone:PanoramaItem>
@@ -244,7 +244,7 @@
                 <TextBlock Text="Never ask me again." VerticalAlignment="Center" />
             </StackPanel>
         </Grid>
-        <UI:AdControl Grid.Row="2" Height="80" Width="480" AdUnitId="10064434" ApplicationId="a9715b4b-5605-4435-8277-a77762734368" />
+        <UI:AdControl x:Name="AdBox" Grid.Row="2" Height="80" Width="480" AdUnitId="10064434" ApplicationId="a9715b4b-5605-4435-8277-a77762734368" />
         <!--<UI:AdControl Grid.Row="2" Height="80" Width="480" AdUnitId="Image480_80" ApplicationId="test_client" />-->
     </Grid>
 

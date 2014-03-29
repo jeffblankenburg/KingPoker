@@ -28,6 +28,7 @@ namespace KingPokerWindowsPhone8
         bool IsDrawingCredits = false;
         int handCounter = 0;
         int cardCounter = 0;
+        int payTableCounter = 0;
         int OldCredits;
 
         SolidColorBrush Blue = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xFF, 0x00, 0x00, 0x64));
@@ -44,6 +45,8 @@ namespace KingPokerWindowsPhone8
             gametype = (GameType)Enum.Parse(typeof(GameType), NavigationContext.QueryString["game"].ToString());
             CreditPause.Completed += CreditPause_Completed;
             CardPause.Completed += CardPause_Completed;
+            StatsPause.Completed += StatsPause_Completed;
+            StatsPause5Seconds.Completed += StatsPause5Seconds_Completed;
             GameSetup();
         }
 
@@ -51,6 +54,8 @@ namespace KingPokerWindowsPhone8
         {
             CreditPause.Completed -= CreditPause_Completed;
             CardPause.Completed -= CardPause_Completed;
+            StatsPause.Completed -= StatsPause_Completed;
+            StatsPause5Seconds.Completed -= StatsPause5Seconds_Completed;
             App.settings["credits"] = player.GetCredits();
         }
 
@@ -64,15 +69,84 @@ namespace KingPokerWindowsPhone8
             UpdateCredits();
         }
 
+        void StatsPause_Completed(object sender, EventArgs e)
+        {
+            StatsAnimation();
+        }
+
+        void StatsPause5Seconds_Completed(object sender, EventArgs e)
+        {
+            StatsAnimation();
+        }
+
         private void GameSetup()
         {
             if (pokergame == null) pokergame = new PokerGame(gametype);
             LoadPlayer();
+            CheckAdBox();
             UpdateMuteStatus();
             ChangeBetHighlight();
             LoadPayTable();
             LoadHelpContent();
             DrawCredits(player.GetCredits());
+        }
+
+        private void CheckAdBox()
+        {
+            if (App.settings.Contains("IAP_NOADS")) 
+            {
+                StatsText1.Text = "YOUR STATISTICS";
+                StatsText2.Text = gametype.ToString().ToUpper();    
+                AdBox.Visibility = Visibility.Collapsed;
+                StatsPause5Seconds.Begin();
+            }
+        }
+
+        private void StatsAnimation()
+        {
+            var x1 = Canvas.GetLeft(StatsText1);
+            var x2 = Canvas.GetLeft(StatsText2);
+
+            x1 -= 25;
+            x2 -= 25;
+
+            Canvas.SetLeft(StatsText1, x1);
+            Canvas.SetLeft(StatsText2, x2);
+
+            if (x1 == 0)
+            {
+                Canvas.SetLeft(StatsText2, 500);
+                LoadNextStatistic(StatsText2);
+                StatsPause5Seconds.Begin();
+            }
+            else if (x2 == 0)
+            {
+                Canvas.SetLeft(StatsText1, 500);
+                LoadNextStatistic(StatsText1);
+                StatsPause5Seconds.Begin();
+            }
+            else
+            {
+                StatsPause.Begin();
+            }
+        }
+
+        private void LoadNextStatistic(TextBlock tb)
+        {
+            if (App.settings.Contains("COUNT_" + gametype.ToString() + "_" + pokergame.GetPayTable()[payTableCounter].Outcome.ToString()))
+            {
+                tb.Text = pokergame.GetPayTable()[payTableCounter].Title.Replace(".", "") + " : " + ((int)App.settings["COUNT_" + gametype.ToString() + "_" + pokergame.GetPayTable()[payTableCounter].Outcome]).ToString();
+            }
+            else
+            {
+                tb.Text = pokergame.GetPayTable()[payTableCounter].Title.Replace(".", "") + " : 0";
+            }
+            
+            payTableCounter++;
+            if (payTableCounter >= pokergame.GetPayTable().Count())
+            {
+                payTableCounter = 0;
+            }
         }
 
         private void LoadHelpContent()
@@ -599,10 +673,10 @@ namespace KingPokerWindowsPhone8
         private void RecordHand(HandOutcome outcome)
         {
 
-            if (App.settings.Contains("COUNT_" + gametype + "_" + outcome))
-                App.settings["COUNT_" + gametype + "_" + outcome] = (int)App.settings["COUNT_" + gametype + "_" + outcome] + 1;
+            if (App.settings.Contains("COUNT_" + gametype.ToString() + "_" + outcome.ToString()))
+                App.settings["COUNT_" + gametype.ToString() + "_" + outcome.ToString()] = (int)App.settings["COUNT_" + gametype.ToString() + "_" + outcome.ToString()] + 1;
             else
-                App.settings["COUNT_" + gametype + "_" + outcome] = 1;
+                App.settings["COUNT_" + gametype.ToString() + "_" + outcome.ToString()] = 1;
         }
     }
 }
