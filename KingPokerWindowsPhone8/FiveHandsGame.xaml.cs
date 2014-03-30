@@ -240,7 +240,7 @@ namespace KingPokerWindowsPhone8
 
         private void Deal()
         {
-            if (player.GetCreditsWagered() <= player.GetCredits())
+            if (player.GetCreditsWagered()*5 <= player.GetCredits())
             {
                 if (!IsShowingCards)
                 {
@@ -300,6 +300,14 @@ namespace KingPokerWindowsPhone8
             if  (ShowHandsCounter == 5)
             {
                 HighlightPayTable(PayTableNames, (ItemsControl)FindName("PayTableCoin" + player.GetUnitsWagered()));
+
+                if ((!IsHoldRound) && player.GetCredits() == 0)
+                {
+                    ResetBox.Visibility = Visibility.Visible;
+                    player.SetCredits(10000);
+                    DrawCredits(player.GetCredits());
+                }
+
                 if (!IsHoldRound) UpdateCredits();
                 ShowHandsCounter = 0;
                 ShowCardsCounter = 0;
@@ -340,8 +348,6 @@ namespace KingPokerWindowsPhone8
 
         private void HighlightPayTable(DependencyObject target, DependencyObject target2)
         {
-            //TODO: This logic really shouldn't be here.  We need to have the "logic" tell the UI which items to highlight.
-
             var count = VisualTreeHelper.GetChildrenCount(target);
             if (count == 0) return;
 
@@ -572,7 +578,7 @@ namespace KingPokerWindowsPhone8
                 else
                 {
                     amount--;
-                    IncreaseBet(amount);
+                    if (amount >=1) IncreaseBet(amount);
                 }
                 ChangeBetHighlight();
             }
