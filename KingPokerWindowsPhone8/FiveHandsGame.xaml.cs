@@ -77,6 +77,16 @@ namespace KingPokerWindowsPhone8
                 AdBox.Visibility = Visibility.Collapsed;
                 StatsPause5Seconds.Begin();
             }
+            else
+            {
+#if DEBUG
+                AdBox.AdUnitId = "Image480_80";
+                AdBox.ApplicationId = "test_client";
+#else
+                AdBox.AdUnitId = App.AdUnitId;
+                AdBox.ApplicationId = App.ApplicationId;
+#endif
+            }
         }
 
         private void StatsAnimation()

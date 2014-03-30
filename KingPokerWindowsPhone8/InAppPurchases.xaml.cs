@@ -7,9 +7,14 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using Windows.ApplicationModel.Store;
 using KingPoker;
 using System.Windows.Media.Imaging;
+#if DEBUG
+using MockIAPLib;
+using Store = MockIAPLib;
+#else
+using Windows.ApplicationModel.Store;
+#endif
 
 namespace KingPokerWindowsPhone8
 {
@@ -39,7 +44,6 @@ namespace KingPokerWindowsPhone8
                     GroupIcon.Source = new BitmapImage(new Uri("/Assets/products/GAMEPACK1.png", UriKind.Relative));
                     GroupTitle.Text = "GAME PACK 1 - SIX NEW GAMES!";
                     GroupPrice.Content = "Purchase for $2.99";
-                    GroupDescription.Text = "Unlocks six new video poker variations, including Deuces and Joker Poker, and Aces and Eights.";
 
                     GameIcon.Source = new BitmapImage(new Uri("/Assets/products/" + product + ".png", UriKind.Relative));
                     GamePrice.Content = "Purchase for $0.99";
@@ -64,7 +68,7 @@ namespace KingPokerWindowsPhone8
                             break;
                         case "DEUCESANDJOKERPOKER":
                             GameTitle.Text = "Deuces and Joker Poker";
-                            GameDescription.Text = "This game is like Deuces Wild, but the deck also contains one wild Joker.";
+                            GameDescription.Text = "This game is like Deuces Wild, but the deck also contains one wild Joker!";
                             break;
                         case "ALLAMERICANPOKER":
                             GameTitle.Text = "All American Poker";

@@ -105,14 +105,14 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
+            <Canvas Margin="20" Width="1000">
+                <TextBlock x:Name="StatsText1" Canvas.Left="0"  Foreground="#FCD800" FontSize="28" FontWeight="Bold" />
+                <TextBlock x:Name="StatsText2" Canvas.Left="500" Foreground="#FCD800" FontSize="28" FontWeight="Bold" />
+            </Canvas>
             <Viewbox>
                 <UI:AdControl x:Name="AdBox" Height="80" Width="480" AdUnitId="10064434" ApplicationId="a9715b4b-5605-4435-8277-a77762734368" />
                 <!--<UI:AdControl Height="80" Width="480" AdUnitId="Image480_80" ApplicationId="test_client" />-->
             </Viewbox>
-            <Canvas Margin="20" Width="1000">
-                <TextBlock x:Name="StatsText1" Canvas.Left="0" Text="FOUR OF A KIND: 23" Foreground="#FCD800" FontSize="28" FontWeight="Bold" />
-                <TextBlock x:Name="StatsText2" Canvas.Left="500" Text="ROYAL FLUSH: 1" Foreground="#FCD800" FontSize="28" FontWeight="Bold" />
-            </Canvas>
         </Grid>
         <!--<Grid Grid.Row="0">
             <Image Source="Assets/pattern480_800.png" Stretch="UniformToFill" />

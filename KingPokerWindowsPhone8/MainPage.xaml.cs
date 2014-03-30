@@ -34,6 +34,25 @@ namespace KingPokerWindowsPhone8
         {
             UpdateLocks();
             ReviewCheck();
+            CheckAdBox();
+        }
+
+        private void CheckAdBox()
+        {
+            if (App.settings.Contains("IAP_NOADS")) 
+            {
+                AdBox.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+#if DEBUG
+                AdBox.AdUnitId = "Image480_80";
+                AdBox.ApplicationId = "test_client";
+#else
+                AdBox.AdUnitId = App.AdUnitId;
+                AdBox.ApplicationId = App.ApplicationId;
+#endif
+            }
         }
 
         private void UpdateLocks()
@@ -51,25 +70,24 @@ namespace KingPokerWindowsPhone8
             if (App.settings.Contains("IAP_5XBLACKJACKBONUSPOKER")) BlackJackBonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
             if (App.settings.Contains("IAP_5XBONUSPOKER")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
             if (App.settings.Contains("IAP_5XBONUSPOKERDELUXE")) BonusPokerDeluxe_5X_Lock.Visibility = Visibility.Collapsed;
-            if (App.settings.Contains("IAP_5XDEUCESANDJOKERPOKER")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
-            if (App.settings.Contains("IAP_5XDEUCESWILD")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
-            if (App.settings.Contains("IAP_5XDEUCESWILDBONUSPOKER")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
-            if (App.settings.Contains("IAP_5XDOUBLEBONUSDEUCESWILD")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
-            if (App.settings.Contains("IAP_5XDOUBLEBONUSPOKER")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
-            if (App.settings.Contains("IAP_5XDOUBLEDOUBLEBONUSPOKER")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
-            if (App.settings.Contains("IAP_5XDOUBLEJOKERPOKER")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
-            if (App.settings.Contains("IAP_5XJOKERPOKER")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
-            if (App.settings.Contains("IAP_5XROYALACESBONUSPOKER")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
-            if (App.settings.Contains("IAP_5XSUPERACESBONUSPOKER")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
-            if (App.settings.Contains("IAP_5XSUPERDOUBLEDOUBLEBONUSPOKER")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
-            if (App.settings.Contains("IAP_5XTRIPLEBONUSPOKERPLUS")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
-            if (App.settings.Contains("IAP_5XTRIPLEDOUBLEBONUSPOKER")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
-            if (App.settings.Contains("IAP_5XWHITEHOTACES")) BonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XDEUCESANDJOKERPOKER")) DeucesAndJokerPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XDEUCESWILD")) DeucesWild_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XDEUCESWILDBONUSPOKER")) DeucesWildBonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XDOUBLEBONUSDEUCESWILD")) DoubleBonusDeucesWild_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XDOUBLEBONUSPOKER")) DoubleBonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XDOUBLEDOUBLEBONUSPOKER")) DoubleDoubleBonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XDOUBLEJOKERPOKER")) DoubleJokerPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XJOKERPOKER")) JokerPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XROYALACESBONUSPOKER")) RoyalAcesBonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XSUPERACESBONUSPOKER")) SuperAcesBonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XSUPERDOUBLEDOUBLEBONUSPOKER")) SuperDoubleDoubleBonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XTRIPLEBONUSPOKERPLUS")) TripleBonusPokerPlus_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XTRIPLEDOUBLEBONUSPOKER")) TripleDoubleBonusPoker_5X_Lock.Visibility = Visibility.Collapsed;
+            if (App.settings.Contains("IAP_5XWHITEHOTACES")) WhiteHotAces_5X_Lock.Visibility = Visibility.Collapsed;
 
             if (App.settings.Contains("IAP_NOADS"))
             {
                 Ad_Lock.Visibility = Visibility.Collapsed;
-                AdBox.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -420,7 +438,7 @@ namespace KingPokerWindowsPhone8
 
         private void DeucesAndJokerPoker_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=GAMEPACK1&product=5XDEUCESANDJOKERPOKER", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=GAMEPACK1&product=DEUCESANDJOKERPOKER", UriKind.Relative));
         }
 
         private void AllAmericanPoker_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
@@ -529,6 +547,8 @@ namespace KingPokerWindowsPhone8
         {
             NavigationService.Navigate(new Uri("/InAppPurchases.xaml?group=5XGAMEPACK&product=5XALLAMERICANPOKER", UriKind.Relative));
         }
+
+//NO ADS
 
         private void Ad_Unlock(object sender, System.Windows.Input.GestureEventArgs e)
         {

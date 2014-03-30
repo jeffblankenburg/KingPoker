@@ -22,6 +22,8 @@ namespace KingPokerWindowsPhone8
         /// <returns>The root frame of the Phone Application.</returns>
         public static PhoneApplicationFrame RootFrame { get; private set; }
         public static IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
+        public static string AdUnitId = "10064434";
+        public static string ApplicationId = "a9715b4b-5605-4435-8277-a77762734368";
 
         /// <summary>
         /// Constructor for the Application object.
@@ -93,7 +95,7 @@ namespace KingPokerWindowsPhone8
                 FormattedPrice = "1.99",
                 Tag = string.Empty
             };
-            MockIAP.AddProductListing("NOADS", p);
+            MockIAP.AddProductListing(p.ProductId, p);
 
             p = new ProductListing
             {
@@ -102,10 +104,34 @@ namespace KingPokerWindowsPhone8
                 ProductType = Windows.ApplicationModel.Store.ProductType.Durable,
                 Keywords = new string[] { "image" },
                 Description = "An image",
+                FormattedPrice = "1.99",
+                Tag = string.Empty
+            };
+            MockIAP.AddProductListing(p.ProductId, p);
+
+            p = new ProductListing
+            {
+                Name = "5X Game Pack",
+                ProductId = "5XGAMEPACK",
+                ProductType = Windows.ApplicationModel.Store.ProductType.Durable,
+                Keywords = new string[] { "image" },
+                Description = "An image",
                 FormattedPrice = "4.99",
                 Tag = string.Empty
             };
-            MockIAP.AddProductListing("GAMEPACK1", p);
+            MockIAP.AddProductListing(p.ProductId, p);
+
+            p = new ProductListing
+            {
+                Name = "Deuces and Joker Poker",
+                ProductId = "DEUCESANDJOKERPOKER",
+                ProductType = Windows.ApplicationModel.Store.ProductType.Durable,
+                Keywords = new string[] { "image" },
+                Description = "An image",
+                FormattedPrice = "0.99",
+                Tag = string.Empty
+            };
+            MockIAP.AddProductListing(p.ProductId, p);
 #endif
 
         }

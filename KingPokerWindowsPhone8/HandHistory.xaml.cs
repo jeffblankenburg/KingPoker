@@ -30,6 +30,16 @@ namespace KingPokerWindowsPhone8
             {
                 AdBox.Visibility = Visibility.Collapsed;
             }
+            else
+            {
+#if DEBUG
+                AdBox.AdUnitId = "Image480_80";
+                AdBox.ApplicationId = "test_client";
+#else
+                AdBox.AdUnitId = App.AdUnitId;
+                AdBox.ApplicationId = App.ApplicationId;
+#endif
+            }
             
             List<BothHands> history = App.settings["handhistory"] as List<BothHands>;
             StatsList.ItemsSource = (from p in history
