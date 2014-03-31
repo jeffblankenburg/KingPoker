@@ -12,9 +12,9 @@ namespace KingPoker
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            //BothHands h = value as BothHands;
-            //return h.ClosingHand.Check(h.GameType);
-            return 0;
+            BothHands h = value as BothHands;
+            return h.ClosingHand.CheckForOutcome();
+            //return 0;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

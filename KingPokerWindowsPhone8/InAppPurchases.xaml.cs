@@ -43,7 +43,7 @@ namespace KingPokerWindowsPhone8
 
                     GroupIcon.Source = new BitmapImage(new Uri("/Assets/products/GAMEPACK1.png", UriKind.Relative));
                     GroupTitle.Text = "GAME PACK 1 - SIX NEW GAMES!";
-                    GroupPrice.Content = "Purchase for $2.99";
+                    GroupPrice.Content = "Purchase for $2.49";
 
                     GameIcon.Source = new BitmapImage(new Uri("/Assets/products/" + product + ".png", UriKind.Relative));
                     GamePrice.Content = "Purchase for $0.99";
@@ -80,7 +80,7 @@ namespace KingPokerWindowsPhone8
                 case "5XGAMEPACK":
 
                     GroupIcon.Source = new BitmapImage(new Uri("/Assets/products/5XGAMEPACK.png", UriKind.Relative));
-                    GroupTitle.Text = "FIVE PLAY GAME PACK - 21 NEW GAMES!";
+                    GroupTitle.Text = "FIVE PLAY GAME PACK - 20 NEW GAMES!";
                     GroupPrice.Content = "Purchase for $4.99";
                     
                     GameIcon.Source = new BitmapImage(new Uri("/Assets/products/" + product + ".png", UriKind.Relative));
@@ -169,7 +169,7 @@ namespace KingPokerWindowsPhone8
                             GameDescription.Text = "This game is like Jacks or Better, with rewards for specific four-of-a-kind combinations.";
                             break;
                     }
-                    GroupDescription.Text = "Unlocks all 21 variations of Five Play Video Poker, including " + GameTitle.Text + "!";
+                    GroupDescription.Text = "Unlocks all 20 variations of Five Play Video Poker, including " + GameTitle.Text + "!";
                     break;
                 default:
 

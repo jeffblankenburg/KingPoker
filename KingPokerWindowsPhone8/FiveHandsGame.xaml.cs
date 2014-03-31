@@ -73,7 +73,7 @@ namespace KingPokerWindowsPhone8
             if (App.settings.Contains("IAP_NOADS"))
             {
                 StatsText1.Text = "YOUR STATISTICS";
-                StatsText2.Text = gametype.ToString().ToUpper();
+                StatsText2.Text = "FIVE PLAY " + gametype.ToString().ToUpper();
                 AdBox.Visibility = Visibility.Collapsed;
                 StatsPause5Seconds.Begin();
             }
@@ -687,10 +687,10 @@ namespace KingPokerWindowsPhone8
 
         private void RecordHand(HandOutcome outcome)
         {
-            if (App.settings.Contains("COUNT_" + gametype + "_5X_" + outcome))
-                App.settings["COUNT_" + gametype + "_5X_" + outcome] = (int)App.settings["COUNT_" + gametype + "_5X_" + outcome] + 1;
+            if (App.settings.Contains("COUNT_" + gametype.ToString() + "_5X_" + outcome.ToString()))
+                App.settings["COUNT_" + gametype.ToString() + "_5X_" + outcome.ToString()] = (int)App.settings["COUNT_" + gametype.ToString() + "_5X_" + outcome.ToString()] + 1;
             else
-                App.settings["COUNT_" + gametype + "_5X_" + outcome] = 1;
+                App.settings["COUNT_" + gametype.ToString() + "_5X_" + outcome.ToString()] = 1;
         }
     }
 }
