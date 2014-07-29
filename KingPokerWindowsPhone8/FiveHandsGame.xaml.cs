@@ -52,6 +52,7 @@ namespace KingPokerWindowsPhone8
             StatsPause.Completed -= StatsPause_Completed;
             StatsPause5Seconds.Completed -= StatsPause5Seconds_Completed;
             App.settings["credits"] = player.GetCredits();
+            App.settings.Save();
         }
 
         private void GameSetup()
@@ -144,7 +145,7 @@ namespace KingPokerWindowsPhone8
             {
                 player.SetCredits((int)App.settings["credits"]);
             }
-            else player.SetCredits(10000);
+            //else player.SetCredits(10000);
         }
 
         private void LoadPayTable()
@@ -409,6 +410,7 @@ namespace KingPokerWindowsPhone8
             else
             {
                 player.RemoveWageredCredits(5);
+                App.settings["credits"] = player.GetCredits();
                 OldCredits = player.GetCredits();
                 DrawCredits(OldCredits);
             }

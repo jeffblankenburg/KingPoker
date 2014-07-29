@@ -120,6 +120,29 @@
     <None Include="KingPokerWindows81_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\gamelogo\1xHeader.png" />
+    <Content Include="Assets\gamelogo\5xHeader.png" />
+    <Content Include="Assets\gamelogo\AcesAndEightsPoker.png" />
+    <Content Include="Assets\gamelogo\AcesAndFacesPoker.png" />
+    <Content Include="Assets\gamelogo\AllAmericanPoker.png" />
+    <Content Include="Assets\gamelogo\BlackJackBonusPoker.png" />
+    <Content Include="Assets\gamelogo\BonusPoker.png" />
+    <Content Include="Assets\gamelogo\BonusPokerDeluxe.png" />
+    <Content Include="Assets\gamelogo\DeucesAndJokerPoker.png" />
+    <Content Include="Assets\gamelogo\DeucesWild.png" />
+    <Content Include="Assets\gamelogo\DeucesWildBonusPoker.png" />
+    <Content Include="Assets\gamelogo\DoubleBonusDeucesWild.png" />
+    <Content Include="Assets\gamelogo\DoubleBonusPoker.png" />
+    <Content Include="Assets\gamelogo\DoubleDoubleBonusPoker.png" />
+    <Content Include="Assets\gamelogo\DoubleJokerPoker.png" />
+    <Content Include="Assets\gamelogo\JacksOrBetter.png" />
+    <Content Include="Assets\gamelogo\JokerPoker.png" />
+    <Content Include="Assets\gamelogo\RoyalAcesBonusPoker.png" />
+    <Content Include="Assets\gamelogo\SuperAcesBonusPoker.png" />
+    <Content Include="Assets\gamelogo\SuperDoubleDoubleBonusPoker.png" />
+    <Content Include="Assets\gamelogo\TripleBonusPokerPlus.png" />
+    <Content Include="Assets\gamelogo\TripleDoubleBonusPoker.png" />
+    <Content Include="Assets\gamelogo\WhiteHotAces.png" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />

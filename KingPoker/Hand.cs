@@ -1,16 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace KingPoker
 {
+    [DataContract]
     public class Hand
     {
+        [DataMember]
         public List<Card> Cards = new List<Card> {new Card(), new Card(), new Card(), new Card(), new Card() };
         //public List<Card> Cards = new List<Card>();
+        [DataMember]
         public List<Card> SortedCards = new List<Card>();
+        [DataMember]
         public List<bool> Held = new List<bool>{false, false, false, false, false};
+        [DataMember]
         public GameType GameType;
 
         internal Hand(GameType gametype)

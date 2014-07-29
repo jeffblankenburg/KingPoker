@@ -49,7 +49,12 @@ namespace KingPokerWindowsPhone8
 
             if (!settings.Contains("totalcreditsplayed"))
             {
-                App.settings["totalcreditsplayed"] = 0;
+               settings["totalcreditsplayed"] = 0;
+            }
+
+            if (!settings.Contains("credits"))
+            {
+                settings["credits"] = 10000;
             }
 
             // Show graphics profiling information while debugging.
